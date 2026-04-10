@@ -3,16 +3,16 @@ using UnityEngine;
 public class UI_ToolTip : MonoBehaviour
 {
     private RectTransform rect;
-    [SerializeField] private Vector2 offset = new Vector2(300, 20);//工具提示相对于目标矩形的偏移量
+    [SerializeField] private Vector2 offset = new Vector2(300, 20);//提示框相对目标的偏移量
 
     protected virtual void Awake()
     {
         rect = GetComponent<RectTransform>();
     }
 
-    public virtual void ShowToolTip(bool show, RectTransform targetRect)//显示或隐藏工具提示
+    public virtual void ShowToolTip(bool show, RectTransform targetRect)//显示或隐藏提示框
     {
-        gameObject.SetActive(show);//根据show参数设置工具提示的激活状态
+        gameObject.SetActive(show);//按 show 参数切换显示状态
         if (show)
         {
             UpdatePosition(targetRect);
@@ -21,33 +21,33 @@ public class UI_ToolTip : MonoBehaviour
 
     private void UpdatePosition(RectTransform targetRect)
     {
-        float screenCenterX = Screen.width / 2f;//屏幕中心的X坐标
-        float screenTop = Screen.height;//屏幕顶部的Y坐标
+        float screenCenterX = Screen.width / 2f;//屏幕中心 X 坐标
+        float screenTop = Screen.height;//屏幕顶部 Y 坐标
         float screenBottom = 0;
 
-        Vector2 targetPosistion = targetRect.position;//目标矩形的位置
+        Vector2 targetPosistion = targetRect.position;//目标节点的屏幕位置
 
-        targetPosistion.x = targetPosistion.x > screenCenterX ? targetPosistion.x - offset.x : targetPosistion.x + offset.x;//根据目标矩形的位置调整工具提示的X坐标，使其不会遮挡目标矩形
+        targetPosistion.x = targetPosistion.x > screenCenterX ? targetPosistion.x - offset.x : targetPosistion.x + offset.x;//根据左右半屏决定提示框出现方向
 
-        float veritcalHalf = rect.sizeDelta.y / 2;//根据工具提示的高度调整工具提示的Y坐标，使其不会超出屏幕顶部或底部
-        float toolY = targetPosistion.y + veritcalHalf;//工具提示的Y坐标
-        float bottomY = targetPosistion.y - veritcalHalf;//工具提示的底部Y坐标
+        float veritcalHalf = rect.sizeDelta.y / 2;//提示框高度的一半
+        float toolY = targetPosistion.y + veritcalHalf;//提示框顶部 Y
+        float bottomY = targetPosistion.y - veritcalHalf;//提示框底部 Y
 
         if (toolY > screenTop)
         {
-            targetPosistion.y = screenTop - veritcalHalf - offset.y;//如果工具提示超出屏幕顶部，则将其调整到屏幕顶部
+            targetPosistion.y = screenTop - veritcalHalf - offset.y;//超出顶部则向下回退
         }
         else if (bottomY < screenBottom)
         {
-            targetPosistion.y = screenBottom + veritcalHalf + offset.y;//如果工具提示超出屏幕底部，则将其调整到屏幕底部
+            targetPosistion.y = screenBottom + veritcalHalf + offset.y;//超出底部则向上回退
         }
 
 
-        rect.position = targetPosistion;//更新工具提示的位置
+        rect.position = targetPosistion;//应用最终位置
     }
 
     protected string GetColoredText(string color, string text)
     {
-        return $"<color={color}>{text}</color>";//将文本包装在颜色标签中，以便在UI中显示带有颜色的文本
+        return $"<color={color}>{text}</color>";//返回带颜色标签的文本
     }
 }

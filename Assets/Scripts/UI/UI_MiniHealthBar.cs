@@ -6,12 +6,12 @@ public class UI_MiniHealthBar : MonoBehaviour
 
     private void Awake()
     {
-        entity = GetComponentInParent<Entity>();// 在Awake方法中获取父对象上的Entity组件的引用，并将其存储在entity变量中
+        entity = GetComponentInParent<Entity>();//缓存父对象上的 Entity 引用
     }
 
     private void OnEnable()
     {
-        entity.OnFlipped += HandleFlip;// 订阅Entity的OnFlipped事件，当实体翻转时调用HandleFlip方法
+        entity.OnFlipped += HandleFlip;//订阅翻转事件
     }
 
     private void OnDisable()
@@ -20,5 +20,5 @@ public class UI_MiniHealthBar : MonoBehaviour
     }
 
     private void HandleFlip() => transform.rotation = Quaternion.identity;
-    // 在每一帧更新中，将UI元素的旋转设置为默认值（无旋转），以确保它始终面向玩家或摄像机。
+    // 实体翻转时重置血条旋转，保持 UI 正向显示。
 }

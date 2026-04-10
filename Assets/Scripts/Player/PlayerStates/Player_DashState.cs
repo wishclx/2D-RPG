@@ -13,10 +13,12 @@ public class Player_DashState : PlayerState
     {
         base.Enter();
 
-        dashDir = player.moveInput.x != 0 ? (int)player.moveInput.x : player.facingDir;
-        stateTimer = player.dashDuration; // Dash����ʱ��
+        skillsManager.dash.OnstartEffect();//触发Dash技能的开始效果
 
-        originalGravityScale = rb.gravityScale;// ��¼ԭʼ��������
+        dashDir = player.moveInput.x != 0 ? (int)player.moveInput.x : player.facingDir;
+        stateTimer = player.dashDuration; // Dash持续时间
+
+        originalGravityScale = rb.gravityScale;// 记录原始重力缩放
         rb.gravityScale = 0;
     }
 
@@ -24,7 +26,7 @@ public class Player_DashState : PlayerState
     {
         base.Update();
         CancelDashIfNeeded();
-        player.SetVelocity(player.dashSpeed * dashDir, 0f); // Dashʱˮƽ�ٶ�ΪdashSpeed����ֱ�ٶ�Ϊ0
+        player.SetVelocity(player.dashSpeed * dashDir, 0f); // Dash时水平速度为dashSpeed，垂直速度为0
 
         if (stateTimer < 0f)
         {
@@ -38,6 +40,9 @@ public class Player_DashState : PlayerState
     public override void Exit()
     {
         base.Exit();
+
+        skillsManager.dash.OnEndEffect();//触发Dash技能的结束效果
+
         player.SetVelocity(0, 0);
         rb.gravityScale = originalGravityScale;
     }
