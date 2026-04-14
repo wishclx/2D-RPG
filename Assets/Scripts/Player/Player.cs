@@ -1,14 +1,19 @@
-using System;
+﻿using System;
 using System.Collections;
 using UnityEngine;
 
+/// <summary>
+/// 玩家实体。
+/// 负责玩家状态机初始化、输入绑定与死亡/攻击等行为调度。
+/// </summary>
 public class Player : Entity
 {
-    public static event Action OnPlayerDeath;// 定义一个静态事件，当玩家死亡时触发
+    public static event Action OnPlayerDeath;// 玩家死亡时触发，供 UI/系统监听。
 
-    private UI ui;// 玩家UI的引用，用于显示相关UI界面
+    private UI ui;// 场景中的 UI 引用。
     public PlayerInputSet input { get; private set; }
     public Player_SkillManager skillManager { get; private set; }
+    public Player_VFX vfx { get; private set; }
 
     #region State Variables
 
@@ -31,7 +36,7 @@ public class Player : Entity
     public Vector2 jumpAttackVelocity;
     public float attackVelocityDuration = .1f;
     public float comboResetTime = 1f;
-    private Coroutine queuedAttackCo;// 用于处理连击输入的协程
+    private Coroutine queuedAttackCo;// 延迟进入攻击状态的协程引用。
 
     [Header("Movement details")]
     public float moveSpeed = 5f;
@@ -45,13 +50,17 @@ public class Player : Entity
     public float dashSpeed = 20f;
     public Vector2 moveInput { get; private set; }
 
+    /// <summary>
+    /// 执行 Awake 逻辑。
+    /// </summary>
     protected override void Awake()
     {
         base.Awake();
 
-        ui=FindAnyObjectByType<UI>();// 在场景中查找UI组件的引用
+        ui = FindAnyObjectByType<UI>();// 查找场景中的 UI 组件。
         input = new PlayerInputSet();
         skillManager = GetComponent<Player_SkillManager>();
+        vfx = GetComponent<Player_VFX>();
 
         idleState = new Player_IdleState(this, stateMachine, "idle");
         moveState = new Player_MoveState(this, stateMachine, "move");
@@ -66,12 +75,20 @@ public class Player : Entity
         counterAttackState = new Player_CounterAttackState(this, stateMachine, "counterAttack");
     }
 
+    /// <summary>
+    /// 执行 Start 逻辑。
+    /// </summary>
     protected override void Start()
     {
         base.Start();
         stateMachine.Initialize(idleState);
     }
 
+    public void TeleportPlayer(Vector3 posistion) => transform.position = posistion;// 直接将玩家传送到指定位置。
+
+    /// <summary>
+    /// 执行 SlowDownEntityCo 逻辑。
+    /// </summary>
     protected override IEnumerator SlowDownEntityCo(float duration, float slowMultiplier)
     {
         float originalMoveSpeed = moveSpeed;
@@ -89,7 +106,7 @@ public class Player : Entity
         wallJumpForce = wallJumpForce * speedMultiplier;
         jumpAttackVelocity = jumpAttackVelocity * speedMultiplier;
 
-        for (int i = 0; i < attackVelocity.Length; i++)// 遍历攻击速度数组，应用减速效果
+        for (int i = 0; i < attackVelocity.Length; i++)// 对每段攻击位移速度应用减速系数。
         {
             attackVelocity[i] = attackVelocity[i] * speedMultiplier;
         }
@@ -108,14 +125,20 @@ public class Player : Entity
         }
     }
 
+    /// <summary>
+    /// 执行 EntityDeath 逻辑。
+    /// </summary>
     public override void EntityDeath()
     {
         base.EntityDeath();
 
-        OnPlayerDeath?.Invoke();// 触发玩家死亡事件，通知其他系统玩家已经死亡
+        OnPlayerDeath?.Invoke();// 广播玩家死亡事件。
         stateMachine.ChangeState(deadState);
     }
 
+    /// <summary>
+    /// 执行 EnterAttackStateWithDelay 逻辑。
+    /// </summary>
     public void EnterAttackStateWithDelay()
     {
         if (queuedAttackCo != null)
@@ -123,21 +146,31 @@ public class Player : Entity
 
         queuedAttackCo = StartCoroutine(EnterAttackStateWithDelayCo());
     }
+    /// <summary>
+    /// 执行 EnterAttackStateWithDelayCo 逻辑。
+    /// </summary>
     private IEnumerator EnterAttackStateWithDelayCo()
     {
-        yield return new WaitForEndOfFrame();//等待当前帧结束，确保所有输入事件都被处理完毕
+        yield return new WaitForEndOfFrame();// 等待本帧输入处理结束后再切攻击状态。
         stateMachine.ChangeState(basicAttackState);
     }
+    /// <summary>
+    /// 执行 OnEnable 逻辑。
+    /// </summary>
     private void OnEnable()
     {
-        input.Enable();//启用输入系统
+        input.Enable();// 启用输入映射。
 
-        input.Player.Movement.performed += ctx => moveInput = ctx.ReadValue<Vector2>();//当玩家按下移动键时，读取输入值并存储在moveInput变量中
-        input.Player.Movement.canceled += ctx => moveInput = Vector2.zero;//当玩家松开移动键时，将moveInput变量重置为零
+        input.Player.Movement.performed += ctx => moveInput = ctx.ReadValue<Vector2>();// 读取移动输入。
+        input.Player.Movement.canceled += ctx => moveInput = Vector2.zero;// 松开按键时清空移动输入。
 
-        input.Player.ToggleSkillTreeUI.performed += ctx => ui.ToggleSkillTreeUI();//当玩家按下切换技能树UI的键时，调用UI组件的方法切换技能树界面
+        input.Player.ToggleSkillTreeUI.performed += ctx => ui.ToggleSkillTreeUI();// 切换技能树界面。
+        input.Player.Spell.performed += ctx => skillManager.shard.TryUseSkill();// 触发当前法术（锐化碎片）。
     }
 
+    /// <summary>
+    /// 执行 OnDisable 逻辑。
+    /// </summary>
     private void OnDisable()
     {
         input.Disable();

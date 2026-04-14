@@ -1,7 +1,10 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+/// <summary>
+/// UI_TreeNode 的职责说明。
+/// </summary>
 public class UI_TreeNode : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler
 {
     private UI ui;
@@ -10,20 +13,23 @@ public class UI_TreeNode : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     private UI_TreeConnectHandle connectHandle;
 
     [Header("Unlock details")]
-    public UI_TreeNode[] neededNodes;//解锁当前技能所需的前置节点
+    public UI_TreeNode[] neededNodes;
     public UI_TreeNode[] conflictNodes;//与当前技能互斥的节点
     public bool isUnlocked;
     public bool isLocked;
 
     [Header("Skill details")]
-    public Skill_DataSO skillData;//技能配置数据
+    public Skill_DataSO skillData;
     [SerializeField] private string skillName;
-    [SerializeField] private Image skillIcon;//技能图标
-    [SerializeField] private int skillCost;//技能点消耗
-    [SerializeField] private string lockedColorHex = "#9F9797"; // 锁定状态颜色
+    [SerializeField] private Image skillIcon;
+    [SerializeField] private int skillCost;
+    [SerializeField] private string lockedColorHex = "#9F9797";
     private Color originalColor;//图标原始颜色
 
 
+    /// <summary>
+    /// 执行 Awake 逻辑。
+    /// </summary>
     private void Awake()
     {
         ui = GetComponentInParent<UI>();
@@ -31,41 +37,57 @@ public class UI_TreeNode : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         skillTree = GetComponentInParent<UI_SkillTree>();
         connectHandle = GetComponent<UI_TreeConnectHandle>();
 
-        UpdateIconColor(GetColorByHex(lockedColorHex));//初始化为锁定配色
+        UpdateIconColor(GetColorByHex(lockedColorHex));
+
     }
 
+    private void Start()
+    {
+        if (skillData.unlockedByDefault)
+            Unlock();
+    }
+
+    /// <summary>
+    /// 执行 Unlock 逻辑。
+    /// </summary>
     private void Unlock()
     {
-        isUnlocked = true;//标记为已解锁
+        isUnlocked = true;
         UpdateIconColor(Color.white);//已解锁节点显示白色
         LockConflictNodes();
 
-        skillTree.RemoveSkillPoints(skillData.cost);//扣除对应技能点
-        connectHandle.UnlockConnectionImage(true);//连接线切换为解锁颜色
+        skillTree.RemoveSkillPoints(skillData.cost);
+        connectHandle.UnlockConnectionImage(true);
 
-        //把本节点的升级效果同步到对应技能实例
-        skillTree.skillManager.GetSkillByType(skillData.skillType).SetSkillUpgrade(skillData.upgradeData);//根据技能类型与升级类型应用强化
+
+        skillTree.skillManager.GetSkillByType(skillData.skillType).SetSkillUpgrade(skillData.upgradeData);
     }
 
 
-    public void Refund()
+    /// <summary>
+    /// 执行 Refund 逻辑。
+    /// </summary>
+    public void Refund()//退还技能点并重置节点状态
     {
-        isUnlocked = false;//清除解锁状态
-        isLocked = false;//清除锁定状态
-        UpdateIconColor(GetColorByHex(lockedColorHex));//图标恢复锁定配色
+        isUnlocked = false;
+        isLocked = false;
+        UpdateIconColor(GetColorByHex(lockedColorHex));
 
-        skillTree.AddSkillPoints(skillData.cost);//返还技能点
-        connectHandle.UnlockConnectionImage(false);//连接线恢复未解锁颜色
+        skillTree.AddSkillPoints(skillData.cost);
+        connectHandle.UnlockConnectionImage(false);
 
-        // 如有需要，可在这里补充联动节点的状态重置
+
     }
 
+    /// <summary>
+    /// 执行 CanBeUnlocked 逻辑。
+    /// </summary>
     private bool CanBeUnlocked()
     {
-        if (isLocked || isUnlocked)//已锁定或已解锁时不可再次解锁
+        if (isLocked || isUnlocked)
             return false;
 
-        if (skillTree.EnoughSkillPoints(skillData.cost) == false)//技能点不足时不可解锁
+        if (skillTree.EnoughSkillPoints(skillData.cost) == false)
             return false;
 
         foreach (var node in neededNodes)
@@ -76,19 +98,36 @@ public class UI_TreeNode : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
         foreach (var node in conflictNodes)
         {
-            if (node.isUnlocked)//存在已解锁冲突技能时不可解锁
+            if (node.isUnlocked)
                 return false;
         }
 
         return true;
     }
 
+    /// <summary>
+    /// 执行 LockConflictNodes 逻辑。
+    /// </summary>
     private void LockConflictNodes()
     {
         foreach (var node in conflictNodes)
-            node.isLocked = true;//锁定所有冲突节点
+        {
+            node.isLocked = true;
+            node.LockChildNodes();//锁定互斥节点的子节点
+        }
     }
 
+    public void LockChildNodes()
+    {
+        isLocked = true;
+
+        foreach (var node in connectHandle.GetChildNodes())
+            node.LockChildNodes();//递归锁定子节点
+    }
+
+    /// <summary>
+    /// 执行 UpdateIconColor 逻辑。
+    /// </summary>
     private void UpdateIconColor(Color color)
     {
         if (skillIcon == null)
@@ -98,63 +137,81 @@ public class UI_TreeNode : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         skillIcon.color = color;
     }
 
+    /// <summary>
+    /// 执行 OnPointerDown 逻辑。
+    /// </summary>
     public void OnPointerDown(PointerEventData eventData)
     {
         if (CanBeUnlocked())
             Unlock();
 
         else if (isLocked)
-            ui.skillToolTip.LockedSkillEffect();//点击锁定节点时播放锁定提示效果
+            ui.skillToolTip.LockedSkillEffect();
     }
 
+    /// <summary>
+    /// 执行 OnPointerEnter 逻辑。
+    /// </summary>
     public void OnPointerEnter(PointerEventData eventData)
     {
-        ui.skillToolTip.ShowToolTip(true, rect, this);//显示技能提示并传入当前节点
+        ui.skillToolTip.ShowToolTip(true, rect, this);
 
         if (isUnlocked || isLocked)
             return;
 
-        ToggleNodeHighlight(true);//仅对可交互节点显示高亮
+        ToggleNodeHighlight(true);
     }
 
+    /// <summary>
+    /// 执行 OnPointerExit 逻辑。
+    /// </summary>
     public void OnPointerExit(PointerEventData eventData)
     {
-        ui.skillToolTip.ShowToolTip(false, rect);//隐藏技能提示
+        ui.skillToolTip.ShowToolTip(false, rect);
 
         if (isUnlocked || isLocked)
             return;
 
-        ToggleNodeHighlight(false);//取消高亮并恢复原颜色
+        ToggleNodeHighlight(false);
     }
 
+    /// <summary>
+    /// 执行 ToggleNodeHighlight 逻辑。
+    /// </summary>
     private void ToggleNodeHighlight(bool highlight)
     {
         Color highlightColor = Color.white * .9f;
-        highlightColor.a = 1f;//高亮时保持完全不透明
-        Color colorToApply = highlight ? highlightColor : originalColor;//根据状态选择目标颜色
+        highlightColor.a = 1f;
+        Color colorToApply = highlight ? highlightColor : originalColor;
 
         UpdateIconColor(colorToApply);
     }
 
+    /// <summary>
+    /// 执行 GetColorByHex 逻辑。
+    /// </summary>
     private Color GetColorByHex(string hexNumber)
     {
-        ColorUtility.TryParseHtmlString(hexNumber, out Color color);//把十六进制字符串转换为 Color
+        ColorUtility.TryParseHtmlString(hexNumber, out Color color);//将十六进制字符串转换为 Color
 
         return color;
     }
 
+    /// <summary>
+    /// 执行 OnDisable 逻辑。
+    /// </summary>
     private void OnDisable()
     {
         if (isLocked)
             UpdateIconColor(GetColorByHex(lockedColorHex));
-        // 组件禁用时保持锁定节点的显示颜色正确
+
 
         if (isUnlocked)
             UpdateIconColor(Color.white);
-        // 组件禁用时保持已解锁节点的显示颜色正确
+
     }
 
-    private void OnValidate()//编辑器参数变更时自动同步显示字段
+    private void OnValidate()
     {
         if (skillData == null)
             return;
@@ -162,6 +219,9 @@ public class UI_TreeNode : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         skillName = skillData.displayName;
         skillIcon.sprite = skillData.icon;
         skillCost = skillData.cost;
-        gameObject.name = "UI_TreeNode - " + skillData.displayName;//同步节点名称，便于层级面板识别
+        gameObject.name = "UI_TreeNode - " + skillData.displayName;
     }
 }
+
+
+

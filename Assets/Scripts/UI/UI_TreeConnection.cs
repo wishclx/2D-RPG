@@ -1,27 +1,33 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// UI_TreeConnection 的职责说明。
+/// </summary>
 public class UI_TreeConnection : MonoBehaviour
 {
     [SerializeField] private RectTransform rotationPoint;
-    [SerializeField] private RectTransform connectionLength;//控制连接线长度的节点
-    [SerializeField] private RectTransform childNodeConnectionPoint;//子节点连接锚点
+    [SerializeField] private RectTransform connectionLength;
+    [SerializeField] private RectTransform childNodeConnectionPoint;//连接点位于子节点上的位置。
 
+    /// <summary>
+    /// 执行 DirectConnection 逻辑。
+    /// </summary>
     public void DirectConnection(NodeDirectionType direction, float length, float offset)
     {
-        bool shouldBeActive = direction != NodeDirectionType.None;//方向不是 None 时才显示连接线
-        float finalLength = shouldBeActive ? length : 0f;//未启用时长度强制为 0
-        float angle = GetDirectionAngle(direction);//把方向转换为角度
+        bool shouldBeActive = direction != NodeDirectionType.None;
+        float finalLength = shouldBeActive ? length : 0f;
+        float angle = GetDirectionAngle(direction);
 
-        rotationPoint.localRotation = Quaternion.Euler(0f, 0f, angle + offset);//应用朝向与额外偏移
-        connectionLength.sizeDelta = new Vector2(finalLength, connectionLength.sizeDelta.y);//更新连接线长度
+        rotationPoint.localRotation = Quaternion.Euler(0f, 0f, angle + offset);//旋转连接线以指向目标方向。
+        connectionLength.sizeDelta = new Vector2(finalLength, connectionLength.sizeDelta.y);
     }
 
-    public Image GetConnectionImage() => connectionLength.GetComponent<Image>();//获取连接线 Image 组件
+    public Image GetConnectionImage() => connectionLength.GetComponent<Image>();
 
-    public Vector2 GetConnectionPoint(RectTransform rect)//计算连接点在父节点坐标系下的位置
+    public Vector2 GetConnectionPoint(RectTransform rect)
     {
-        RectTransformUtility.ScreenPointToLocalPointInRectangle//将子节点锚点的世界坐标转换为父节点局部坐标
+        RectTransformUtility.ScreenPointToLocalPointInRectangle
             (
             rect.parent as RectTransform,
             childNodeConnectionPoint.position,
@@ -32,7 +38,7 @@ public class UI_TreeConnection : MonoBehaviour
         return localPosition;
     }
 
-    private float GetDirectionAngle(NodeDirectionType type)//按方向返回对应角度
+    private float GetDirectionAngle(NodeDirectionType type)
     {
         switch (type)
         {
@@ -62,3 +68,5 @@ public enum NodeDirectionType
     Down,
     DownRight
 }
+
+

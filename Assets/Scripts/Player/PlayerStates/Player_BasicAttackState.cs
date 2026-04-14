@@ -1,18 +1,24 @@
-using UnityEngine;
+﻿using UnityEngine;
 
+/// <summary>
+/// Player_BasicAttackState 的职责说明。
+/// </summary>
 public class Player_BasicAttackState : PlayerState
 {
     private float attackVelocityTimer;
-    private float lastTimeAttacked;// 上一次攻击的时间
+    private float lastTimeAttacked;// 记录上次攻击的时间，用于判断是否需要重置连击索引
 
     private bool comboAttackQueued;
     private int attackDir;
     private int comboIndex = 1;
-    private int comboLimit = 3; // 连击的最大索引
-    private const int FirstComboIndex = 1;// 第一个攻击动画的索引
+    private int comboLimit = 3;
+    private const int FirstComboIndex = 1;
 
 
 
+    /// <summary>
+    /// 执行 Player_BasicAttackState 逻辑。
+    /// </summary>
     public Player_BasicAttackState(Player player, StateMachine stateMachine, string animBoolName) : base(player, stateMachine, animBoolName)
     {
         if (comboLimit != player.attackVelocity.Length)
@@ -22,6 +28,9 @@ public class Player_BasicAttackState : PlayerState
         }
     }
 
+    /// <summary>
+    /// 执行 Enter 逻辑。
+    /// </summary>
     public override void Enter()
     {
         base.Enter();
@@ -29,18 +38,21 @@ public class Player_BasicAttackState : PlayerState
         ResetComboIndexIfNeeded();
         SyncAttackSpeed();
 
-        attackDir = player.moveInput.x != 0 ? (int)player.moveInput.x : player.facingDir; // 如果有水平输入，使用输入方向，否则使用玩家面朝的方向
+        attackDir = player.moveInput.x != 0 ? (int)player.moveInput.x : player.facingDir;
 
-        //if (player.moveInput.x != 0)
-        //    attackDir = ((int)player.moveInput.x);
-        //else
-        //    attackDir = player.facingDir;
+        // if (player.moveInput.x != 0)
+        // attackDir = ((int)player.moveInput.x);
+        // else
+        // attackDir = player.facingDir;
 
-        anim.SetInteger("basicAttackIndex", comboIndex);// 设置当前攻击动画索引
+        anim.SetInteger("basicAttackIndex", comboIndex);// 设置当前攻击索引，以便动画系统可以根据这个索引播放不同的攻击动画
         ApplyAttackVelocity();
     }
 
 
+    /// <summary>
+    /// 执行 Update 逻辑。
+    /// </summary>
     public override void Update()
     {
         base.Update();
@@ -53,30 +65,42 @@ public class Player_BasicAttackState : PlayerState
             HandleStateExit();
     }
 
+    /// <summary>
+    /// 执行 Exit 逻辑。
+    /// </summary>
     public override void Exit()
     {
         base.Exit();
-        comboIndex++;// 增加连击索引
-        lastTimeAttacked = Time.time;// 记录这次攻击的时间
+        comboIndex++;
+        lastTimeAttacked = Time.time;
     }
 
+    /// <summary>
+    /// 执行 HandleStateExit 逻辑。
+    /// </summary>
     private void HandleStateExit()
     {
         if (comboAttackQueued)
         {
-            anim.SetBool(animBoolName, false);// 先关闭当前攻击动画
-            player.EnterAttackStateWithDelay(); // 通过玩家的方法进入下一个攻击状态，这样可以重置动画状态机的触发器
+            anim.SetBool(animBoolName, false);
+            player.EnterAttackStateWithDelay();
         }
         else
             stateMachine.ChangeState(player.idleState);
     }
 
+    /// <summary>
+    /// 执行 QueueNextAttack 逻辑。
+    /// </summary>
     private void QueueNextAttack()
     {
         if (comboIndex < comboLimit)
             comboAttackQueued = true;
     }
 
+    /// <summary>
+    /// 执行 HandleAttackVelocity 逻辑。
+    /// </summary>
     private void HandleAttackVelocity()
     {
         attackVelocityTimer -= Time.deltaTime;
@@ -85,17 +109,25 @@ public class Player_BasicAttackState : PlayerState
             player.SetVelocity(0, rb.linearVelocity.y);
     }
 
+    /// <summary>
+    /// 执行 ApplyAttackVelocity 逻辑。
+    /// </summary>
     private void ApplyAttackVelocity()
     {
-        Vector2 attackVelocity = player.attackVelocity[comboIndex - 1]; // 获取当前攻击动画对应的速度
+        Vector2 attackVelocity = player.attackVelocity[comboIndex - 1];
 
         attackVelocityTimer = player.attackVelocityDuration;
         player.SetVelocity(attackVelocity.x * attackDir, attackVelocity.y);
     }
 
+    /// <summary>
+    /// 执行 ResetComboIndexIfNeeded 逻辑。
+    /// </summary>
     private void ResetComboIndexIfNeeded()
     {
         if (Time.time - lastTimeAttacked > player.comboResetTime || comboIndex > comboLimit)
             comboIndex = FirstComboIndex;
     }
 }
+
+

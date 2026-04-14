@@ -1,8 +1,14 @@
-using UnityEngine;
+﻿using UnityEngine;
 
+/// <summary>
+/// EnemyState 的职责说明。
+/// </summary>
 public class EnemyState : EntityState
 {
     protected Enemy enemy;
+    /// <summary>
+    /// 执行 EnemyState 逻辑。
+    /// </summary>
     public EnemyState(Enemy enemy, StateMachine stateMachine, string animBoolName) : base(stateMachine, animBoolName)
     {
         this.enemy = enemy;
@@ -12,6 +18,9 @@ public class EnemyState : EntityState
         stats = enemy.stats;
     }
 
+    /// <summary>
+    /// 执行 UpdateAnimationParameters 逻辑。
+    /// </summary>
     public override void UpdateAnimationParameters()
     {
         base.UpdateAnimationParameters();

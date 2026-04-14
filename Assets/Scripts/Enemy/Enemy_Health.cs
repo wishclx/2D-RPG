@@ -1,9 +1,15 @@
-using UnityEngine;
+﻿using UnityEngine;
 
+/// <summary>
+/// Enemy_Health 的职责说明。
+/// </summary>
 public class Enemy_Health : Entity_Health
 {
-    private Enemy enemy => GetComponent<Enemy>();// 获取Enemy组件
+    private Enemy enemy => GetComponent<Enemy>();
 
+    /// <summary>
+    /// 执行 TakeDamge 逻辑。
+    /// </summary>
     public override bool TakeDamge(float damage, float elementalDamage, ElementType element, Transform damageDealer)
     {
         bool wasHit = base.TakeDamge(damage, elementalDamage, element, damageDealer);
@@ -11,9 +17,11 @@ public class Enemy_Health : Entity_Health
         if (wasHit == false)
             return false;
 
-        if (damageDealer.GetComponent<Player>() != null)// 如果伤害来源是玩家，尝试进入战斗状态
+        if (damageDealer.GetComponent<Player>() != null)
             enemy.TryEnterBattleState(damageDealer);
 
         return true;
     }
 }
+
+

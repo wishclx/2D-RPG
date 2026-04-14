@@ -1,6 +1,9 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
+/// <summary>
+/// Enemy 的职责说明。
+/// </summary>
 public class Enemy : Entity
 {
     public Enemy_IdleState idleState;
@@ -30,19 +33,22 @@ public class Enemy : Entity
 
     [Header("Player detection")]
     [SerializeField] private LayerMask whatIsPlayer;
-    [SerializeField] private Transform playerCheck; // 检测玩家的点
-    [SerializeField] private float playerCheckDistance = 10; // 检测玩家的距离
+    [SerializeField] private Transform playerCheck; 
+    [SerializeField] private float playerCheckDistance = 10; 
     public Transform player { get; private set; }
 
+    /// <summary>
+    /// 执行 SlowDownEntityCo 逻辑。
+    /// </summary>
     protected override IEnumerator SlowDownEntityCo(float duration, float slowMultiplier)
     {
         float originalMoveSpeed = moveSpeed;
         float originalBattleSpeed = battleMoveSpeed;
         float originalAnimSpeed = anim.speed;
 
-        float speedMultiplier = 1 - slowMultiplier;// 计算减速后的速度乘数，例如slowMultiplier为0.5时，speedMultiplier将为0.5，表示速度减半
+        float speedMultiplier = 1 - slowMultiplier;
 
-        moveSpeed = moveSpeed * speedMultiplier;// 应用减速效果，调整移动速度
+        moveSpeed = moveSpeed * speedMultiplier;
         battleMoveSpeed = battleMoveSpeed * speedMultiplier;
         anim.speed = anim.speed * speedMultiplier;
 
@@ -53,8 +59,11 @@ public class Enemy : Entity
         anim.speed = originalAnimSpeed;
     }
 
-    public void EnableCounterWindow(bool enable) => canBeStunned = enable;// 启用或禁用被击晕的窗口，允许敌人被击晕或不被击晕
+    public void EnableCounterWindow(bool enable) => canBeStunned = enable;
 
+    /// <summary>
+    /// 执行 EntityDeath 逻辑。
+    /// </summary>
     public override void EntityDeath()
     {
         base.EntityDeath();
@@ -62,11 +71,17 @@ public class Enemy : Entity
         stateMachine.ChangeState(deadState);
     }
 
+    /// <summary>
+    /// 执行 HandlePlayerDeath 逻辑。
+    /// </summary>
     private void HandlePlayerDeath()
     {
         stateMachine.ChangeState(idleState);
     }
 
+    /// <summary>
+    /// 执行 TryEnterBattleState 逻辑。
+    /// </summary>
     public void TryEnterBattleState(Transform player)
     {
         if (stateMachine.currentState == battleState || stateMachine.currentState == attackState)
@@ -76,25 +91,34 @@ public class Enemy : Entity
         stateMachine.ChangeState(battleState);
     }
 
+    /// <summary>
+    /// 执行 GetPlayerReference 逻辑。
+    /// </summary>
     public Transform GetPlayerReference()
     {
         if (player == null)
-            player = PlayerDetected().transform;// 如果玩家引用为null，通过检测到玩家的位置来设置玩家的Transform，若没有检测到玩家，player将保持为null
+            player = PlayerDetected().transform;
 
         return player;
     }
 
+    /// <summary>
+    /// 执行 PlayerDetected 逻辑。
+    /// </summary>
     public RaycastHit2D PlayerDetected()
     {
         RaycastHit2D hit =
-            Physics2D.Raycast(playerCheck.position, Vector2.right * facingDir, playerCheckDistance, whatIsPlayer | whatIsGround);//检测玩家
+            Physics2D.Raycast(playerCheck.position, Vector2.right * facingDir, playerCheckDistance, whatIsPlayer | whatIsGround);
 
-        if (hit.collider == null || hit.collider.gameObject.layer != LayerMask.NameToLayer("Player"))//如果没有检测到玩家或者检测到的不是玩家，返回默认值
+        if (hit.collider == null || hit.collider.gameObject.layer != LayerMask.NameToLayer("Player"))
             return default;
 
         return hit;
     }
 
+    /// <summary>
+    /// 执行 OnDrawGizmos 逻辑。
+    /// </summary>
     protected override void OnDrawGizmos()
     {
         base.OnDrawGizmos();
@@ -107,13 +131,22 @@ public class Enemy : Entity
         Gizmos.DrawLine(playerCheck.position, new Vector3(playerCheck.position.x + (facingDir * minRetreatDistance), playerCheck.position.y));
     }
 
+    /// <summary>
+    /// 执行 OnEnable 逻辑。
+    /// </summary>
     private void OnEnable()
     {
-        Player.OnPlayerDeath += HandlePlayerDeath;// 订阅玩家死亡事件，当玩家死亡时调用HandlePlayerDeath方法
+        Player.OnPlayerDeath += HandlePlayerDeath;
     }
 
+    /// <summary>
+    /// 执行 OnDisable 逻辑。
+    /// </summary>
     private void OnDisable()
     {
-        Player.OnPlayerDeath -= HandlePlayerDeath;// 取消订阅玩家死亡事件，防止内存泄漏或意外调用
+        Player.OnPlayerDeath -= HandlePlayerDeath;
     }
 }
+
+
+

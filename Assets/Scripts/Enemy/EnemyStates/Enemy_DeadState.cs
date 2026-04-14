@@ -1,14 +1,23 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Enemy_DeadState 的职责说明。
+/// </summary>
 public class Enemy_DeadState : EnemyState
 {
     private Collider2D col;
 
+    /// <summary>
+    /// 执行 Enemy_DeadState 逻辑。
+    /// </summary>
     public Enemy_DeadState(Enemy enemy, StateMachine stateMachine, string animBoolName) : base(enemy, stateMachine, animBoolName)
     {
         col = enemy.GetComponent<Collider2D>();
     }
 
+    /// <summary>
+    /// 执行 Enter 逻辑。
+    /// </summary>
     public override void Enter()
     {
         anim.enabled = false; // 禁用动画组件，使敌人保持当前的死亡姿势

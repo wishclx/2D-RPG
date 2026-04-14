@@ -1,8 +1,11 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Text;
 using TMPro;
 using UnityEngine;
 
+/// <summary>
+/// UI_SkillToolTip 的职责说明。
+/// </summary>
 public class UI_SkillToolTip : UI_ToolTip
 {
     private UI ui;
@@ -10,17 +13,20 @@ public class UI_SkillToolTip : UI_ToolTip
 
     [SerializeField] private TextMeshProUGUI skillName;
     [SerializeField] private TextMeshProUGUI skillDescription;
-    [SerializeField] private TextMeshProUGUI skillRequirements;//技能需求文本
+    [SerializeField] private TextMeshProUGUI skillRequirements;
 
     [Space]
     [SerializeField] private string metConditionHex;//条件满足时的颜色
     [SerializeField] private string notmetConditionHex;//条件不满足时的颜色
-    [SerializeField] private string importantInfoHex;//重要提示（冲突）颜色
-    [SerializeField] private Color exampleColor;//颜色预览（调试用）
-    [SerializeField] private string lockedSkillText = "选择了另一分支,此技能已锁定";//技能被锁定时的提示语
+    [SerializeField] private string importantInfoHex; // 重要提示文本颜色。
+    [SerializeField] private Color exampleColor; // 颜色预览（用于编辑器调试）。
+    [SerializeField] private string lockedSkillText = "已选择另一分支，该技能已锁定";
 
-    private Coroutine textEffectCo;//文本闪烁协程
+    private Coroutine textEffectCo;
 
+    /// <summary>
+    /// 执行 Awake 逻辑。
+    /// </summary>
     protected override void Awake()
     {
         base.Awake();
@@ -28,83 +34,98 @@ public class UI_SkillToolTip : UI_ToolTip
         skillTree = ui.GetComponentInChildren<UI_SkillTree>();
     }
 
+    /// <summary>
+    /// 执行 ShowToolTip 逻辑。
+    /// </summary>
     public override void ShowToolTip(bool show, RectTransform targetRect)
     {
         base.ShowToolTip(show, targetRect);
     }
 
-    public void ShowToolTip(bool show, RectTransform targetRect, UI_TreeNode node)//重载：额外传入技能节点数据
+    public void ShowToolTip(bool show, RectTransform targetRect, UI_TreeNode node)
     {
-        base.ShowToolTip(show, targetRect);//先执行基础显示/隐藏逻辑
+        base.ShowToolTip(show, targetRect);
 
         if (show == false)
             return;
 
-        skillName.text = node.skillData.displayName;//显示技能名
+        skillName.text = node.skillData.displayName;
         skillDescription.text = node.skillData.description;
 
-        string skillLockedText = GetColoredText(importantInfoHex, lockedSkillText);//按重要颜色渲染锁定提示
+        string skillLockedText = GetColoredText(importantInfoHex, lockedSkillText);
         string requirements = node.isLocked ? skillLockedText : GetRequirements(node.skillData.cost, node.neededNodes, node.conflictNodes);
-        // 锁定时显示锁定文案；否则显示正常需求
 
         skillRequirements.text = requirements;
     }
 
+    /// <summary>
+    /// 执行 LockedSkillEffect 逻辑。
+    /// </summary>
     public void LockedSkillEffect()
     {
         if (textEffectCo != null)
-            StopCoroutine(textEffectCo);//避免重复启动导致闪烁冲突
+            StopCoroutine(textEffectCo);
 
-        textEffectCo = StartCoroutine(TextBlinkEffectCo(skillRequirements, .15f, 3));//启动锁定提示闪烁
+        textEffectCo = StartCoroutine(TextBlinkEffectCo(skillRequirements, .15f, 3));
     }
 
-    private IEnumerator TextBlinkEffectCo(TextMeshProUGUI text, float blinkInterval, int blinkCount)//锁定文本闪烁效果
+    private IEnumerator TextBlinkEffectCo(TextMeshProUGUI text, float blinkInterval, int blinkCount)
     {
         for (int i = 0; i < blinkCount; i++)
         {
-            text.text = GetColoredText(notmetConditionHex, lockedSkillText);//切换为“不满足条件”颜色
-            yield return new WaitForSeconds(blinkInterval);//等待一次闪烁间隔
+            text.text = GetColoredText(notmetConditionHex, lockedSkillText);
+            yield return new WaitForSeconds(blinkInterval);
 
-            text.text = GetColoredText(importantInfoHex, lockedSkillText);//切回重要提示颜色
-            yield return new WaitForSeconds(blinkInterval);//等待一次闪烁间隔
+            text.text = GetColoredText(importantInfoHex, lockedSkillText);// 切回重要提示颜色。
+            yield return new WaitForSeconds(blinkInterval);
         }
     }
 
+    /// <summary>
+    /// 执行 GetRequirements 逻辑。
+    /// </summary>
     private string GetRequirements(int skillCost, UI_TreeNode[] neededNodes, UI_TreeNode[] conflictNodes)
     {
         StringBuilder sb = new StringBuilder();
 
-        sb.AppendLine("技能需求:");
+        sb.AppendLine("技能需求：");
 
-        string costColor = skillTree.EnoughSkillPoints(skillCost) ? metConditionHex : notmetConditionHex;//技能点够不够决定颜色
-        string costText = $"- {skillCost} 技能点数";//技能点需求文本
-        string finalCostText = GetColoredText(costColor, costText);//包装为带颜色文本
+        string costColor = skillTree.EnoughSkillPoints(skillCost) ? metConditionHex : notmetConditionHex;
+        string costText = $"- {skillCost} 技能点数";
+        string finalCostText = GetColoredText(costColor, costText);// 包装为带颜色文本。
 
-        sb.AppendLine(finalCostText);//写入技能点需求
+        sb.AppendLine(finalCostText);
 
         foreach (var node in neededNodes)
         {
-            string nodeColor = node.isUnlocked ? metConditionHex : notmetConditionHex;//前置技能是否解锁决定颜色
-            string nodeText = $"- {node.skillData.displayName}";//前置技能需求文本
-            string finalNodeText = GetColoredText(nodeColor, nodeText);//包装为带颜色文本
+            if (node == null) continue;// 可能存在空节点，跳过。
 
-            sb.AppendLine(finalNodeText);//写入前置技能需求
+            string nodeColor = node.isUnlocked ? metConditionHex : notmetConditionHex;
+            string nodeText = $"- {node.skillData.displayName}";
+            string finalNodeText = GetColoredText(nodeColor, nodeText);// 包装为带颜色文本。
+
+            sb.AppendLine(finalNodeText);
         }
 
         if (conflictNodes.Length <= 0)
             return sb.ToString();
 
         sb.AppendLine();
-        sb.AppendLine(GetColoredText(importantInfoHex, "冲突技能: "));//写入冲突技能标题
+        sb.AppendLine(GetColoredText(importantInfoHex, "冲突技能： "));
 
         foreach (var node in conflictNodes)
         {
-            string nodeText = $"- {node.skillData.displayName}";//冲突技能名称
+            if (node == null) continue;// 可能存在空节点，跳过。
+
+            string nodeText = $"- {node.skillData.displayName}";
             string finalNodeText = GetColoredText(importantInfoHex, nodeText);
-            sb.AppendLine(finalNodeText);//写入冲突技能项
+            sb.AppendLine(finalNodeText);
         }
 
         return sb.ToString();
     }
 
 }
+
+
+

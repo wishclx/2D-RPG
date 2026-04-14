@@ -1,42 +1,73 @@
-using UnityEngine;
+﻿using UnityEngine;
 
+/// <summary>
+/// Skill_Base 的职责说明。
+/// </summary>
 public class Skill_Base : MonoBehaviour
 {
+    public Player_SkillManager skillManager { get; private set; }
+    public Player player { get; private set; }
+
+    public DamageScaleData damageScaleData { get; private set; }
+
     [Header("General details")]
-    [SerializeField] protected SkillType skillType;//技能类型
-    [SerializeField] protected SkillUpgradeType upgradeType;//升级类型
-    [SerializeField] private float cooldown;//冷却时间
+    [SerializeField] protected SkillType skillType; // 技能类型。
+    [SerializeField] protected SkillUpgradeType upgradeType; // 当前技能升级档位。
+    [SerializeField] protected float cooldown;//冷却时间
     private float lastTimeUsed;//上次使用时间
 
+    /// <summary>
+    /// 执行 Awake 逻辑。
+    /// </summary>
     protected virtual void Awake()
     {
-        lastTimeUsed = -cooldown;//初始化为负的冷却时间，使技能在游戏开始时可用
+        skillManager = GetComponentInParent<Player_SkillManager>();
+        player = GetComponentInParent<Player>();
+        lastTimeUsed = -cooldown;
     }
 
+
+    public virtual void TryUseSkill()
+    {
+
+    }
+
+    /// <summary>
+    /// 执行 SetSkillUpgrade 逻辑。
+    /// </summary>
     public void SetSkillUpgrade(UpgraedData upgrade)
     {
         upgradeType = upgrade.upgradeType;
         cooldown = upgrade.cooldown;
-        //根据升级类型调整技能属性，例如增加伤害、减少冷却时间等
+        damageScaleData = upgrade.damageScaleData;
     }
 
+    /// <summary>
+    /// 执行 CanUseSkill 逻辑。
+    /// </summary>
     public bool CanUseSkill()
     {
-        if (Oncooldown())
+        if (upgradeType == SkillUpgradeType.None)
         {
-            Debug.Log("技能cd中");
-            return false;//如果在冷却中，不能使用技能
+            return false;
         }
 
-        //检查其他条件，例如资源消耗、状态效果等
+        if (Oncooldown())
+        {
+            Debug.Log("技能冷却中");
+            return false;
+        }
 
         return true;
     }
 
-    protected bool Unlocked(SkillUpgradeType upgradeToCheck) => upgradeType >= upgradeToCheck;//检查技能是否解锁
+    protected bool Unlocked(SkillUpgradeType upgradeToCheck) => upgradeType == upgradeToCheck;
 
-    private bool Oncooldown() => Time.time < lastTimeUsed + cooldown;//是否在冷却中
-    public void SetSkillOnCooldown() => lastTimeUsed = Time.time;//设置技能进入冷却
-    public void ReserCooldownBy(float cooldownReduction) => lastTimeUsed = lastTimeUsed + cooldownReduction;//通过减少冷却时间来重置技能的冷却
-    public void ResetCooldown() => lastTimeUsed = Time.time;//重置技能的冷却
+    protected bool Oncooldown() => Time.time < lastTimeUsed + cooldown;
+    public void SetSkillOnCooldown() => lastTimeUsed = Time.time;
+    public void ReserCooldownBy(float cooldownReduction) => lastTimeUsed = lastTimeUsed + cooldownReduction;// 通过减少剩余冷却来缩短技能冷却。
+    public void ResetCooldown() => lastTimeUsed = Time.time;
 }
+
+
+

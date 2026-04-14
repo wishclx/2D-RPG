@@ -1,12 +1,21 @@
-using UnityEngine;
+﻿using UnityEngine;
 
+/// <summary>
+/// Player_JumpAttackState 的职责说明。
+/// </summary>
 public class Player_JumpAttackState : PlayerState
 {
     private bool touchedGround;
+    /// <summary>
+    /// 执行 Player_JumpAttackState 逻辑。
+    /// </summary>
     public Player_JumpAttackState(Player player, StateMachine stateMachine, string animBoolName) : base(player, stateMachine, animBoolName)
     {
     }
 
+    /// <summary>
+    /// 执行 Enter 逻辑。
+    /// </summary>
     public override void Enter()
     {
         base.Enter();
@@ -15,10 +24,13 @@ public class Player_JumpAttackState : PlayerState
         player.SetVelocity(player.jumpAttackVelocity.x * player.facingDir, player.jumpAttackVelocity.y);
     }
 
+    /// <summary>
+    /// 执行 Update 逻辑。
+    /// </summary>
     public override void Update()
     {
         base.Update();
-        // �������Ƿ�Ӵ����沢��touchedGround��־Ϊfalse�����
+        // 检测玩家是否接触地面并且touchedGround标志为false的情况
         if (player.groundDetected && touchedGround == false)
         {
             touchedGround = true;

@@ -1,7 +1,8 @@
-using UnityEngine;
+﻿using UnityEngine;
 
-public enum SkillType 
+public enum SkillType
 {
-   Dash,
-   TimeEcho
+    Dash,
+    TimeEcho,
+    TimeShard
 }

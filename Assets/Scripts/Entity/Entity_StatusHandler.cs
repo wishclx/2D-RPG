@@ -1,6 +1,10 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
+/// <summary>
+/// 实体状态效果处理器。
+/// 负责处理感电、燃烧、冰冻等元素状态的应用与结束。
+/// </summary>
 public class Entity_StatusHandler : MonoBehaviour
 {
     private Entity entity;
@@ -9,13 +13,15 @@ public class Entity_StatusHandler : MonoBehaviour
     private Entity_Health entityHealth;
     private ElementType currentEffect = ElementType.None;
 
-    [Header("Electrify effect details")]
-    [SerializeField] private GameObject lightningStrikeVfx;// 定义一个GameObject变量来存储电击特效的预制体引用
-    [SerializeField] private float currentCharge;// 定义一个float变量来存储当前的电荷值
-    [SerializeField] private float maximumCharge = 1;// 定义一个float变量来存储最大电荷值，当当前电荷值达到或超过这个值时触发电击效果
-    private Coroutine electrifyCo;// 定义一个Coroutine变量来存储电击效果的协程引用，以便在需要时停止协程
+    [Header("Shock effect details")]
+    [SerializeField] private GameObject lightningStrikeVfx;// 感电触发雷击时播放的特效。
+    [SerializeField] private float currentCharge;// 当前累积电荷。
+    [SerializeField] private float maximumCharge = 1;// 电荷达到该值时触发雷击。
+    private Coroutine shockCo;// 感电状态协程引用，用于重置计时。
 
-
+    /// <summary>
+    /// 执行 Awake 逻辑。
+    /// </summary>
     private void Awake()
     {
         entityStats = GetComponent<Entity_Stats>();
@@ -24,65 +30,95 @@ public class Entity_StatusHandler : MonoBehaviour
         entityVfx = GetComponent<Entity_VFX>();
     }
 
-    public void ApplyElectrifyEffect(float duration, float damage, float charge)
+    public void ApplyStatusEffect(ElementType element, ElementalEffectData effectData)
+    {
+        if (element == ElementType.Ice && CanBeApplied(ElementType.Ice))
+            ApplyChillEffect(effectData.chillDuration, effectData.chillSlowMultiplier);
+
+        if (element == ElementType.Fire && CanBeApplied(ElementType.Fire))
+            ApplyBurnEffect(effectData.burnDuration, effectData.totalBurnDamage);
+
+        if (element == ElementType.Lightning && CanBeApplied(ElementType.Lightning))
+            ApplyShockEffect(effectData.shockDuration, effectData.shockDamage, effectData.shockCharge);
+    }
+
+    /// <summary>
+    /// 执行 ApplyElectrifyEffect 逻辑。
+    /// </summary>
+    public void ApplyShockEffect(float duration, float damage, float charge)
     {
         float lightningResistance = entityStats.GetElementalResistance(ElementType.Lightning);
-        float finalCharge = charge * (1 - lightningResistance);// 根据电击抗性来计算实际的电荷增量，抗性越高电荷增量越低
+        float finalCharge = charge * (1 - lightningResistance);// 根据雷抗计算实际增加电荷。
         currentCharge += finalCharge;
 
         if (currentCharge >= maximumCharge)
         {
             DoLightningStrike(damage);
-            StopElectrifyEffect();
+            StopShockEffect();
             return;
         }
 
-        if (electrifyCo != null)
-            StopCoroutine(electrifyCo);// 如果当前正在播放电击特效的协程不为null，则停止该协程，以确保不会同时播放多个电击特效
+        if (shockCo != null)
+            StopCoroutine(shockCo);// 若已有感电协程，先停止以重置持续时间。
 
-        electrifyCo = StartCoroutine(ElectrifyEffectCo(duration));// 启动一个协程来处理电击状态的持续时间和特效播放，传入持续时间参数
+        shockCo = StartCoroutine(ShockEffectCo(duration));// 启动新的感电持续计时。
     }
 
-    private void StopElectrifyEffect()
+    /// <summary>
+    /// 执行 StopElectrifyEffect 逻辑。
+    /// </summary>
+    private void StopShockEffect()
     {
         currentEffect = ElementType.None;
         currentCharge = 0;
         entityVfx.StopAllVfx();
     }
 
+    /// <summary>
+    /// 执行 DoLightningStrike 逻辑。
+    /// </summary>
     private void DoLightningStrike(float damage)
     {
-        Instantiate(lightningStrikeVfx, transform.position, Quaternion.identity);// 在实体位置实例化电击特效预制体
-        entityHealth.ReduceHealth(damage);// 对实体造成伤害，调用Entity_Health组件的ReduceHp方法，传入伤害数值参数
+        Instantiate(lightningStrikeVfx, transform.position, Quaternion.identity);// 生成雷击特效。
+        entityHealth.ReduceHealth(damage);// 造成一次雷击伤害。
     }
 
-    private IEnumerator ElectrifyEffectCo(float duration)
+    /// <summary>
+    /// 执行 ShockEffectCo 逻辑。
+    /// </summary>
+    private IEnumerator ShockEffectCo(float duration)
     {
         currentEffect = ElementType.Lightning;
-        entityVfx.PlayOnStatusVfx(duration, ElementType.Lightning);// 调用Entity_VFX组件的方法来播放电击状态特效，传入持续时间和元素类型参数
+        entityVfx.PlayOnStatusVfx(duration, ElementType.Lightning);// 播放感电状态特效。
 
         yield return new WaitForSeconds(duration);
-        StopElectrifyEffect();
+        StopShockEffect();
     }
 
+    /// <summary>
+    /// 执行 ApplyBurnEffect 逻辑。
+    /// </summary>
     public void ApplyBurnEffect(float duration, float fireDamage)
     {
         float fireResistance = entityStats.GetElementalResistance(ElementType.Fire);
-        float finalDamage = fireDamage * (1 - fireResistance);// 根据火焰抗性来计算实际的总伤害，抗性越高总伤害越低
+        float finalDamage = fireDamage * (1 - fireResistance);// 根据火抗计算最终总伤害。
 
-        StartCoroutine(BurnEffectCo(duration, finalDamage));// 启动一个协程来处理燃烧状态的持续时间和伤害计算
+        StartCoroutine(BurnEffectCo(duration, finalDamage));// 启动燃烧持续伤害。
     }
 
+    /// <summary>
+    /// 执行 BurnEffectCo 逻辑。
+    /// </summary>
     private IEnumerator BurnEffectCo(float duration, float totalDamage)
     {
         currentEffect = ElementType.Fire;
-        entityVfx.PlayOnStatusVfx(duration, ElementType.Fire);// 调用Entity_VFX组件的方法来播放燃烧状态特效，传入持续时间和元素类型参数
+        entityVfx.PlayOnStatusVfx(duration, ElementType.Fire);// 播放燃烧状态特效。
 
-        int tickersPerSecond = 2;// 定义每秒钟的伤害次数
-        int tickCount = Mathf.RoundToInt(tickersPerSecond * duration);// 计算总的伤害次数，等于每秒钟的伤害次数乘以持续时间
+        int tickersPerSecond = 2;// 每秒触发伤害次数。
+        int tickCount = Mathf.RoundToInt(tickersPerSecond * duration);// 计算总触发次数。
 
-        float damagePerTick = totalDamage / tickCount;// 计算每次伤害的数值，等于总伤害除以总的伤害次数
-        float tickInterval = 1f / tickersPerSecond;// 计算每次伤害的时间间隔，等于1秒钟除以每秒钟的伤害次数
+        float damagePerTick = totalDamage / tickCount;// 每次触发的伤害值。
+        float tickInterval = 1f / tickersPerSecond;// 每次触发间隔。
 
         for (int i = 0; i < tickCount; i++)
         {
@@ -93,25 +129,34 @@ public class Entity_StatusHandler : MonoBehaviour
         currentEffect = ElementType.None;
     }
 
+    /// <summary>
+    /// 执行 ApplyChillEffect 逻辑。
+    /// </summary>
     public void ApplyChillEffect(float duration, float slowMultiplier)
     {
-        float iceResistance = entityStats.GetElementalResistance(ElementType.Ice);// 获取实体的冰冻抗性属性值
-        float finalDuration = duration * (1 - iceResistance);// 根据冰冻抗性来计算实际的持续时间，抗性越高持续时间越短
+        float iceResistance = entityStats.GetElementalResistance(ElementType.Ice);// 获取冰抗。
+        float finalDuration = duration * (1 - iceResistance);// 根据冰抗缩短减速持续时间。
 
-        StartCoroutine(ChilledEffectCo(finalDuration, slowMultiplier));// 启动一个协程来处理冰冻状态的持续时间和特效播放
+        StartCoroutine(ChilledEffectCo(finalDuration, slowMultiplier));// 启动冰冻减速效果。
     }
 
+    /// <summary>
+    /// 执行 ChilledEffectCo 逻辑。
+    /// </summary>
     private IEnumerator ChilledEffectCo(float duration, float slowMultiplier)
     {
-        entity.SlowDownEntity(duration, slowMultiplier);// 调用Entity组件的方法来减速实体，传入持续时间和减速倍率参数
+        entity.SlowDownEntity(duration, slowMultiplier);// 对实体施加减速。
         currentEffect = ElementType.Ice;
-        entityVfx.PlayOnStatusVfx(duration, ElementType.Ice);// 调用Entity_VFX组件的方法来播放冰冻状态特效，传入持续时间和元素类型参数
+        entityVfx.PlayOnStatusVfx(duration, ElementType.Ice);// 播放冰冻状态特效。
 
         yield return new WaitForSeconds(duration);
 
         currentEffect = ElementType.None;
     }
 
+    /// <summary>
+    /// 执行 CanBeApplied 逻辑。
+    /// </summary>
     public bool CanBeApplied(ElementType element)
     {
         if (element == ElementType.Lightning && currentEffect == ElementType.Lightning)

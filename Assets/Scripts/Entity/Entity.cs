@@ -1,10 +1,13 @@
-using System;
+﻿using System;
 using System.Collections;
 using UnityEngine;
 
+/// <summary>
+/// Entity 的职责说明。
+/// </summary>
 public class Entity : MonoBehaviour
 {
-    public event Action OnFlipped;// 定义一个事件，当实体翻转时触发
+    public event Action OnFlipped;
 
     public Animator anim { get; private set; }
     public Rigidbody2D rb { get; private set; }
@@ -16,20 +19,23 @@ public class Entity : MonoBehaviour
     public int facingDir { get; private set; } = 1;
 
     [Header("Collision detection")]
-    [SerializeField] protected LayerMask whatIsGround;//地面图层
-    [SerializeField] private float groundCheckDistance;//检测地面距离
+    [SerializeField] protected LayerMask whatIsGround;
+    [SerializeField] private float groundCheckDistance;
     [SerializeField] private float wallCheckDistance;
-    [SerializeField] private Transform groundCheck;//检测地面的点
-    [SerializeField] private Transform primaryWallCheck;// 检测墙壁的点
+    [SerializeField] private Transform groundCheck;
+    [SerializeField] private Transform primaryWallCheck;
     [SerializeField] private Transform secondaryWallCheck;
     public bool groundDetected { get; private set; }
     public bool wallDetected { get; private set; }
 
-    //Knockback
+    // Knockback
     private bool isKnocked;
-    private Coroutine knockbackCo;// 击退协程
-    private Coroutine slowDownCo;// 减速协程
+    private Coroutine knockbackCo;
+    private Coroutine slowDownCo;
 
+    /// <summary>
+    /// 执行 Awake 逻辑。
+    /// </summary>
     protected virtual void Awake()
     {
         anim = GetComponentInChildren<Animator>();
@@ -40,43 +46,61 @@ public class Entity : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// 执行 Start 逻辑。
+    /// </summary>
     protected virtual void Start()
     {
 
     }
 
+    /// <summary>
+    /// 执行 Update 逻辑。
+    /// </summary>
     protected virtual void Update()
     {
         HandleCollisionDetection();
         stateMachine.UpdateActiveState();
     }
 
+    /// <summary>
+    /// 执行 EntityDeath 逻辑。
+    /// </summary>
     public virtual void EntityDeath()
     {
 
     }
 
+    /// <summary>
+    /// 执行 SlowDownEntity 逻辑。
+    /// </summary>
     public virtual void SlowDownEntity(float duration, float slowMultiplier)
     {
         if (slowDownCo != null)
             StopCoroutine(slowDownCo);
 
-        slowDownCo = StartCoroutine(SlowDownEntityCo(duration, slowMultiplier));// 启动减速协程
+        slowDownCo = StartCoroutine(SlowDownEntityCo(duration, slowMultiplier));
     }
 
-    protected virtual IEnumerator SlowDownEntityCo(float duration, float slowMultiplier)// 定义一个协程来处理实体的减速效果
+    protected virtual IEnumerator SlowDownEntityCo(float duration, float slowMultiplier)
     {
         yield return null;
     }
 
+    /// <summary>
+    /// 执行 ReciveKnockback 逻辑。
+    /// </summary>
     public void ReciveKnockback(Vector2 knockback, float duration)
     {
         if (knockbackCo != null)
             StopCoroutine(knockbackCo);
 
-        knockbackCo = StartCoroutine(KnockbackCo(knockback, duration));// 启动击退协程
+        knockbackCo = StartCoroutine(KnockbackCo(knockback, duration));
     }
 
+    /// <summary>
+    /// 执行 KnockbackCo 逻辑。
+    /// </summary>
     private IEnumerator KnockbackCo(Vector2 knockback, float duration)
     {
         isKnocked = true;
@@ -88,11 +112,17 @@ public class Entity : MonoBehaviour
         isKnocked = false;
     }
 
+    /// <summary>
+    /// 执行 CurrentStateAnimationTrigger 逻辑。
+    /// </summary>
     public void CurrentStateAnimationTrigger()
     {
         stateMachine.currentState.AnimationTrigger();
     }
 
+    /// <summary>
+    /// 执行 SetVelocity 逻辑。
+    /// </summary>
     public void SetVelocity(float xvelocity, float yvelocity)
     {
         if (isKnocked)
@@ -102,24 +132,33 @@ public class Entity : MonoBehaviour
         HandleFlip(xvelocity);
     }
 
+    /// <summary>
+    /// 执行 HandleFlip 逻辑。
+    /// </summary>
     public void HandleFlip(float xVelocity)
     {
         if ((xVelocity > 0 && !facingRight) || (xVelocity < 0 && facingRight))
             Flip();
     }
 
+    /// <summary>
+    /// 执行 Flip 逻辑。
+    /// </summary>
     public void Flip()
     {
         transform.Rotate(0f, 180f, 0f);
         facingRight = !facingRight;
         facingDir *= -1;
 
-        OnFlipped?.Invoke();// 触发翻转事件，通知订阅者实体已经翻转
+        OnFlipped?.Invoke();
     }
 
+    /// <summary>
+    /// 执行 HandleCollisionDetection 逻辑。
+    /// </summary>
     private void HandleCollisionDetection()
     {
-        groundDetected = Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, whatIsGround);//检测地面
+        groundDetected = Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, whatIsGround);
 
         if (secondaryWallCheck != null)
         {
@@ -132,6 +171,9 @@ public class Entity : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 执行 OnDrawGizmos 逻辑。
+    /// </summary>
     protected virtual void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
@@ -142,3 +184,5 @@ public class Entity : MonoBehaviour
             Gizmos.DrawLine(secondaryWallCheck.position, secondaryWallCheck.position + new Vector3(wallCheckDistance * facingDir, 0));
     }
 }
+
+

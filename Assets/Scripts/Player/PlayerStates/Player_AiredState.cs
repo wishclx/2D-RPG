@@ -1,11 +1,20 @@
-using UnityEngine;
+﻿using UnityEngine;
 
+/// <summary>
+/// Player_AiredState 的职责说明。
+/// </summary>
 public class Player_AiredState : PlayerState
 {
+    /// <summary>
+    /// 执行 Player_AiredState 逻辑。
+    /// </summary>
     public Player_AiredState(Player player, StateMachine stateMachine, string animBoolName) : base(player, stateMachine, animBoolName)
     {
     }
 
+    /// <summary>
+    /// 执行 Update 逻辑。
+    /// </summary>
     public override void Update()
     {
         base.Update();

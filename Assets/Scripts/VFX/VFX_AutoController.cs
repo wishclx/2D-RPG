@@ -1,48 +1,97 @@
+﻿using System.Collections;
 using UnityEngine;
 
+/// <summary>
+/// VFX_AutoController 的职责说明。
+/// </summary>
 public class VFX_AutoController : MonoBehaviour
 {
+    private SpriteRenderer sr;
+
     [SerializeField] private bool autoDestroy = true;
-    [SerializeField] private float destroyDelay = 1f;// 破坏延迟时间，单位为秒
+    [SerializeField] private float destroyDelay = 1f;
     [Space]
-    [SerializeField] private bool randomOffset = true;// 是否随机化位置  
-    [SerializeField] private bool randomRotation = true;// 是否随机化旋转
+    [SerializeField] private bool randomOffset = true;
+    [SerializeField] private bool randomRotation = true;
+    [Header("Fade effect")]
+    [SerializeField] private bool canFade;
+    [SerializeField] private float fadeSpeed = 1f;
+
     [Header("Random Rotation")]
-    [SerializeField] private float minRotation = 0f;// 最小旋转角度
-    [SerializeField] private float maxRotation = 360f;// 最大旋转角度
+    [SerializeField] private float minRotation = 0f;
+    [SerializeField] private float maxRotation = 360f;
 
     [Header("Random Position")]
-    [SerializeField] private float xMinOffset = -.3f;// X轴最小偏移量
-    [SerializeField] private float xMaxOffset = .3f;// X轴最大偏移量
+    [SerializeField] private float xMinOffset = -.3f;
+    [SerializeField] private float xMaxOffset = .3f;
     [Space]
-    [SerializeField] private float yMinOffset = -.3f;// Y轴最小偏移量
-    [SerializeField] private float yMaxOffset = .3f;// Y轴最大偏移量
+    [SerializeField] private float yMinOffset = -.3f;
+    [SerializeField] private float yMaxOffset = .3f;
 
-    private void Start()
+    /// <summary>
+    /// 执行 Awake 逻辑。
+    /// </summary>
+    private void Awake()
     {
-        ApplyRandomOffset();// 在Start方法中调用ApplyRandomOffset方法来应用随机偏移
-        ApplyRandomRotation();// 在Start方法中调用ApplyRandomRotation方法来应用随机旋转
-
-        if (autoDestroy)
-            Destroy(gameObject, destroyDelay);// 在指定的延迟时间后销毁游戏对象
+        sr = GetComponentInChildren<SpriteRenderer>();
     }
 
+    /// <summary>
+    /// 执行 Start 逻辑。
+    /// </summary>
+    private void Start()
+    {
+        if (canFade)
+            StartCoroutine(FadeCo());
+
+        ApplyRandomOffset();
+        ApplyRandomRotation();
+
+        if (autoDestroy)
+            Destroy(gameObject, destroyDelay);
+    }
+
+    /// <summary>
+    /// 执行 FadeCo 逻辑。
+    /// </summary>
+    private IEnumerator FadeCo()
+    {
+        Color targetColor = Color.white;
+
+        while (targetColor.a > 0)
+        {
+            targetColor.a = targetColor.a - (fadeSpeed * Time.deltaTime);
+            sr.color = targetColor;
+            yield return null;
+        }
+
+        sr.color = targetColor;
+    }
+
+    /// <summary>
+    /// 执行 ApplyRandomOffset 逻辑。
+    /// </summary>
     private void ApplyRandomOffset()
     {
         if (!randomOffset)
             return;
 
-        float xOffset = Random.Range(xMinOffset, xMaxOffset);// 生成一个在X轴最小和最大偏移量之间的随机数
-        float yOffset = Random.Range(yMinOffset, yMaxOffset);// 生成一个在Y轴最小和最大偏移量之间的随机数
-        transform.position += new Vector3(xOffset, yOffset, 0f);// 将随机偏移应用到当前游戏对象的位置上
+        float xOffset = Random.Range(xMinOffset, xMaxOffset);
+        float yOffset = Random.Range(yMinOffset, yMaxOffset);
+        transform.position += new Vector3(xOffset, yOffset, 0f);
     }
 
+    /// <summary>
+    /// 执行 ApplyRandomRotation 逻辑。
+    /// </summary>
     private void ApplyRandomRotation()
     {
         if (!randomRotation)
             return;
 
-        float zRotation = Random.Range(minRotation, maxRotation);// 生成一个在最小和最大旋转角度之间的随机数
-        transform.Rotate(0, 0, zRotation);// 将随机旋转应用到当前游戏对象的旋转上
+        float zRotation = Random.Range(minRotation, maxRotation);
+        transform.Rotate(0, 0, zRotation);
     }
 }
+
+

@@ -1,40 +1,54 @@
-using UnityEngine;
+﻿using UnityEngine;
 
+/// <summary>
+/// Skill_Dash 的职责说明。
+/// </summary>
 public class Skill_Dash : Skill_Base
 {
 
 
+    /// <summary>
+    /// 执行 OnstartEffect 逻辑。
+    /// </summary>
     public void OnstartEffect()
     {
-        // 当已解锁“冲刺开始生成分身”或“冲刺开始/到达均生成分身”任一升级时，
-        // 在冲刺开始阶段触发分身创建逻辑。
+        // 起始阶段：根据已解锁升级效果生成分身/碎片。
         if (Unlocked(SkillUpgradeType.Dash_CloneOnStart) || Unlocked(SkillUpgradeType.Dash_CloneOnStartAndArrival))
-            CreatClone();//创造一个分身
+            CreatClone();
 
         if (Unlocked(SkillUpgradeType.Dash_ShardOnStart) || Unlocked(SkillUpgradeType.Dash_ShardOnStartAndArrival))
-            CreatShaed();//创造一个影子
+            CreatShard();
     }
 
+    /// <summary>
+    /// 执行 OnEndEffect 逻辑。
+    /// </summary>
     public void OnEndEffect()
     {
-        // 当已解锁“冲刺开始/到达均生成分身”升级时，
-        // 在冲刺结束阶段触发分身创建逻辑。
+        // 结束阶段：根据已解锁升级效果生成分身/碎片。
         if (Unlocked(SkillUpgradeType.Dash_CloneOnStartAndArrival))
-            CreatClone();//创造一个分身
+            CreatClone();
 
         if (Unlocked(SkillUpgradeType.Dash_ShardOnStartAndArrival))
-            CreatShaed();//创造一个影子
+            CreatShard();
     }
 
-    private void CreatShaed()
+    /// <summary>
+    /// 执行 CreatShaed 逻辑。
+    /// </summary>
+    private void CreatShard()
     {
-        Debug.Log("创造了一个影子");
-
-        //在这里可以添加创造影子分身的逻辑，例如实例化一个分身对象，设置其位置和行为等
+        skillManager.shard.CreateRawShard();
     }
 
+    /// <summary>
+    /// 执行 CreatClone 逻辑。
+    /// </summary>
     private void CreatClone()
     {
-        Debug.Log("创造了一个分身");
+        Debug.Log("创建了一个分身");
     }
 }
+
+
+

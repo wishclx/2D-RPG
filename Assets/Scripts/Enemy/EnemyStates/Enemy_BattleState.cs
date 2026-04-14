@@ -1,14 +1,23 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Enemy_BattleState 的职责说明。
+/// </summary>
 public class Enemy_BattleState : EnemyState
 {
     private Transform player;
     private float lastTimeWasInBattle;
 
+    /// <summary>
+    /// 执行 Enemy_BattleState 逻辑。
+    /// </summary>
     public Enemy_BattleState(Enemy enemy, StateMachine stateMachine, string animBoolName) : base(enemy, stateMachine, animBoolName)
     {
     }
 
+    /// <summary>
+    /// 执行 Enter 逻辑。
+    /// </summary>
     public override void Enter()
     {
         base.Enter();
@@ -17,7 +26,7 @@ public class Enemy_BattleState : EnemyState
 
         if (player == null)
             player = enemy.GetPlayerReference();// 如果玩家引用为null，通过敌人类的方法获取玩家的Transform引用
-        //player ??= enemy.GetPlayerReference();
+        // player ??= enemy.GetPlayerReference();
 
         if (ShouldRetreat())
         {
@@ -26,6 +35,9 @@ public class Enemy_BattleState : EnemyState
         }
     }
 
+    /// <summary>
+    /// 执行 Update 逻辑。
+    /// </summary>
     public override void Update()
     {
         base.Update();
@@ -50,6 +62,9 @@ public class Enemy_BattleState : EnemyState
 
     private bool ShouldRetreat() => DistanceToPlayer() < enemy.minRetreatDistance;//判断敌人和玩家之间的距离是否小于最小撤退距离
 
+    /// <summary>
+    /// 执行 DistanceToPlayer 逻辑。
+    /// </summary>
     private float DistanceToPlayer()
     {
         if (player == null)
@@ -58,6 +73,9 @@ public class Enemy_BattleState : EnemyState
         return Mathf.Abs(player.position.x - enemy.transform.position.x);//计算敌人和玩家之间的水平距离
     }
 
+    /// <summary>
+    /// 执行 DirectionToPlayer 逻辑。
+    /// </summary>
     private int DirectionToPlayer()
     {
         if (player == null)

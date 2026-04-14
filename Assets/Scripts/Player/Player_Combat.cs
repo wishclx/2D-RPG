@@ -1,25 +1,31 @@
-using UnityEngine;
+﻿using UnityEngine;
 
+/// <summary>
+/// Player_Combat 的职责说明。
+/// </summary>
 public class Player_Combat : Entity_Combat
 {
     [Header("Counter Attack details")]
     [SerializeField] private float counterRecovery = .1f;
 
+    /// <summary>
+    /// 执行 CounterAttackPerformed 逻辑。
+    /// </summary>
     public bool CounterAttackPerformed()
     {
         bool hasPerformedCounter = false;
 
         foreach (var target in GetDetectedColliders())
         {
-            ICounterable counterable = target.GetComponent<ICounterable>(); // 获取目标上的ICounterable组件
+            ICounterable counterable = target.GetComponent<ICounterable>(); 
 
             if (counterable == null)
-                continue; // 如果目标没有ICounterable组件，跳过当前循环，继续检查下一个目标
+                continue; 
 
-            if (counterable.CanBeCountered)// 如果目标可以被反击
+            if (counterable.CanBeCountered)
             {
-                counterable.HandleCounter(); // 调用目标的HandleCounter方法，执行被反击的逻辑
-                hasPerformedCounter = true; // 设置hasCounteredSombody为true，表示成功反击了某个目标
+                counterable.HandleCounter(); 
+                hasPerformedCounter = true; 
             }
         }
 
@@ -28,3 +34,5 @@ public class Player_Combat : Entity_Combat
 
     public float GetCounterRecoveryDruation() => counterRecovery;
 }
+
+

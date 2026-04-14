@@ -13,10 +13,21 @@ MonoBehaviour:
   m_Name: Skill Data - Time lost shard
   m_EditorClassIdentifier: 
   cost: 2
+  unlockedByDefault: 0
   skillType: 0
   upgradeData:
-    upgradeType: 3
+    upgradeType: 4
     cooldown: 3
+    damageScaleData:
+      physical: 1
+      elemental: 1
+      chillDuration: 3
+      chillSlowMultiplier: 0.2
+      burnDuration: 3
+      burnDamageScale: 1
+      shockDuration: 3
+      shockDamageScale: 1
+      shockCharge: 0.4
   displayName: Time lost shard
   description: "\u51B2\u523A\u524D\u751F\u6210\u4E00\u4E2A\u65F6\u95F4\u788E\u7247"
   icon: {fileID: 1502256722, guid: 8e239c2e1844452478a067e5d18190f0, type: 3}

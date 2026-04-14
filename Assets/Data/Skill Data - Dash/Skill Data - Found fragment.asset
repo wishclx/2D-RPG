@@ -13,10 +13,21 @@ MonoBehaviour:
   m_Name: Skill Data - Found fragment
   m_EditorClassIdentifier: 
   cost: 3
+  unlockedByDefault: 0
   skillType: 0
   upgradeData:
-    upgradeType: 4
+    upgradeType: 5
     cooldown: 3
+    damageScaleData:
+      physical: 1
+      elemental: 1
+      chillDuration: 3
+      chillSlowMultiplier: 0.2
+      burnDuration: 3
+      burnDamageScale: 1
+      shockDuration: 3
+      shockDamageScale: 1
+      shockCharge: 0.4
   displayName: Found fragment
   description: "\u62B5\u8FBE\u76EE\u6807\u70B9\u65F6\u751F\u6210\u4E00\u4E2A\u65F6\u95F4\u788E\u7247\u3002\r\n\uFF08\u7EE7\u627F\u201C\u65F6\u95F4\u788E\u7247\u201D\u6280\u80FD\u7684\u5168\u90E8\u5347\u7EA7\u6548\u679C\uFF09"
   icon: {fileID: 1710591034, guid: 8e239c2e1844452478a067e5d18190f0, type: 3}

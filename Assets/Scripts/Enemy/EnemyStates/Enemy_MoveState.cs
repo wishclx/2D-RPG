@@ -1,11 +1,20 @@
-using UnityEngine;
+﻿using UnityEngine;
 
+/// <summary>
+/// Enemy_MoveState 的职责说明。
+/// </summary>
 public class Enemy_MoveState : Enemy_GroundedState
 {
+    /// <summary>
+    /// 执行 Enemy_MoveState 逻辑。
+    /// </summary>
     public Enemy_MoveState(Enemy enemy, StateMachine stateMachine, string animBoolName) : base(enemy, stateMachine, animBoolName)
     {
     }
 
+    /// <summary>
+    /// 执行 Enter 逻辑。
+    /// </summary>
     public override void Enter()
     {
         base.Enter();
@@ -14,6 +23,9 @@ public class Enemy_MoveState : Enemy_GroundedState
             enemy.Flip();
     }
 
+    /// <summary>
+    /// 执行 Update 逻辑。
+    /// </summary>
     public override void Update()
     {
         base.Update();

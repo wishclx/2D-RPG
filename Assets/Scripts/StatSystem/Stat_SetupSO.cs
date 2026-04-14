@@ -1,7 +1,11 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 [CreateAssetMenu(menuName = "RPG Setup/Default Stat Setup", fileName = "Default Stat Setup")]
-//这个标签允许我们在Unity编辑器中创建这个ScriptableObject的实例。menuName指定了在Unity菜单中显示的路径，fileName指定了默认的文件名。
+// 允许在 Unity 菜单中创建默认属性配置的 ScriptableObject 资源。
+/// <summary>
+/// 角色属性配置数据。
+/// 用于集中定义生命、攻击、防御和主属性的初始值。
+/// </summary>
 public class Stat_SetupSO : ScriptableObject
 {
     [Header("Resources")]

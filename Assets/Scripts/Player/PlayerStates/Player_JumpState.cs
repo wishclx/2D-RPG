@@ -1,11 +1,20 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
+/// <summary>
+/// Player_JumpState çš„èŒè´£è¯´æ˜ã€‚
+/// </summary>
 public class Player_JumpState : Player_AiredState
 {
+    /// <summary>
+    /// æ‰§è¡Œ Player_JumpState é€»è¾‘ã€‚
+    /// </summary>
     public Player_JumpState(Player player, StateMachine stateMachine, string animBoolName) : base(player, stateMachine, animBoolName)
     {
     }
 
+    /// <summary>
+    /// æ‰§è¡Œ Enter é€»è¾‘ã€‚
+    /// </summary>
     public override void Enter()
     {
         base.Enter();
@@ -13,11 +22,14 @@ public class Player_JumpState : Player_AiredState
         player.SetVelocity(rb.linearVelocity.x, player.jumpForce);
     }
 
+    /// <summary>
+    /// æ‰§è¡Œ Update é€»è¾‘ã€‚
+    /// </summary>
     public override void Update()
     {
         base.Update();
 
-        if (rb.linearVelocity.y < 0 && stateMachine.currentState != player.jumpAttackState)// µ±´¹Ö±ËÙ¶ÈĞ¡ÓÚ0²¢ÇÒµ±Ç°²»ÊÇÌøÔ¾¹¥»÷×´Ì¬Ê±£¬ÇĞ»»µ½ÏÂÂä×´Ì¬
+        if (rb.linearVelocity.y < 0 && stateMachine.currentState != player.jumpAttackState)// å½“å‚ç›´é€Ÿåº¦å°äº0å¹¶ä¸”å½“å‰ä¸æ˜¯è·³è·ƒæ”»å‡»çŠ¶æ€æ—¶ï¼Œåˆ‡æ¢åˆ°ä¸‹è½çŠ¶æ€
             stateMachine.ChangeState(player.fallState);
     }
 }

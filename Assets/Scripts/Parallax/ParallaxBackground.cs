@@ -1,5 +1,8 @@
-using UnityEngine;
+﻿using UnityEngine;
 
+/// <summary>
+/// ParallaxBackground 的职责说明。
+/// </summary>
 public class ParallaxBackground : MonoBehaviour
 {
     private Camera mainCamera;
@@ -8,6 +11,9 @@ public class ParallaxBackground : MonoBehaviour
 
     [SerializeField] private ParallaxLayer[] backgroundLayers;
 
+    /// <summary>
+    /// 执行 Awake 逻辑。
+    /// </summary>
     private void Awake()
     {
         mainCamera = Camera.main;
@@ -15,6 +21,9 @@ public class ParallaxBackground : MonoBehaviour
         InitializeLayers();
     }
 
+    /// <summary>
+    /// 执行 FixedUpdate 逻辑。
+    /// </summary>
     private void FixedUpdate()
     {
         float currentCameraPositionX = mainCamera.transform.position.x;
@@ -31,6 +40,9 @@ public class ParallaxBackground : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 执行 InitializeLayers 逻辑。
+    /// </summary>
     private void InitializeLayers()
     {
         foreach (ParallaxLayer layer in backgroundLayers)

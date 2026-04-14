@@ -1,53 +1,67 @@
-using UnityEngine;
+﻿using UnityEngine;
 
+/// <summary>
+/// UI_SkillTree 的职责说明。
+/// </summary>
 public class UI_SkillTree : MonoBehaviour
 {
     [SerializeField] private int skillPoints;
-    [SerializeField] private UI_TreeConnectHandle[] parentNodes;//父节点连接句柄
+    [SerializeField] private UI_TreeConnectHandle[] parentNodes;//技能树中所有父节点的连接句柄。
     public Player_SkillManager skillManager { get; private set; }
 
 
+    /// <summary>
+    /// 执行 Awake 逻辑。
+    /// </summary>
     private void Awake()
     {
         skillManager = FindAnyObjectByType<Player_SkillManager>();
     }
 
+    /// <summary>
+    /// 执行 Start 逻辑。
+    /// </summary>
     private void Start()
     {
-        UpdataAllConnections();//初始化时刷新全部连接线
+        UpdataAllConnections();
     }
 
 
-    [ContextMenu("返还所有技能点并重置技能树")]
-    public void RefundAllSkills()//重置技能树状态并按规则返还技能点
+    [ContextMenu("重置技能树")]//
+    public void RefundAllSkills()
     {
-        UI_TreeNode[] skillNodes = GetComponentsInChildren<UI_TreeNode>();//获取技能树中的全部技能节点
+        UI_TreeNode[] skillNodes = GetComponentsInChildren<UI_TreeNode>();
 
         foreach (var node in skillNodes)
         {
             if (node.isUnlocked)
             {
-                node.Refund();//已解锁：返还技能点并重置
+                node.Refund();
                 continue;
             }
 
-            node.isUnlocked = false;//未解锁：仅重置状态，不返还技能点
+            node.isUnlocked = false;
             node.isLocked = false;
         }
 
-        UpdataAllConnections();//刷新连接线显示
+        UpdataAllConnections();
     }
 
-    public bool EnoughSkillPoints(int cost) => skillPoints >= cost;//技能点是否足够
-    public void RemoveSkillPoints(int cost) => skillPoints = skillPoints - cost;//扣除技能点
-    public void AddSkillPoints(int points) => skillPoints = skillPoints + points;//增加技能点
+    public bool EnoughSkillPoints(int cost) => skillPoints >= cost;
+    public void RemoveSkillPoints(int cost) => skillPoints = skillPoints - cost;
+    public void AddSkillPoints(int points) => skillPoints = skillPoints + points;
 
-    [ContextMenu("更新所有连接线")]
+    [ContextMenu("更新所有连接")]
+    /// <summary>
+    /// 执行 UpdataAllConnections 逻辑。
+    /// </summary>
     public void UpdataAllConnections()
     {
         foreach (var parent in parentNodes)
         {
-            parent.UpdateAllConnections();//从父节点开始递归刷新连接线
+            parent.UpdateAllConnections();
         }
     }
 }
+
+

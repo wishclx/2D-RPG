@@ -1,11 +1,17 @@
-using UnityEngine;
+﻿using UnityEngine;
 
+/// <summary>
+/// PlayerState 的职责说明。
+/// </summary>
 public abstract class PlayerState : EntityState
 {
     protected Player player;
     protected PlayerInputSet input;
     protected Player_SkillManager skillsManager;
 
+    /// <summary>
+    /// 执行 PlayerState 逻辑。
+    /// </summary>
     public PlayerState(Player player, StateMachine stateMachine, string animBoolName) : base(stateMachine, animBoolName)
     {
         this.player = player;
@@ -17,6 +23,9 @@ public abstract class PlayerState : EntityState
         skillsManager = player.skillManager;
     }
 
+    /// <summary>
+    /// 执行 Update 逻辑。
+    /// </summary>
     public override void Update()
     {
         base.Update();
@@ -28,6 +37,9 @@ public abstract class PlayerState : EntityState
         }
     }
 
+    /// <summary>
+    /// 执行 UpdateAnimationParameters 逻辑。
+    /// </summary>
     public override void UpdateAnimationParameters()
     {
         base.UpdateAnimationParameters();
@@ -35,6 +47,9 @@ public abstract class PlayerState : EntityState
     }
 
 
+    /// <summary>
+    /// 执行 CanDash 逻辑。
+    /// </summary>
     private bool CanDash()
     {
         if (skillsManager.dash.CanUseSkill() == false)

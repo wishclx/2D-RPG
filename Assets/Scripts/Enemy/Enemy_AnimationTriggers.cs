@@ -1,10 +1,16 @@
-using UnityEngine;
+﻿using UnityEngine;
 
+/// <summary>
+/// Enemy_AnimationTriggers 的职责说明。
+/// </summary>
 public class Enemy_AnimationTriggers : Entity_AnimationTriggers
 {
     private Enemy enemy;
     private Enemy_VFX enemyVfx;
 
+    /// <summary>
+    /// 执行 Awake 逻辑。
+    /// </summary>
     protected override void Awake()
     {
         base.Awake();
@@ -12,15 +18,23 @@ public class Enemy_AnimationTriggers : Entity_AnimationTriggers
         enemyVfx = GetComponentInParent<Enemy_VFX>();
     }
 
+    /// <summary>
+    /// 执行 EnableCounterWindow 逻辑。
+    /// </summary>
     private void EnableCounterWindow()
     {
-        enemyVfx.EnableAttackAlert(true);// 启用攻击警告的游戏对象，显示攻击警告
-        enemy.EnableCounterWindow(true);// 启用被击晕的窗口，允许敌人被击晕
+        enemyVfx.EnableAttackAlert(true);
+        enemy.EnableCounterWindow(true);
     }
 
+    /// <summary>
+    /// 执行 DisableCounterWindow 逻辑。
+    /// </summary>
     private void DisableCounterWindow()
     {
-        enemyVfx.EnableAttackAlert(false);// 禁用攻击警告的游戏对象，隐藏攻击警告
+        enemyVfx.EnableAttackAlert(false);
         enemy.EnableCounterWindow(false);
     }
 }
+
+
