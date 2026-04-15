@@ -6,6 +6,8 @@
 /// </summary>
 public class SkillObject_Base : MonoBehaviour
 {
+    [SerializeField] private GameObject onHitVfx;
+    [Space]
     // 用于筛选“敌人”目标的 Layer。
     [SerializeField] protected LayerMask whatIsEnemy;
     // 伤害检测的中心点；为空时默认使用当前物体的 Transform。
@@ -13,9 +15,16 @@ public class SkillObject_Base : MonoBehaviour
     // 在 Scene 视图中显示的默认检测半径。
     [SerializeField] protected float checkRadius = 1;
 
+    protected Animator anim;
     protected Entity_Stats playerStats;
     protected DamageScaleData damageScaleData;
     protected ElementType usedElement;
+    protected bool targetGotHit;// 标志，指示当前技能对象是否已经成功命中目标，用于控制特效播放等逻辑。
+
+    protected virtual void Awake()
+    {
+        anim = GetComponentInChildren<Animator>();
+    }
 
     /// <summary>
     /// 对给定中心点和半径内的所有敌人造成一次伤害。
@@ -36,10 +45,13 @@ public class SkillObject_Base : MonoBehaviour
             float elemDamage = attackData.elementalDamage;// 从攻击数据中获取元素伤害数值。
             ElementType element = attackData.element;// 从攻击数据中获取元素类型。
 
-            damageable.TakeDamge(physDamage, elemDamage, element, transform);// 对目标造成伤害，传入伤害数值、元素类型和伤害来源。
+            targetGotHit = damageable.TakeDamge(physDamage, elemDamage, element, transform);// 对目标造成伤害，传入伤害数值、元素类型和伤害来源。
 
             if (element != ElementType.None)
                 statusHandler.ApplyStatusEffect(element, attackData.effectData);// 如果攻击具有元素属性，则尝试对目标应用相应的状态效果。
+
+            if (targetGotHit)
+                Instantiate(onHitVfx, target.transform.position, Quaternion.identity);// 如果成功命中目标，则在目标位置生成击中特效。
 
             usedElement = element;// 记录当前使用的元素类型，以便后续应用状态效果。
         }

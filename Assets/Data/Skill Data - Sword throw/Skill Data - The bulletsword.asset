@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d7398b014b69234988d9fc823b98238, type: 3}
+  m_Name: Skill Data - The bulletsword
+  m_EditorClassIdentifier: 
+  displayName: The bulletsword
+  description: "\u53D1\u5C04\u4E00\u628A\u5411\u524D\u98DE\u884C\u7684\u5251\uFF0C\u6CBF\u9014\u6700\u591A\u53EF\u7A7F\u900F
+    N \u4E2A\u654C\u4EBA"
+  icon: {fileID: -854908563, guid: 8e239c2e1844452478a067e5d18190f0, type: 3}
+  cost: 2
+  unlockedByDefault: 0
+  skillType: 3
+  upgradeData:
+    upgradeType: 13
+    cooldown: 4
+    damageScaleData:
+      physical: 2
+      elemental: 1
+      chillDuration: 3
+      chillSlowMultiplier: 0.2
+      burnDuration: 3
+      burnDamageScale: 1
+      shockDuration: 3
+      shockDamageScale: 1
+      shockCharge: 0.4

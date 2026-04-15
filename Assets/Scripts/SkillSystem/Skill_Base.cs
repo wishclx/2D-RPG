@@ -24,6 +24,7 @@ public class Skill_Base : MonoBehaviour
         skillManager = GetComponentInParent<Player_SkillManager>();
         player = GetComponentInParent<Player>();
         lastTimeUsed = -cooldown;
+        damageScaleData = new DamageScaleData();// 初始化 damageScaleData，确保它在未升级时也有默认值。
     }
 
 
@@ -45,7 +46,7 @@ public class Skill_Base : MonoBehaviour
     /// <summary>
     /// 执行 CanUseSkill 逻辑。
     /// </summary>
-    public bool CanUseSkill()
+    public virtual bool CanUseSkill()
     {
         if (upgradeType == SkillUpgradeType.None)
         {

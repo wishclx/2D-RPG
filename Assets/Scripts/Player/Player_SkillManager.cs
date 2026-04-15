@@ -7,6 +7,7 @@ public class Player_SkillManager : MonoBehaviour
 {
     public Skill_Dash dash { get; private set; }
     public Skill_Shard shard { get; private set; }
+    public Skill_SwordThrow swordThrow { get; private set; }
 
     /// <summary>
     /// 执行 Awake 逻辑。
@@ -15,6 +16,7 @@ public class Player_SkillManager : MonoBehaviour
     {
         dash = GetComponentInChildren<Skill_Dash>();
         shard = GetComponentInChildren<Skill_Shard>();
+        swordThrow = GetComponentInChildren<Skill_SwordThrow>();
     }
 
     /// <summary>
