@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b6cdb4418bb07b45a422d19a82fba38, type: 3}
+  m_Name: Item effect Data - Refund all skill
+  m_EditorClassIdentifier: 
+  effectDescription: "\u91CD\u7F6E\u6280\u80FD\u6811,\u8FD4\u8FD8\u6240\u6709\u6280\u80FD\u70B9"

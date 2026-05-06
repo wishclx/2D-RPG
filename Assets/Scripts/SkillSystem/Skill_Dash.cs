@@ -1,15 +1,9 @@
 ﻿using UnityEngine;
 
-/// <summary>
-/// Skill_Dash 的职责说明。
-/// </summary>
 public class Skill_Dash : Skill_Base
 {
 
 
-    /// <summary>
-    /// 执行 OnstartEffect 逻辑。
-    /// </summary>
     public void OnstartEffect()
     {
         // 起始阶段：根据已解锁升级效果生成分身/碎片。
@@ -20,9 +14,6 @@ public class Skill_Dash : Skill_Base
             CreatShard();
     }
 
-    /// <summary>
-    /// 执行 OnEndEffect 逻辑。
-    /// </summary>
     public void OnEndEffect()
     {
         // 结束阶段：根据已解锁升级效果生成分身/碎片。
@@ -33,22 +24,13 @@ public class Skill_Dash : Skill_Base
             CreatShard();
     }
 
-    /// <summary>
-    /// 执行 CreatShaed 逻辑。
-    /// </summary>
     private void CreatShard()
     {
         skillManager.shard.CreateRawShard();
     }
 
-    /// <summary>
-    /// 执行 CreatClone 逻辑。
-    /// </summary>
     private void CreatClone()
     {
-        Debug.Log("创建了一个分身");
+        skillManager.timeEcho.CreateTimeEcho();
     }
 }
-
-
-

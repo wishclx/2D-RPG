@@ -22,9 +22,10 @@ public class SkillObject_Shard : SkillObject_Base
         transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);// 每帧将碎片向目标移动，速度由 speed 变量控制。
     }
 
-    public void MoveToClosestTarget(float speed)
+    public void MoveToClosestTarget(float speed, Transform newTarget = null)
     {
-        target = FindClosestTarget();
+        // 如果 newTarget 不为 null，就直接使用它作为目标；否则调用 FindClosestTarget 方法找到最近的敌人作为目标。
+        target = newTarget == null ? FindClosestTarget() : newTarget;
         this.speed = speed;
     }
 
@@ -43,7 +44,7 @@ public class SkillObject_Shard : SkillObject_Base
         Invoke(nameof(Explode), detinationTime);
     }
 
-    public void SetupShard(Skill_Shard shardManager, float detinationTime, bool canMove, float shardSpeed)
+    public void SetupShard(Skill_Shard shardManager, float detinationTime, bool canMove, float shardSpeed, Transform target = null)
     {
         this.shardManager = shardManager;
 
@@ -53,7 +54,7 @@ public class SkillObject_Shard : SkillObject_Base
         Invoke(nameof(Explode), detinationTime);
 
         if (canMove)
-            MoveToClosestTarget(shardSpeed);
+            MoveToClosestTarget(shardSpeed, target);
     }
 
     /// <summary>

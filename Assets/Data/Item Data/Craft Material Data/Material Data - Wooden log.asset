@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7fae6a0d6545f244a47c1446d157d17, type: 3}
+  m_Name: Material Data - Wooden log
+  m_EditorClassIdentifier: 
+  itemPrice: 100
+  minStackSizeAtShop: 1
+  maxStackSizeAtShop: 5
+  itemRarity: 100
+  dropChance: 84.2
+  maxDropChance: 84.2
+  craftRecipe: []
+  itemName: "\u539F\u6728"
+  itemIcon: {fileID: 1209397361, guid: 8e239c2e1844452478a067e5d18190f0, type: 3}
+  itemType: 0
+  maxStackSize: 5
+  itemEffect: {fileID: 0}

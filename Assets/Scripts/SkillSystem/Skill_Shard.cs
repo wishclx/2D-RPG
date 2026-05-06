@@ -33,6 +33,32 @@ public class Skill_Shard : Skill_Base
         currentCharges = maxCharges;// 初始化当前碎片数量为最大值。
         playerHealth = GetComponentInParent<Entity_Health>();
     }
+    public void CreateShard()
+    {
+        float detonateTime = GetDetonateTime();// 获取当前碎片的爆炸时间，根据是否解锁传送升级来决定。
+
+        GameObject shard = Instantiate(shardPrefab, transform.position, Quaternion.identity);
+        currentShard = shard.GetComponent<SkillObject_Shard>();
+        currentShard.SetupShard(this);
+
+        if (Unlocked(SkillUpgradeType.Shard_Teleport) || Unlocked(SkillUpgradeType.Shard_TeleportHpRewind))
+            currentShard.OnExplode += ForceCooldown;// 如果解锁了传送升级，在碎片爆炸时强制技能进入冷却状态。
+    }
+
+    public void CreateRawShard(Transform target = null, bool shardsCanMove = false)
+    {
+        bool canMove = shardsCanMove != false ? shardsCanMove :
+            Unlocked(SkillUpgradeType.Shard_MoveToEnemy) || Unlocked(SkillUpgradeType.Shard_MulticCast);
+
+        GameObject shard = Instantiate(shardPrefab, transform.position, Quaternion.identity);
+        // 直接创建一个碎片对象，并根据当前的升级状态设置它的属性。
+        shard.GetComponent<SkillObject_Shard>().SetupShard(this, detonateTime, canMove, shardSpeed, target);
+    }
+
+    public void CreateDomainShard(Transform target)
+    {
+
+    }
 
     public override void TryUseSkill()
     {
@@ -109,14 +135,18 @@ public class Skill_Shard : Skill_Base
     private IEnumerator ShardRechargeCo()
     {
         isReCharging = true;
+        UI_SkillSlot slot = player.ui.inGameUI.GetSkillSlots(skillType);
 
         while (currentCharges < maxCharges)
         {
-            yield return new WaitForSeconds(cooldown); // 每次充能后等待 cooldown 秒。
+            if (slot != null)
+                slot.StartCooldown(cooldown);// 每次恢复1层前，显示一次充能冷却
+
+            yield return new WaitForSeconds(cooldown);
             currentCharges++;
         }
 
-        isReCharging = false;// 充能完成后重置状态。
+        isReCharging = false;
     }
 
     private void HandleShardMoving()
@@ -131,30 +161,6 @@ public class Skill_Shard : Skill_Base
     {
         CreateShard();
         SetSkillOnCooldown();// 设置技能进入冷却状态
-    }
-
-    /// <summary>
-    /// 执行 CreateShard 逻辑。
-    /// </summary>
-    public void CreateShard()
-    {
-        float detonateTime = GetDetonateTime();// 获取当前碎片的爆炸时间，根据是否解锁传送升级来决定。
-
-        GameObject shard = Instantiate(shardPrefab, transform.position, Quaternion.identity);
-        currentShard = shard.GetComponent<SkillObject_Shard>();
-        currentShard.SetupShard(this);
-
-        if (Unlocked(SkillUpgradeType.Shard_Teleport) || Unlocked(SkillUpgradeType.Shard_TeleportHpRewind))
-            currentShard.OnExplode += ForceCooldown;// 如果解锁了传送升级，在碎片爆炸时强制技能进入冷却状态。
-    }
-
-    public void CreateRawShard()
-    {
-        bool canMove = Unlocked(SkillUpgradeType.Shard_MoveToEnemy) || Unlocked(SkillUpgradeType.Shard_MulticCast);
-
-        GameObject shard = Instantiate(shardPrefab, transform.position, Quaternion.identity);
-        // 直接创建一个碎片对象，并根据当前的升级状态设置它的属性。
-        shard.GetComponent<SkillObject_Shard>().SetupShard(this, detonateTime, canMove, shardSpeed);
     }
 
     public float GetDetonateTime()

@@ -3,7 +3,6 @@ using UnityEngine;
 public class SkillObject_Sword : SkillObject_Base
 {
     protected Skill_SwordThrow swordManager;
-    protected Rigidbody2D rb;
 
     protected Transform playerTransform;// 玩家角色的 Transform 组件，用于在剑返回时定位目标位置。
     protected bool shouldComeback;// 标志，指示剑是否应该返回玩家
@@ -18,7 +17,6 @@ public class SkillObject_Sword : SkillObject_Base
 
     public virtual void SetupSword(Skill_SwordThrow swordManager, Vector2 direction)
     {
-        rb = GetComponent<Rigidbody2D>();
         rb.linearVelocity = direction;
 
         this.swordManager = swordManager;

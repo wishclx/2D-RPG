@@ -397,6 +397,7 @@ GameObject:
   - component: {fileID: 2413191168303181943}
   - component: {fileID: 1587968704639132287}
   - component: {fileID: 5782701523267586962}
+  - component: {fileID: 4006150087235033865}
   m_Layer: 8
   m_Name: Enemy_Skeleton
   m_TagString: Untagged
@@ -538,16 +539,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 185b0e6ad9c3ba1468761e74c9934463, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  basicAttackScale:
+    physical: 1
+    elemental: 1
+    chillDuration: 3
+    chillSlowMultiplier: 0.2
+    burnDuration: 3
+    burnDamageScale: 1
+    shockDuration: 3
+    shockDamageScale: 1
+    shockCharge: 0.4
   targetCheck: {fileID: 7716623794734708416}
   targetCheckRadius: 1
   whatIsTarget:
     serializedVersion: 2
     m_Bits: 128
-  defaultDuration: 3
-  chillSlowMultiplier: 0.5
-  electrifyChargeBuildUp: 0.4
-  fireScale: 0.8
-  lightningScale: 2.5
 --- !u!114 &9160887688479375150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -561,14 +567,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth: 0
-  isDead: 0
   regenInterval: 1
   canRegenerateHealth: 1
+  knockbackPower: {x: 1.5, y: 2.5}
+  heavyKnockbackPower: {x: 7, y: 7}
   knockbackDuration: 0.2
-  onDamageKnockback: {x: 1.5, y: 2.5}
-  heavyDamageThreshold: 0.3
   heavyKnockbackDuration: 0.5
-  onHeavyDamageKnockback: {x: 7, y: 7}
+  heavyDamageThreshold: 0.3
 --- !u!114 &2413191168303181943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -588,7 +593,7 @@ MonoBehaviour:
   critHitVfx: {fileID: 4517425520567989936, guid: 5be242c508c9084488f2aca1237b7cfd, type: 3}
   chillVfx: {r: 0, g: 1, b: 1, a: 1}
   burnVfx: {r: 1, g: 0, b: 0, a: 1}
-  electrifyVfx: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  shockVfx: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   attackAlert: {fileID: 732763478277062290}
 --- !u!114 &1587968704639132287
 MonoBehaviour:
@@ -605,7 +610,7 @@ MonoBehaviour:
   defaultStatSetup: {fileID: 11400000, guid: 5c1dcb1f8b845ad4d96934a99b081c9a, type: 2}
   resources:
     maxHealth:
-      baseValue: 100
+      baseValue: 1000
       modifiers: []
     healthRegen:
       baseValue: 0
@@ -615,7 +620,7 @@ MonoBehaviour:
       baseValue: 1
       modifiers: []
     damage:
-      baseValue: 10
+      baseValue: 40
       modifiers: []
     critPower:
       baseValue: 150
@@ -679,6 +684,22 @@ MonoBehaviour:
   lightningStrikeVfx: {fileID: 5691681332909429540, guid: a72bd490dd4f3164dbf3b8a5e4ac3838, type: 3}
   currentCharge: 0
   maximumCharge: 1
+--- !u!114 &4006150087235033865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3639952052606191766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a72a35c114fa53b4cb0641d26a042c59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemDropPrefab: {fileID: 5568758528801748729, guid: 254b135d48d946347ace88d91bfd92fe, type: 3}
+  dropData: {fileID: 11400000, guid: d3d4969acc7496e47bfed6016671c6c6, type: 2}
+  maxRarityAmount: 1200
+  maxItemsToDrop: 3
 --- !u!1 &4054246327462919943
 GameObject:
   m_ObjectHideFlags: 0
@@ -960,7 +981,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.9811321, g: 0.12699068, b: 0.0046279924, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1498,7 +1519,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:

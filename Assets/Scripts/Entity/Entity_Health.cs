@@ -1,55 +1,63 @@
-﻿using Unity.VisualScripting;
+﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-/// <summary>
-/// Entity_Health 的职责说明。
-/// </summary>
 public class Entity_Health : MonoBehaviour, IDamageable
 {
+    public event Action OnTakingDamage;
+    public event Action OnHealthUpdate;
+
+
     private Slider healthBar;
     private Entity entity;
     private Entity_VFX entityVfx;
     private Entity_Stats entityStats;
+    private Entity_DropManager dropManager;
 
+    private bool miniHealthBarActive;//开关血条
     [SerializeField] protected float currentHealth;
-    [SerializeField] protected bool isDead;
     [Header("Health regen")]
     [SerializeField] private float regenInterval = 1f;
     [SerializeField] private bool canRegenerateHealth = true;
+    public float lastDamageTaken { get; private set; } // 上次受到伤害的时间，用于控制生命值再生的时机。
+    public bool isDead { get; private set; }
+    protected bool canTakeDamage = true;//是否可以受到伤害
 
     [Header("On Damage Knockback")]
+    [SerializeField] private Vector2 knockbackPower = new Vector2(1.5f, 2.5f);
+    [SerializeField] private Vector2 heavyKnockbackPower = new Vector2(7f, 7f);
     [SerializeField] private float knockbackDuration = 0.2f;
-    [SerializeField] private Vector2 onDamageKnockback = new Vector2(1.5f, 2.5f);
-    [Header("On Heavy Damage Knockback")]
-    [Range(0, 1)]
-    [SerializeField] private float heavyDamageThreshold = .3f;
     [SerializeField] private float heavyKnockbackDuration = .5f;
-    [SerializeField] private Vector2 onHeavyDamageKnockback = new Vector2(7f, 7f);
+    [Header("On Heavy Damage Knockback")]
+    [SerializeField] private float heavyDamageThreshold = .3f;
 
-    /// <summary>
-    /// 执行 Awake 逻辑。
-    /// </summary>
     protected virtual void Awake()
     {
         entity = GetComponent<Entity>();
         entityVfx = GetComponent<Entity_VFX>();
         entityStats = GetComponent<Entity_Stats>();
         healthBar = GetComponentInChildren<Slider>();
+        dropManager = GetComponent<Entity_DropManager>();
 
-        currentHealth = entityStats.GetMaxHealth();
-        UpdateHealthBar();
-
-        InvokeRepeating(nameof(RegenerateHealth), 0, regenInterval);
-
+        SetupHealth();
     }
 
-    /// <summary>
-    /// 执行 TakeDamge 逻辑。
-    /// </summary>
+    private void SetupHealth()
+    {
+
+        if (entityStats == null)
+            return;
+
+        currentHealth = entityStats.GetMaxHealth();
+        OnHealthUpdate += UpdateHealthBar;
+
+        UpdateHealthBar();
+        InvokeRepeating(nameof(RegenerateHealth), 0, regenInterval);
+    }
+
     public virtual bool TakeDamge(float damage, float elementalDamage, ElementType element, Transform damageDealer)
     {
-        if (isDead)
+        if (isDead || canTakeDamage == false)
             return false;
 
         if (AttackEvaded())
@@ -61,24 +69,32 @@ public class Entity_Health : MonoBehaviour, IDamageable
         Entity_Stats attackerStats = damageDealer.GetComponent<Entity_Stats>();
         float armorReduction = attackerStats != null ? attackerStats.GetArmorReduction() : 0;
 
-        float mitigation = entityStats.GetArmorMitigation(armorReduction);// 获取护甲减伤率
-        float physicalDamageTaken = damage * (1 - mitigation);
+        float mitigation = entityStats != null ? entityStats.GetArmorMitigation(armorReduction) : 0;// 获取护甲减伤率
+        float resistance = entityStats != null ? entityStats.GetElementalResistance(element) : 0;
 
-        float resistance = entityStats.GetElementalResistance(element);
+        float physicalDamageTaken = damage * (1 - mitigation);
         float elementalDamageTaken = elementalDamage * (1 - resistance);
 
         TakeKnockback(damageDealer, physicalDamageTaken);
         ReduceHealth(physicalDamageTaken + elementalDamageTaken);
 
+        lastDamageTaken = physicalDamageTaken + elementalDamageTaken;// 更新上次受到伤害的时间，以便控制生命值再生的时机。
 
+
+        OnTakingDamage?.Invoke();// 触发受到伤害的事件，通知其他系统（如UI、音效等）进行相应的反应。
         return true;
     }
 
-    private bool AttackEvaded() => Random.Range(0, 100) < entityStats.GetEvasion();
+    public void SetCanTakeDamage(bool canTakeDamage) => this.canTakeDamage = canTakeDamage;
 
-    /// <summary>
-    /// 执行 RegenerateHealth 逻辑。
-    /// </summary>
+    private bool AttackEvaded()
+    {
+        if (entityStats == null)
+            return false;
+        else
+            return UnityEngine.Random.Range(0, 100) < entityStats.GetEvasion();
+    }
+
     private void RegenerateHealth()
     {
         if (canRegenerateHealth == false)
@@ -88,10 +104,7 @@ public class Entity_Health : MonoBehaviour, IDamageable
         IncreaseHealth(regenAmount);
     }
 
-    /// <summary>
-    /// 执行 IncreaseHealth 逻辑。
-    /// </summary>
-    private void IncreaseHealth(float healAmount)
+    public void IncreaseHealth(float healAmount)
     {
         if (isDead)
             return;
@@ -100,29 +113,25 @@ public class Entity_Health : MonoBehaviour, IDamageable
         float maxHealth = entityStats.GetMaxHealth();
 
         currentHealth = Mathf.Min(newHealth, maxHealth);
-        UpdateHealthBar();
+        OnHealthUpdate?.Invoke();
     }
 
-    /// <summary>
-    /// 执行 ReduceHealth 逻辑。
-    /// </summary>
     public void ReduceHealth(float damage)
     {
-        entityVfx?.PlayOnDamageVfx();
         currentHealth -= damage;
-        UpdateHealthBar();
+
+        entityVfx?.PlayOnDamageVfx();
+        OnHealthUpdate?.Invoke();
 
         if (currentHealth <= 0)
             Die();
     }
 
-    /// <summary>
-    /// 执行 Die 逻辑。
-    /// </summary>
-    private void Die()
+    protected virtual void Die()
     {
         isDead = true;
         entity.EntityDeath();
+        dropManager?.DropItems();// 调用掉落管理器的掉落方法，生成掉落物。
     }
 
     public float GetHealthPercent() => currentHealth / entityStats.GetMaxHealth();// 返回当前生命值占最大生命值的百分比
@@ -130,22 +139,21 @@ public class Entity_Health : MonoBehaviour, IDamageable
     public void SetHealthToPercent(float percent)
     {
         currentHealth = entityStats.GetMaxHealth() * Mathf.Clamp(percent, 0, 1);// 将当前生命值设置为最大生命值的百分比，确保百分比在 0 到 1 之间。
-        UpdateHealthBar();
+        OnHealthUpdate?.Invoke();
     }
 
-    /// <summary>
-    /// 执行 UpdateHealthBar 逻辑。
-    /// </summary>
+    public float GetCurrentHealth() => currentHealth;// 返回当前生命值的数值。
+
     private void UpdateHealthBar()
     {
-        if (healthBar == null)
+        if (healthBar == null && healthBar.transform.parent.gameObject.activeSelf == false)// 如果血条组件不存在或者血条对象未激活，则不更新血条显示。
             return;
+
         healthBar.value = currentHealth / entityStats.GetMaxHealth();
     }
 
-    /// <summary>
-    /// 执行 TakeKnockback 逻辑。
-    /// </summary>
+    public void EnableHealthBar(bool enable) => healthBar?.transform.parent.gameObject.SetActive(enable);//
+
     private void TakeKnockback(Transform damageDealer, float finalDamage)
     {
         Vector2 knockback = CalculateKnockback(finalDamage, damageDealer);
@@ -154,15 +162,12 @@ public class Entity_Health : MonoBehaviour, IDamageable
         entity?.ReciveKnockback(knockback, duration);
     }
 
-    /// <summary>
-    /// 执行 CalculateKnockback 逻辑。
-    /// </summary>
     private Vector2 CalculateKnockback(float damage, Transform damageDealer)
     {
 
         int direction = transform.position.x > damageDealer.position.x ? 1 : -1;
 
-        Vector2 knockback = IsHeavyDamage(damage) ? onHeavyDamageKnockback : onDamageKnockback;
+        Vector2 knockback = IsHeavyDamage(damage) ? heavyKnockbackPower : knockbackPower;
 
         knockback.x *= direction;
 
@@ -170,12 +175,11 @@ public class Entity_Health : MonoBehaviour, IDamageable
     }
 
     private float CalculateDuration(float damage) => IsHeavyDamage(damage) ? heavyKnockbackDuration : knockbackDuration;
-
-
-    private bool IsHeavyDamage(float damage) => damage / entityStats.GetMaxHealth() >= heavyDamageThreshold;
-
-
+    private bool IsHeavyDamage(float damage)
+    {
+        if (entityStats == null)
+            return false;
+        else
+            return damage / entityStats.GetMaxHealth() >= heavyDamageThreshold;// 判断伤害是否超过最大生命值的某个百分比，以确定是否为重击。
+    }
 }
-
-
-

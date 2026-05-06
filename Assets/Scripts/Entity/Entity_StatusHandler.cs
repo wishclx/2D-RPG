@@ -30,6 +30,13 @@ public class Entity_StatusHandler : MonoBehaviour
         entityVfx = GetComponent<Entity_VFX>();
     }
 
+    public void RemoveAllNegativeEffects()
+    {
+        StopAllCoroutines();// 停止所有状态效果协程，立即移除所有状态。
+        currentEffect = ElementType.None;
+        entityVfx.StopAllVfx();// 停止所有状态特效显示。
+    }
+
     public void ApplyStatusEffect(ElementType element, ElementalEffectData effectData)
     {
         if (element == ElementType.Ice && CanBeApplied(ElementType.Ice))
@@ -45,7 +52,7 @@ public class Entity_StatusHandler : MonoBehaviour
     /// <summary>
     /// 执行 ApplyElectrifyEffect 逻辑。
     /// </summary>
-    public void ApplyShockEffect(float duration, float damage, float charge)
+    private void ApplyShockEffect(float duration, float damage, float charge)
     {
         float lightningResistance = entityStats.GetElementalResistance(ElementType.Lightning);
         float finalCharge = charge * (1 - lightningResistance);// 根据雷抗计算实际增加电荷。
@@ -98,7 +105,7 @@ public class Entity_StatusHandler : MonoBehaviour
     /// <summary>
     /// 执行 ApplyBurnEffect 逻辑。
     /// </summary>
-    public void ApplyBurnEffect(float duration, float fireDamage)
+    private void ApplyBurnEffect(float duration, float fireDamage)
     {
         float fireResistance = entityStats.GetElementalResistance(ElementType.Fire);
         float finalDamage = fireDamage * (1 - fireResistance);// 根据火抗计算最终总伤害。
@@ -132,7 +139,7 @@ public class Entity_StatusHandler : MonoBehaviour
     /// <summary>
     /// 执行 ApplyChillEffect 逻辑。
     /// </summary>
-    public void ApplyChillEffect(float duration, float slowMultiplier)
+    private void ApplyChillEffect(float duration, float slowMultiplier)
     {
         float iceResistance = entityStats.GetElementalResistance(ElementType.Ice);// 获取冰抗。
         float finalDuration = duration * (1 - iceResistance);// 根据冰抗缩短减速持续时间。

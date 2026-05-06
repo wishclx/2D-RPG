@@ -1,0 +1,2516 @@
+fileFormatVersion: 2
+guid: f741ce0ad7409144080c279b704d484c
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5446952341260216359
+    second: Brothers_Graphics_0
+  - first:
+      213: 1588120761213206009
+    second: Brothers_Graphics_1
+  - first:
+      213: -7222014539175694502
+    second: Brothers_Graphics_2
+  - first:
+      213: -8212746029758488905
+    second: Brothers_Graphics_3
+  - first:
+      213: -3332648764505286193
+    second: Brothers_Graphics_4
+  - first:
+      213: -2837247093102252025
+    second: Brothers_Graphics_5
+  - first:
+      213: -8692206781739068630
+    second: Brothers_Graphics_6
+  - first:
+      213: 5556192761798723607
+    second: Brothers_Graphics_7
+  - first:
+      213: 4924721772847770332
+    second: Brothers_Graphics_8
+  - first:
+      213: -3572008430190222241
+    second: Brothers_Graphics_9
+  - first:
+      213: -8338524928248183436
+    second: Brothers_Graphics_10
+  - first:
+      213: 8866378206679884182
+    second: Brothers_Graphics_11
+  - first:
+      213: -7485019821637634650
+    second: Brothers_Graphics_12
+  - first:
+      213: -9024989794039301784
+    second: Brothers_Graphics_13
+  - first:
+      213: 8682974159539568785
+    second: Brothers_Graphics_14
+  - first:
+      213: 3596104390077363988
+    second: Brothers_Graphics_15
+  - first:
+      213: 7306208869732590632
+    second: Brothers_Graphics_16
+  - first:
+      213: 6231429096943806711
+    second: Brothers_Graphics_17
+  - first:
+      213: 5668076003000633368
+    second: Brothers_Graphics_18
+  - first:
+      213: -5384684757710562585
+    second: Brothers_Graphics_19
+  - first:
+      213: 425231563324778379
+    second: Brothers_Graphics_20
+  - first:
+      213: 4943125091724519734
+    second: Brothers_Graphics_21
+  - first:
+      213: -1855066396646409105
+    second: Brothers_Graphics_22
+  - first:
+      213: 8739584615579677038
+    second: Brothers_Graphics_23
+  - first:
+      213: 6520955273409806341
+    second: Brothers_Graphics_24
+  - first:
+      213: -1968324129756498564
+    second: Brothers_Graphics_25
+  - first:
+      213: 4659328831043931212
+    second: Brothers_Graphics_26
+  - first:
+      213: -332080645201590224
+    second: Brothers_Graphics_27
+  - first:
+      213: -2280305199183571616
+    second: Brothers_Graphics_28
+  - first:
+      213: -6904718460324160376
+    second: Brothers_Graphics_29
+  - first:
+      213: 1092417359546442922
+    second: Brothers_Graphics_30
+  - first:
+      213: 1405874993639100789
+    second: Brothers_Graphics_31
+  - first:
+      213: -8343721454819021855
+    second: Brothers_Graphics_32
+  - first:
+      213: 5379869906014553244
+    second: Brothers_Graphics_33
+  - first:
+      213: 2189533237755920292
+    second: Brothers_Graphics_34
+  - first:
+      213: -1026037396891093563
+    second: Brothers_Graphics_35
+  - first:
+      213: -6005962332636089387
+    second: Brothers_Graphics_36
+  - first:
+      213: -4386477519120747927
+    second: Brothers_Graphics_37
+  - first:
+      213: 8105618272135733853
+    second: Brothers_Graphics_38
+  - first:
+      213: -5516207339103930774
+    second: Brothers_Graphics_39
+  - first:
+      213: -6254018054624367457
+    second: Brothers_Graphics_40
+  - first:
+      213: -2443322794603853287
+    second: Brothers_Graphics_41
+  - first:
+      213: -3102316317760048573
+    second: Brothers_Graphics_42
+  - first:
+      213: 1035651513860872504
+    second: Brothers_Graphics_43
+  - first:
+      213: -8570986034628478230
+    second: Brothers_Graphics_44
+  - first:
+      213: 2871490278491697196
+    second: Brothers_Graphics_45
+  - first:
+      213: 2821340973464869247
+    second: Brothers_Graphics_46
+  - first:
+      213: 6088057436449186374
+    second: Brothers_Graphics_47
+  - first:
+      213: -216335315720169775
+    second: Brothers_Graphics_48
+  - first:
+      213: 4814288659827040981
+    second: Brothers_Graphics_49
+  - first:
+      213: -8225489893983029111
+    second: Brothers_Graphics_50
+  - first:
+      213: 5258509631989937816
+    second: Brothers_Graphics_51
+  - first:
+      213: -6209092219570798949
+    second: Brothers_Graphics_52
+  - first:
+      213: 4317627420582231276
+    second: Brothers_Graphics_53
+  - first:
+      213: 4195648552314795863
+    second: Brothers_Graphics_54
+  - first:
+      213: 3885176401337314026
+    second: Brothers_Graphics_55
+  - first:
+      213: -2193200319152669049
+    second: Brothers_Graphics_56
+  - first:
+      213: -3500937969373947402
+    second: Brothers_Graphics_57
+  - first:
+      213: 3789884245521425429
+    second: Brothers_Graphics_58
+  - first:
+      213: 4464187265899283123
+    second: Brothers_Graphics_59
+  - first:
+      213: -4173874427785381751
+    second: Brothers_Graphics_60
+  - first:
+      213: -674330034412533818
+    second: Brothers_Graphics_61
+  - first:
+      213: -8239100317432052293
+    second: Brothers_Graphics_62
+  - first:
+      213: -183777497411259799
+    second: Brothers_Graphics_63
+  - first:
+      213: -3890529838819294916
+    second: Brothers_Graphics_64
+  - first:
+      213: -1964834366805417226
+    second: Brothers_Graphics_65
+  - first:
+      213: -1410494677039109799
+    second: Brothers_Graphics_66
+  - first:
+      213: 7529456913033411526
+    second: Brothers_Graphics_67
+  - first:
+      213: 7991053712476438151
+    second: Brothers_Graphics_68
+  - first:
+      213: 5303073224201183897
+    second: Brothers_Graphics_69
+  - first:
+      213: -6897853152892954801
+    second: Brothers_Graphics_70
+  - first:
+      213: 1113917521042185456
+    second: Brothers_Graphics_71
+  - first:
+      213: -7920865360761291830
+    second: Brothers_Graphics_72
+  - first:
+      213: 781482363209164500
+    second: Brothers_Graphics_73
+  - first:
+      213: 1547706369451745858
+    second: Brothers_Graphics_74
+  - first:
+      213: -6623089392640915836
+    second: Brothers_Graphics_75
+  - first:
+      213: 973703479536638566
+    second: Brothers_Graphics_76
+  - first:
+      213: -1126518360072740997
+    second: Brothers_Graphics_77
+  - first:
+      213: 3482904259841842996
+    second: Brothers_Graphics_78
+  - first:
+      213: 312816073939450504
+    second: Brothers_Graphics_79
+  - first:
+      213: 408649708328302134
+    second: Brothers_Graphics_80
+  - first:
+      213: 8523920896496834876
+    second: Brothers_Graphics_81
+  - first:
+      213: 1868737422514343291
+    second: Brothers_Graphics_82
+  - first:
+      213: -3023715776959446195
+    second: Brothers_Graphics_83
+  - first:
+      213: -9124104817649335720
+    second: Brothers_Graphics_84
+  - first:
+      213: -5343030091125161033
+    second: Brothers_Graphics_85
+  - first:
+      213: 8292838170099622514
+    second: Brothers_Graphics_86
+  - first:
+      213: -8472716220449857347
+    second: Brothers_Graphics_87
+  - first:
+      213: 9199335334214517614
+    second: Brothers_Graphics_88
+  - first:
+      213: 7509807628686803842
+    second: Brothers_Graphics_89
+  - first:
+      213: 8586649469155323856
+    second: Brothers_Graphics_90
+  - first:
+      213: 4892839561025659564
+    second: Brothers_Graphics_91
+  - first:
+      213: -5068729283458950829
+    second: Brothers_Graphics_92
+  - first:
+      213: -1627214669121130378
+    second: Brothers_Graphics_93
+  - first:
+      213: -3015291092318082112
+    second: Brothers_Graphics_94
+  - first:
+      213: 4067526565324142811
+    second: Brothers_Graphics_95
+  - first:
+      213: 4833999334116131420
+    second: Brothers_Graphics_96
+  - first:
+      213: -5338108413646201875
+    second: Brothers_Graphics_97
+  - first:
+      213: 1781556086407630504
+    second: Brothers_Graphics_98
+  - first:
+      213: -7570935472527531659
+    second: Brothers_Graphics_99
+  - first:
+      213: 3199730461315784181
+    second: Brothers_Graphics_100
+  - first:
+      213: -301764898839045967
+    second: Brothers_Graphics_101
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Brothers_Graphics_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1408
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7282c419b46779b40800000000000000
+      internalID: 5446952341260216359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 1408
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9fd39880b632a0610800000000000000
+      internalID: 1588120761213206009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_2
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 1408
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5fe9bd5a0046cb90800000000000000
+      internalID: -7222014539175694502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_3
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 1408
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7bedeb9bff6760e80800000000000000
+      internalID: -8212746029758488905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_4
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1408
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc994861b9d00c1d0800000000000000
+      internalID: -3332648764505286193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_5
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 1408
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70071ab1dc210a8d0800000000000000
+      internalID: -2837247093102252025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1280
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a23933c3cf31f5780800000000000000
+      internalID: -8692206781739068630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_7
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 1280
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7180c9ef0ef8b1d40800000000000000
+      internalID: 5556192761798723607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_8
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 1280
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cda29303c50285440800000000000000
+      internalID: 4924721772847770332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_9
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 1280
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f54afcf024dad6ec0800000000000000
+      internalID: -3572008430190222241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_10
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1280
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4750705d1cb974c80800000000000000
+      internalID: -8338524928248183436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_11
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 1280
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6916b6db004bb0b70800000000000000
+      internalID: 8866378206679884182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_12
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 1280
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a5f78a212edf1890800000000000000
+      internalID: -7485019821637634650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_13
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 1280
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 869f2c8499bc0c280800000000000000
+      internalID: -9024989794039301784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1152
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19080456efe108870800000000000000
+      internalID: 8682974159539568785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_15
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 1152
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 417b8c9c3ede7e130800000000000000
+      internalID: 3596104390077363988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_16
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 1152
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 824283fc14ed46560800000000000000
+      internalID: 7306208869732590632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_17
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 1152
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f86e568fbb7a7650800000000000000
+      internalID: 6231429096943806711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_18
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1152
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 818c4ce081d09ae40800000000000000
+      internalID: 5668076003000633368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_19
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 1152
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ea933dfdb1c545b0800000000000000
+      internalID: -5384684757710562585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1024
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b87e1479ad9b6e500800000000000000
+      internalID: 425231563324778379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_21
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 1024
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6396f84c412899440800000000000000
+      internalID: 4943125091724519734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_22
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 1024
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6c7029d0fa7146e0800000000000000
+      internalID: -1855066396646409105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_23
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 1024
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e61781057ed394970800000000000000
+      internalID: 8739584615579677038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_24
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1024
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5004dcb85461f7a50800000000000000
+      internalID: 6520955273409806341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_25
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 1024
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c75b803f1ab1fa4e0800000000000000
+      internalID: -1968324129756498564
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_26
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 1024
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4c0c1ab2e249a040800000000000000
+      internalID: 4659328831043931212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_27
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 1024
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0380af1a966346bf0800000000000000
+      internalID: -332080645201590224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_28
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 896
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 065df2fb08aba50e0800000000000000
+      internalID: -2280305199183571616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_29
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 896
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88cdb42a4238d20a0800000000000000
+      internalID: -6904718460324160376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_30
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 896
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa46c36fccb092f00800000000000000
+      internalID: 1092417359546442922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_31
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 768
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 571967aabdba28310800000000000000
+      internalID: 1405874993639100789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_32
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 768
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ebe4b43b85253c80800000000000000
+      internalID: -8343721454819021855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_33
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 768
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c94cfcdfc2329aa40800000000000000
+      internalID: 5379869906014553244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_34
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 768
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4af3a5c01e8c26e10800000000000000
+      internalID: 2189533237755920292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_35
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 768
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c53a087c68c2c1f0800000000000000
+      internalID: -1026037396891093563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_36
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 640
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d379d4541986aca0800000000000000
+      internalID: -6005962332636089387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_37
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 640
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9623299dfe91023c0800000000000000
+      internalID: -4386477519120747927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_38
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 640
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d52e0938fd0fc7070800000000000000
+      internalID: 8105618272135733853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_39
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 640
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a66be45b6ae7273b0800000000000000
+      internalID: -5516207339103930774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_40
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 640
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9c2c3be6b34539a0800000000000000
+      internalID: -6254018054624367457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_41
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 640
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91ac5041dd2971ed0800000000000000
+      internalID: -2443322794603853287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_42
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 640
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 342b30beebb52f4d0800000000000000
+      internalID: -3102316317760048573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_43
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 640
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 839d5c2909f5f5e00800000000000000
+      internalID: 1035651513860872504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_44
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 640
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aeab22fcc9dbd0980800000000000000
+      internalID: -8570986034628478230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_45
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 640
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c203c79c13599d720800000000000000
+      internalID: 2871490278491697196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_46
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 512
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f79d0a1daaa672720800000000000000
+      internalID: 2821340973464869247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_47
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 512
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 642aab78bff1d7450800000000000000
+      internalID: 6088057436449186374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_48
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 512
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d690223d2c6ffcf0800000000000000
+      internalID: -216335315720169775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_49
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 512
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d2ae27670acfc240800000000000000
+      internalID: 4814288659827040981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_50
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 512
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 988739d958039dd80800000000000000
+      internalID: -8225489893983029111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_51
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 512
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 896fab646aaf9f840800000000000000
+      internalID: 5258509631989937816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_52
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 512
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9e37d2068fd4d9a0800000000000000
+      internalID: -6209092219570798949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_53
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 512
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cec3a44634b4beb30800000000000000
+      internalID: 4317627420582231276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_54
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 512
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 757fa1bf020f93a30800000000000000
+      internalID: 4195648552314795863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_55
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 512
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aeae07b3a5beae530800000000000000
+      internalID: 3885176401337314026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_56
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 384
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 78eb1a70eef2091e0800000000000000
+      internalID: -2193200319152669049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_57
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 384
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f9d9c2377b2a6fc0800000000000000
+      internalID: -3500937969373947402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_58
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 384
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 514672244af589430800000000000000
+      internalID: 3789884245521425429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_59
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 384
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b2cfb28aaaf3fd30800000000000000
+      internalID: 4464187265899283123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_60
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 384
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 988f3c2725b6316c0800000000000000
+      internalID: -4173874427785381751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_61
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c7c67d086c44a6f0800000000000000
+      internalID: -674330034412533818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_62
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 256
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb587a6f9e5d8ad80800000000000000
+      internalID: -8239100317432052293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_63
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 256
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 962771df657137df0800000000000000
+      internalID: -183777497411259799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_64
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 256
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c314e1979bf020ac0800000000000000
+      internalID: -3890529838819294916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_65
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 256
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f26514bd818bb4e0800000000000000
+      internalID: -1964834366805417226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_66
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 256
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9592189709aec6ce0800000000000000
+      internalID: -1410494677039109799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_67
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 256
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6cb37fc6b210e7860800000000000000
+      internalID: 7529456913033411526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_68
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 256
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 78e7939530de5ee60800000000000000
+      internalID: 7991053712476438151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_69
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 256
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 992a562200d489940800000000000000
+      internalID: 5303073224201183897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_70
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 256
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f47d1059a17e540a0800000000000000
+      internalID: -6897853152892954801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_71
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 256
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0fc9dc6651e657f00800000000000000
+      internalID: 1113917521042185456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_72
+      rect:
+        serializedVersion: 2
+        x: 1408
+        y: 256
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: acb7022cbee631290800000000000000
+      internalID: -7920865360761291830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_73
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d6a051a11268da00800000000000000
+      internalID: 781482363209164500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_74
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 242e7cf2ebe8a7510800000000000000
+      internalID: 1547706369451745858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_75
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 128
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4860bfbb94f0614a0800000000000000
+      internalID: -6623089392640915836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_76
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 128
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66ad75ed72a438d00800000000000000
+      internalID: 973703479536638566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_77
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 128
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b7f98e2258dcd50f0800000000000000
+      internalID: -1126518360072740997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_78
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 128
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43f519a98f2c55030800000000000000
+      internalID: 3482904259841842996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_79
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 128
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88a7137df88575400800000000000000
+      internalID: 312816073939450504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_80
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 128
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 636b97e9eb0dba500800000000000000
+      internalID: 408649708328302134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_81
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 128
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c391939c4ec0b4670800000000000000
+      internalID: 8523920896496834876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_82
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 128
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b7d4277e8c61fe910800000000000000
+      internalID: 1868737422514343291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_83
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 128
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d43869c658a9906d0800000000000000
+      internalID: -3023715776959446195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_84
+      rect:
+        serializedVersion: 2
+        x: 1408
+        y: 128
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 852c49a820ba06180800000000000000
+      internalID: -9124104817649335720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_85
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b30342d07eb9d5b0800000000000000
+      internalID: -5343030091125161033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_86
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 272a69cd064161370800000000000000
+      internalID: 8292838170099622514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_87
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db06565ec7dda6a80800000000000000
+      internalID: -8472716220449857347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_88
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e634e8d0fba9aaf70800000000000000
+      internalID: 9199335334214517614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_89
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2834567ef32383860800000000000000
+      internalID: 7509807628686803842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brothers_Graphics_90
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0dfaccbb238e92770800000000000000
+      internalID: 8586649469155323856
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: adb18216858ae514080ddb2f944f5d5a
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Brothers_Graphics_0: 5446952341260216359
+      Brothers_Graphics_1: 1588120761213206009
+      Brothers_Graphics_10: -8338524928248183436
+      Brothers_Graphics_11: 8866378206679884182
+      Brothers_Graphics_12: -7485019821637634650
+      Brothers_Graphics_13: -9024989794039301784
+      Brothers_Graphics_14: 8682974159539568785
+      Brothers_Graphics_15: 3596104390077363988
+      Brothers_Graphics_16: 7306208869732590632
+      Brothers_Graphics_17: 6231429096943806711
+      Brothers_Graphics_18: 5668076003000633368
+      Brothers_Graphics_19: -5384684757710562585
+      Brothers_Graphics_2: -7222014539175694502
+      Brothers_Graphics_20: 425231563324778379
+      Brothers_Graphics_21: 4943125091724519734
+      Brothers_Graphics_22: -1855066396646409105
+      Brothers_Graphics_23: 8739584615579677038
+      Brothers_Graphics_24: 6520955273409806341
+      Brothers_Graphics_25: -1968324129756498564
+      Brothers_Graphics_26: 4659328831043931212
+      Brothers_Graphics_27: -332080645201590224
+      Brothers_Graphics_28: -2280305199183571616
+      Brothers_Graphics_29: -6904718460324160376
+      Brothers_Graphics_3: -8212746029758488905
+      Brothers_Graphics_30: 1092417359546442922
+      Brothers_Graphics_31: 1405874993639100789
+      Brothers_Graphics_32: -8343721454819021855
+      Brothers_Graphics_33: 5379869906014553244
+      Brothers_Graphics_34: 2189533237755920292
+      Brothers_Graphics_35: -1026037396891093563
+      Brothers_Graphics_36: -6005962332636089387
+      Brothers_Graphics_37: -4386477519120747927
+      Brothers_Graphics_38: 8105618272135733853
+      Brothers_Graphics_39: -5516207339103930774
+      Brothers_Graphics_4: -3332648764505286193
+      Brothers_Graphics_40: -6254018054624367457
+      Brothers_Graphics_41: -2443322794603853287
+      Brothers_Graphics_42: -3102316317760048573
+      Brothers_Graphics_43: 1035651513860872504
+      Brothers_Graphics_44: -8570986034628478230
+      Brothers_Graphics_45: 2871490278491697196
+      Brothers_Graphics_46: 2821340973464869247
+      Brothers_Graphics_47: 6088057436449186374
+      Brothers_Graphics_48: -216335315720169775
+      Brothers_Graphics_49: 4814288659827040981
+      Brothers_Graphics_5: -2837247093102252025
+      Brothers_Graphics_50: -8225489893983029111
+      Brothers_Graphics_51: 5258509631989937816
+      Brothers_Graphics_52: -6209092219570798949
+      Brothers_Graphics_53: 4317627420582231276
+      Brothers_Graphics_54: 4195648552314795863
+      Brothers_Graphics_55: 3885176401337314026
+      Brothers_Graphics_56: -2193200319152669049
+      Brothers_Graphics_57: -3500937969373947402
+      Brothers_Graphics_58: 3789884245521425429
+      Brothers_Graphics_59: 4464187265899283123
+      Brothers_Graphics_6: -8692206781739068630
+      Brothers_Graphics_60: -4173874427785381751
+      Brothers_Graphics_61: -674330034412533818
+      Brothers_Graphics_62: -8239100317432052293
+      Brothers_Graphics_63: -183777497411259799
+      Brothers_Graphics_64: -3890529838819294916
+      Brothers_Graphics_65: -1964834366805417226
+      Brothers_Graphics_66: -1410494677039109799
+      Brothers_Graphics_67: 7529456913033411526
+      Brothers_Graphics_68: 7991053712476438151
+      Brothers_Graphics_69: 5303073224201183897
+      Brothers_Graphics_7: 5556192761798723607
+      Brothers_Graphics_70: -6897853152892954801
+      Brothers_Graphics_71: 1113917521042185456
+      Brothers_Graphics_72: -7920865360761291830
+      Brothers_Graphics_73: 781482363209164500
+      Brothers_Graphics_74: 1547706369451745858
+      Brothers_Graphics_75: -6623089392640915836
+      Brothers_Graphics_76: 973703479536638566
+      Brothers_Graphics_77: -1126518360072740997
+      Brothers_Graphics_78: 3482904259841842996
+      Brothers_Graphics_79: 312816073939450504
+      Brothers_Graphics_8: 4924721772847770332
+      Brothers_Graphics_80: 408649708328302134
+      Brothers_Graphics_81: 8523920896496834876
+      Brothers_Graphics_82: 1868737422514343291
+      Brothers_Graphics_83: -3023715776959446195
+      Brothers_Graphics_84: -9124104817649335720
+      Brothers_Graphics_85: -5343030091125161033
+      Brothers_Graphics_86: 8292838170099622514
+      Brothers_Graphics_87: -8472716220449857347
+      Brothers_Graphics_88: 9199335334214517614
+      Brothers_Graphics_89: 7509807628686803842
+      Brothers_Graphics_9: -3572008430190222241
+      Brothers_Graphics_90: 8586649469155323856
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

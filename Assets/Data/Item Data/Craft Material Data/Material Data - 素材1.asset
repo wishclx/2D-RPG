@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7fae6a0d6545f244a47c1446d157d17, type: 3}
+  m_Name: "Material Data - \u7D20\u67501"
+  m_EditorClassIdentifier: 
+  itemPrice: 100
+  minStackSizeAtShop: 1
+  maxStackSizeAtShop: 1
+  itemRarity: 100
+  dropChance: 65
+  maxDropChance: 65
+  craftRecipe: []
+  itemName: "\u7D20\u67501"
+  itemIcon: {fileID: -2156566711286475259, guid: b22c79f31e5385d439f5c0a9a09f3bc8, type: 3}
+  itemType: 0
+  maxStackSize: 5
+  itemEffect: {fileID: 0}

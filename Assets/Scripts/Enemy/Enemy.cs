@@ -1,11 +1,10 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-/// <summary>
-/// Enemy 的职责说明。
-/// </summary>
 public class Enemy : Entity
 {
+    public Entity_Stats stats { get; private set; }
+    public Enemy_Health health { get; private set; }
     public Enemy_IdleState idleState;
     public Enemy_MoveState moveState;
     public Enemy_AttackState attackState;
@@ -33,37 +32,42 @@ public class Enemy : Entity
 
     [Header("Player detection")]
     [SerializeField] private LayerMask whatIsPlayer;
-    [SerializeField] private Transform playerCheck; 
-    [SerializeField] private float playerCheckDistance = 10; 
+    [SerializeField] private Transform playerCheck;
+    [SerializeField] private float playerCheckDistance = 10;
     public Transform player { get; private set; }
+    public float activeSlowMultiplier { get; private set; } = 1f;// 当前的减速倍率，默认为1（没有减速）
 
-    /// <summary>
-    /// 执行 SlowDownEntityCo 逻辑。
-    /// </summary>
+    public float GetMoveSpeed() => moveSpeed * activeSlowMultiplier;
+    public float GetBattleMoveSpeed() => battleMoveSpeed * activeSlowMultiplier;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        health = GetComponent<Enemy_Health>();
+        stats = GetComponent<Entity_Stats>();
+    }
+
     protected override IEnumerator SlowDownEntityCo(float duration, float slowMultiplier)
     {
-        float originalMoveSpeed = moveSpeed;
-        float originalBattleSpeed = battleMoveSpeed;
-        float originalAnimSpeed = anim.speed;
 
-        float speedMultiplier = 1 - slowMultiplier;
+        activeSlowMultiplier = 1 - slowMultiplier;
 
-        moveSpeed = moveSpeed * speedMultiplier;
-        battleMoveSpeed = battleMoveSpeed * speedMultiplier;
-        anim.speed = anim.speed * speedMultiplier;
+        anim.speed = anim.speed * activeSlowMultiplier;
 
         yield return new WaitForSeconds(duration);
+        StopSlowDown();
+    }
 
-        moveSpeed = originalMoveSpeed;// 恢复原始速度
-        battleMoveSpeed = originalBattleSpeed;
-        anim.speed = originalAnimSpeed;
+    public override void StopSlowDown()
+    {
+        activeSlowMultiplier = 1;
+        anim.speed = 1;// 重置动画速度为正常速度
+        base.StopSlowDown();
     }
 
     public void EnableCounterWindow(bool enable) => canBeStunned = enable;
 
-    /// <summary>
-    /// 执行 EntityDeath 逻辑。
-    /// </summary>
+
     public override void EntityDeath()
     {
         base.EntityDeath();
@@ -71,17 +75,12 @@ public class Enemy : Entity
         stateMachine.ChangeState(deadState);
     }
 
-    /// <summary>
-    /// 执行 HandlePlayerDeath 逻辑。
-    /// </summary>
+
     private void HandlePlayerDeath()
     {
         stateMachine.ChangeState(idleState);
     }
 
-    /// <summary>
-    /// 执行 TryEnterBattleState 逻辑。
-    /// </summary>
     public void TryEnterBattleState(Transform player)
     {
         if (stateMachine.currentState == battleState || stateMachine.currentState == attackState)
@@ -91,9 +90,6 @@ public class Enemy : Entity
         stateMachine.ChangeState(battleState);
     }
 
-    /// <summary>
-    /// 执行 GetPlayerReference 逻辑。
-    /// </summary>
     public Transform GetPlayerReference()
     {
         if (player == null)
@@ -102,9 +98,6 @@ public class Enemy : Entity
         return player;
     }
 
-    /// <summary>
-    /// 执行 PlayerDetected 逻辑。
-    /// </summary>
     public RaycastHit2D PlayerDetected()
     {
         RaycastHit2D hit =
@@ -116,9 +109,6 @@ public class Enemy : Entity
         return hit;
     }
 
-    /// <summary>
-    /// 执行 OnDrawGizmos 逻辑。
-    /// </summary>
     protected override void OnDrawGizmos()
     {
         base.OnDrawGizmos();
@@ -131,17 +121,11 @@ public class Enemy : Entity
         Gizmos.DrawLine(playerCheck.position, new Vector3(playerCheck.position.x + (facingDir * minRetreatDistance), playerCheck.position.y));
     }
 
-    /// <summary>
-    /// 执行 OnEnable 逻辑。
-    /// </summary>
     private void OnEnable()
     {
         Player.OnPlayerDeath += HandlePlayerDeath;
     }
 
-    /// <summary>
-    /// 执行 OnDisable 逻辑。
-    /// </summary>
     private void OnDisable()
     {
         Player.OnPlayerDeath -= HandlePlayerDeath;

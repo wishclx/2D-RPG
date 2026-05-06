@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c8d4f1906be4e942a19560d976a5f36, type: 3}
+  m_Name: Consumable Data - Scroll of Vengeance
+  m_EditorClassIdentifier: 
+  itemPrice: 100
+  minStackSizeAtShop: 1
+  maxStackSizeAtShop: 2
+  itemRarity: 785
+  dropChance: 21.6
+  maxDropChance: 65
+  craftRecipe:
+  - itemData: {fileID: 11400000, guid: 234142e00cbd4e04b87973cb0abb3d84, type: 2}
+    stackSize: 3
+    itemEffect: {fileID: 0}
+  - itemData: {fileID: 11400000, guid: 84e952ed0b44e0d4092a70cfd95443f2, type: 2}
+    stackSize: 3
+    itemEffect: {fileID: 0}
+  itemName: "buff\u9053\u51771"
+  itemIcon: {fileID: 1935812241, guid: 8e239c2e1844452478a067e5d18190f0, type: 3}
+  itemType: 4
+  maxStackSize: 5
+  itemEffect: {fileID: 11400000, guid: d03f59bc83590934d8d40dc7fed9c1d9, type: 2}
