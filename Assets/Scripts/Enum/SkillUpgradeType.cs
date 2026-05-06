@@ -16,5 +16,11 @@ public enum SkillUpgradeType
     Shard_MoveToEnemy, // 碎片会移动到最近的敌人
     Shard_MulticCast, // 碎片技能最多可拥有 N 层充能，可连续释放
     Shard_Teleport, // 可与最近创建的碎片交换位置
-    Shard_TeleportHpRewind // 与碎片交换位置后，生命值恢复为创建碎片时的状态
+    Shard_TeleportHpRewind, // 与碎片交换位置后，生命值恢复为创建碎片时的状态
+
+    //------ 投掷分支 ------
+    SwordThrow,        // 可投掷剑，从远处对敌人造成伤害
+    SwordThrow_Spin,   // 投掷出的剑会在原地旋转并持续伤害敌人（类似电锯）
+    SwordThrow_Pierce, // 投掷剑可穿透 N 个目标
+    SwordThrow_Bounce  // 投掷剑会在敌人之间弹射
 }
