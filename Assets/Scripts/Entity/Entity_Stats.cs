@@ -7,12 +7,17 @@
 /// </summary>
 public class Entity_Stats : MonoBehaviour
 {
-    public Stat_SetupSO defaultStatSetup;// 默认属性配置，用于一键回填基础值。
+    public StatSetupDataSO defaultStatSetup;// 默认属性配置，用于一键回填基础值。
 
     public Stat_ResourceGroup resources;// 资源类属性（生命、回复等）。
     public Stat_OffenseGroup offense;// 进攻类属性（伤害、暴击等）。
     public Stat_DefenseGroup defense;// 防御类属性（护甲、抗性、闪避等）。
     public Stat_MajorGroup major;// 主属性（力量、敏捷、智力、体力）。
+
+    protected virtual void Awake()
+    {
+
+    }
 
     public AttackData GetAttackData(DamageScaleData scaleData)
     {
@@ -97,32 +102,28 @@ public class Entity_Stats : MonoBehaviour
     /// </summary>
     public float GetPhyiscalDamage(out bool isCrit, float scaleFactor = 1)// 计算物理伤害并输出是否暴击。
     {
-        float baseDamage = offense.damage.GetValue();// 基础物理伤害。
-        float bonusDamage = major.strength.GetValue();// 力量提供的额外物理伤害。
-        float totalBaseDamage = baseDamage + bonusDamage;// 暴击结算前的总基础伤害。
-
-        float baseCritChance = offense.critChance.GetValue();// 基础暴击率。
-        float bonusCritChance = major.agility.GetValue() * .3f;// 敏捷提供的暴击率加成。
-        float critChance = baseCritChance + bonusCritChance;// 最终暴击率。
-
-        float baseCripower = offense.critPower.GetValue();
-        float bonusCritPower = major.strength.GetValue() * .5f;// 力量提供的暴击伤害加成。
-        float critPower = (baseCripower + bonusCritPower) / 100;// 百分比转换为倍率。
+        float baseDamage = GetBaseDamage(); // 基础伤害计算。  
+        float critChance = GetCritChance();
+        float critPower = GetCritPower() / 100;// 将暴击伤害转换为倍率（如 150% -> 1.5）。
 
         isCrit = Random.Range(0, 100) < critChance;// 随机判定是否触发暴击。
-        float finalDamage = isCrit ? totalBaseDamage * critPower : totalBaseDamage;// 暴击时按暴伤倍率结算。
+        float finalDamage = isCrit ? baseDamage * critPower : baseDamage;// 暴击时按暴伤倍率结算。
 
         return finalDamage * scaleFactor;
     }
 
-    /// <summary>
-    /// 执行 GetArmorMitigation 逻辑。
-    /// </summary>
+    // 基础伤害由伤害属性和力量提供的加成构成。这里力量按 1:1 加成，后续可调整为更复杂的关系。
+    public float GetBaseDamage() => offense.damage.GetValue() + (major.strength.GetValue() * 1);
+
+    // 暴击率由基础暴击率和敏捷提供的加成构成。这里敏捷按 0.3%/点 加成，后续可调整为更复杂的关系。
+    public float GetCritChance() => offense.critChance.GetValue() + (major.agility.GetValue() * .3f);
+
+    // 暴击伤害由基础暴击伤害和力量提供的加成构成。这里力量按 0.5%/点 加成，后续可调整为更复杂的关系。
+    public float GetCritPower() => offense.critPower.GetValue() + (major.strength.GetValue() * .5f);
+
     public float GetArmorMitigation(float armorReduction)
     {
-        float baseArmor = defense.armor.GetValue();
-        float bonusArmor = major.vitality.GetValue() * 1f; // 体力提供的护甲加成。
-        float totalArmor = baseArmor + bonusArmor;
+        float totalArmor = GetBaseArmor();
 
         float reductionMuliplier = Mathf.Clamp(1 - armorReduction, 0, 1); // 破甲后剩余的护甲比例。
         float effectiveArmor = totalArmor * reductionMuliplier; // 实际生效护甲。
@@ -134,9 +135,10 @@ public class Entity_Stats : MonoBehaviour
 
         return finalMitigation;
     }
-    /// <summary>
-    /// 执行 GetArmorReduction 逻辑。
-    /// </summary>
+
+    // 基础护甲由护甲属性和体力提供的加成构成。这里体力按 1:1 加成，后续可调整为更复杂的关系。
+    public float GetBaseArmor() => defense.armor.GetValue() + (major.vitality.GetValue() * 1f);
+
     public float GetArmorReduction()
     {
         float finalReduction = offense.armorReduction.GetValue() / 100; // 破甲值由百分比转换为倍率。
@@ -144,9 +146,6 @@ public class Entity_Stats : MonoBehaviour
         return finalReduction;
     }
 
-    /// <summary>
-    /// 执行 GetEvasion 逻辑。
-    /// </summary>
     public float GetEvasion()
     {
         float baseEvasion = defense.evasion.GetValue();
@@ -159,9 +158,7 @@ public class Entity_Stats : MonoBehaviour
 
         return finalEvasion;
     }
-    /// <summary>
-    /// 执行 GetMaxHealth 逻辑。
-    /// </summary>
+
     public float GetMaxHealth()
     {
         float baseMaxHealth = resources.maxHealth.GetValue();
@@ -171,9 +168,6 @@ public class Entity_Stats : MonoBehaviour
         return finalMaxHealth;
     }
 
-    /// <summary>
-    /// 执行 GetStatByType 逻辑。
-    /// </summary>
     public Stat GetStatByType(StatType type)
     {
         switch (type)
@@ -211,9 +205,6 @@ public class Entity_Stats : MonoBehaviour
 
 
     [ContextMenu("Update Default Stat Setup")]// 右键菜单：将默认配置写入当前属性。
-    /// <summary>
-    /// 执行 ApplyDefaultStatSetup 逻辑。
-    /// </summary>
     public void ApplyDefaultStatSetup()
     {
         if (defaultStatSetup == null)

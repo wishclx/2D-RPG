@@ -1,32 +1,212 @@
 ﻿using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
-/// <summary>
-/// UI 的职责说明。
-/// </summary>
 public class UI : MonoBehaviour
 {
-    public UI_SkillToolTip skillToolTip;
-    public UI_SkillTree skillTree;
-    private bool skillTreeEnabled;
+    public static UI instance;
 
-    /// <summary>
-    /// 执行 Awake 逻辑。
-    /// </summary>
+
+    [SerializeField] private GameObject[] uiElements;// 场景中所有UI元素的引用数组，允许在编辑器中设置。
+    public bool alternativeInput { get; private set; }// 备用输入模式，允许玩家使用不同的按键布局。
+    private PlayerInputSet input;
+
+    #region UI Components
+    public UI_SkillToolTip skillToolTip
+    { get; private set; }
+    public UI_ItemToolTip itemToolTip { get; private set; }
+    public UI_StatToolTip statToolTip { get; private set; }
+    public UI_SkillTree skillTreeUI { get; private set; }
+    public UI_Inventory inventoryUI { get; private set; }
+    public UI_Storage storageUI { get; private set; }
+    public UI_Craft craftUI { get; private set; }
+    public UI_Merchant merchantUI { get; private set; }
+    public UI_InGame inGameUI { get; private set; }
+    public UI_Options optionsUI { get; private set; }
+    public UI_DeathScreen deathScreenUI { get; private set; }
+    public UI_FadeScreen fadeScreenUI { get; private set; }
+    #endregion
+
+    private bool skillTreeEnabled;
+    private bool inventoryEnabled;
+
     private void Awake()
     {
-        skillToolTip = GetComponentInChildren<UI_SkillToolTip>();
-        skillTree = GetComponentInChildren<UI_SkillTree>(true);
+        instance = this;
+
+        itemToolTip = GetComponentInChildren<UI_ItemToolTip>(true);
+        skillToolTip = GetComponentInChildren<UI_SkillToolTip>(true);
+        statToolTip = GetComponentInChildren<UI_StatToolTip>(true);
+
+        skillTreeUI = GetComponentInChildren<UI_SkillTree>(true);//在Awake中获取技能树UI组件，允许获取未激活的对象
+        inventoryUI = GetComponentInChildren<UI_Inventory>(true);
+        storageUI = GetComponentInChildren<UI_Storage>(true);
+        craftUI = GetComponentInChildren<UI_Craft>(true);
+        merchantUI = GetComponentInChildren<UI_Merchant>(true);
+        inGameUI = GetComponentInChildren<UI_InGame>(true);
+        optionsUI = GetComponentInChildren<UI_Options>(true);
+        deathScreenUI = GetComponentInChildren<UI_DeathScreen>(true);
+        fadeScreenUI = GetComponentInChildren<UI_FadeScreen>(true);
+
+        skillTreeEnabled = skillTreeUI.gameObject.activeSelf;//跟随UI_SkillTree的初始状态
+        inventoryEnabled = inventoryUI.gameObject.activeSelf;
     }
 
-    /// <summary>
-    /// 执行 ToggleSkillTreeUI 逻辑。
-    /// </summary>
+    private void Start()
+    {
+        skillTreeUI.UnlockDefaultSkills();//在游戏开始时解锁技能树中的默认技能。
+    }
+
+    public void SetupControlsUI(PlayerInputSet inputSet)
+    {
+        input = inputSet;
+
+        input.UI.SkillTreeUI.performed += ctx => ToggleSkillTreeUI();// 绑定技能树UI的切换方法到输入事件。
+        input.UI.InventoryUI.performed += ctx => ToggleInventoryUI();// 绑定背包UI的切换方法到输入事件。
+
+        input.UI.Alternativelnput.performed += ctx => alternativeInput = true;// 切换备用输入模式的状态。
+        input.UI.Alternativelnput.canceled += ctx => alternativeInput = false;
+
+        input.UI.OptionUI.performed += ctx =>
+        {
+            foreach (var element in uiElements)
+            {
+                if (element.activeSelf)
+                {
+                    SwitchToInGameUI();
+                    return;
+                }
+            }
+
+            OpenOptionsUI();
+        };
+    }
+
+    public void OpenDeathScreenUI()
+    {
+        SwitchTo(deathScreenUI.gameObject);// 切换到死亡界面UI，通常在玩家死亡时调用。
+        input.Disable();// 禁用所有输入，确保玩家无法在死亡界面进行任何操作。(针对键鼠)
+    }
+
+    public void OpenOptionsUI()
+    {
+        HideAllToolTips();
+        StopPlayerControls(true);// 禁用玩家输入，防止在选项菜单打开时进行游戏操作。
+        SwitchTo(optionsUI.gameObject);// 切换到选项UI，通常在玩家按下选项键时调用。
+
+        SyncPause();
+    }
+
+    public void SwitchToInGameUI()
+    {
+        HideAllToolTips();
+        StopPlayerControls(false);// 重新启用玩家输入，允许玩家继续游戏。
+        SwitchTo(inGameUI.gameObject);// 切换到游戏内UI，通常在关闭菜单或其他UI元素时调用。
+
+        skillTreeEnabled = false;//重置技能树UI状态
+        inventoryEnabled = false;
+        SyncPause();
+    }
+
+    private void SwitchTo(GameObject objectToSwitchOn)
+    {
+        foreach (var element in uiElements)
+            element.gameObject.SetActive(false);// 关闭所有UI元素，确保只有目标UI元素被激活。
+
+        objectToSwitchOn.SetActive(true);// 激活目标UI元素
+    }
+
+    private void StopPlayerControls(bool stopControls)
+    {
+        if (stopControls)
+            input.Player.Disable();// 禁用玩家输入，通常在游戏暂停或玩家死亡时调用。
+        else
+            input.Player.Enable();
+    }
+
+    private void StopPlayerControlsIfNeeded()
+    {
+        foreach (var element in uiElements)
+        {
+            if (element.activeSelf)
+            {
+                StopPlayerControls(true);// 如果有任何UI元素处于激活状态，则禁用玩家输入。
+                return;
+            }
+        }
+
+        StopPlayerControls(false);// 否则，启用玩家输入。
+    }
+
+    private void SyncPause() => Time.timeScale =
+        (skillTreeUI.gameObject.activeSelf
+        || inventoryUI.gameObject.activeSelf
+        || storageUI.gameObject.activeSelf
+        || craftUI.gameObject.activeSelf
+        || merchantUI.gameObject.activeSelf
+        || optionsUI.gameObject.activeSelf) ? 0f : 1f;
+
     public void ToggleSkillTreeUI()
     {
-        skillTreeEnabled = !skillTreeEnabled;
-        skillTree.gameObject.SetActive(skillTreeEnabled);
-        skillToolTip.ShowToolTip(false, null);
+        skillTreeUI.transform.SetAsLastSibling();//确保技能树工具提示在其他UI元素之上显示
+        SetToolTipAsLastSibling();
+        fadeScreenUI.transform.SetAsLastSibling();//确保淡入淡出屏幕在其他UI元素之上显示
+
+        skillTreeEnabled = !skillTreeEnabled;//切换技能树UI的状态
+        skillTreeUI.gameObject.SetActive(skillTreeEnabled);
+        HideAllToolTips();
+
+        StopPlayerControlsIfNeeded();
+        SyncPause();
+    }
+
+    public void ToggleInventoryUI()
+    {
+        inventoryUI.transform.SetAsLastSibling();//确保背包UI在其他UI元素之上显示
+        SetToolTipAsLastSibling();//确保工具提示在其他UI元素之上显示
+        fadeScreenUI.transform.SetAsLastSibling();//确保淡入淡出屏幕在其他UI元素之上显示
+
+        inventoryEnabled = !inventoryEnabled;
+        inventoryUI.gameObject.SetActive(inventoryEnabled);
+        HideAllToolTips();
+
+        StopPlayerControlsIfNeeded();
+        SyncPause();
+    }
+
+    public void OpenStorageUI(bool openStorageUI)
+    {
+        storageUI.gameObject.SetActive(openStorageUI);
+        StopPlayerControls(openStorageUI);
+
+        if (!openStorageUI)
+        {
+            craftUI.gameObject.SetActive(false);//关闭制作UI
+            HideAllToolTips();
+        }
+        SyncPause();
+    }
+
+    public void OpenMerchantUI(bool openMerchantUI)
+    {
+        merchantUI.gameObject.SetActive(openMerchantUI);
+        StopPlayerControls(openMerchantUI);
+
+        if (!openMerchantUI)
+            HideAllToolTips();
+        SyncPause();
+    }
+
+    public void HideAllToolTips()
+    {
+        if (skillToolTip != null) skillToolTip.ShowToolTip(false, null);
+        if (itemToolTip != null) itemToolTip.ShowToolTip(false, null);
+        if (statToolTip != null) statToolTip.ShowToolTip(false, null);
+    }
+
+    private void SetToolTipAsLastSibling()// 确保工具提示在其他UI元素之上显示，通常在显示工具提示时调用。
+    {
+        itemToolTip.transform.SetAsLastSibling();
+        skillToolTip.transform.SetAsLastSibling();
+        statToolTip.transform.SetAsLastSibling();
     }
 }
-
-

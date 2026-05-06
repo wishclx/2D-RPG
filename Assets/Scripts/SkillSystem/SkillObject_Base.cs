@@ -15,14 +15,17 @@ public class SkillObject_Base : MonoBehaviour
     // 在 Scene 视图中显示的默认检测半径。
     [SerializeField] protected float checkRadius = 1;
 
+    protected Rigidbody2D rb;
     protected Animator anim;
     protected Entity_Stats playerStats;
     protected DamageScaleData damageScaleData;
     protected ElementType usedElement;
     protected bool targetGotHit;// 标志，指示当前技能对象是否已经成功命中目标，用于控制特效播放等逻辑。
+    protected Transform lastTarget;// 记录上一个被攻击的目标位置，以便在需要时进行比较或应用特殊效果。  
 
     protected virtual void Awake()
     {
+        rb = GetComponent<Rigidbody2D>();
         anim = GetComponentInChildren<Animator>();
     }
 
@@ -31,7 +34,7 @@ public class SkillObject_Base : MonoBehaviour
     /// </summary>
     protected void DamageEnemiesInRadius(Transform t, float radius)
     {
-        foreach (var target in EnemiesAround(t, radius))
+        foreach (var target in GetEnemiesAround(t, radius))
         {
             IDamageable damageable = target.GetComponent<IDamageable>();
 
@@ -51,7 +54,10 @@ public class SkillObject_Base : MonoBehaviour
                 statusHandler.ApplyStatusEffect(element, attackData.effectData);// 如果攻击具有元素属性，则尝试对目标应用相应的状态效果。
 
             if (targetGotHit)
+            {
+                lastTarget = target.transform;// 记录成功命中目标的位置，以便后续逻辑使用。
                 Instantiate(onHitVfx, target.transform.position, Quaternion.identity);// 如果成功命中目标，则在目标位置生成击中特效。
+            }
 
             usedElement = element;// 记录当前使用的元素类型，以便后续应用状态效果。
         }
@@ -62,7 +68,7 @@ public class SkillObject_Base : MonoBehaviour
         Transform target = null;
         float closestDistance = Mathf.Infinity;// 初始化为无穷大，以确保任何实际目标都会更近。
 
-        foreach (var enemy in EnemiesAround(transform, 10))
+        foreach (var enemy in GetEnemiesAround(transform, 10))
         {
             float distance = Vector2.Distance(transform.position, enemy.transform.position);// 计算当前敌人与技能对象之间的距离。
 
@@ -79,7 +85,7 @@ public class SkillObject_Base : MonoBehaviour
     /// <summary>
     /// 返回给定中心点与半径内，属于敌人 Layer 的所有 Collider2D。
     /// </summary>
-    protected Collider2D[] EnemiesAround(Transform t, float radius)
+    protected Collider2D[] GetEnemiesAround(Transform t, float radius)
     {
         return Physics2D.OverlapCircleAll(t.position, radius, whatIsEnemy);
     }

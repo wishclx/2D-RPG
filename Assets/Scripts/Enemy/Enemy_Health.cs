@@ -12,6 +12,9 @@ public class Enemy_Health : Entity_Health
     /// </summary>
     public override bool TakeDamge(float damage, float elementalDamage, ElementType element, Transform damageDealer)
     {
+        if (canTakeDamage == false)//如果不能受到伤害，直接返回 false。
+            return false;
+
         bool wasHit = base.TakeDamge(damage, elementalDamage, element, damageDealer);
 
         if (wasHit == false)

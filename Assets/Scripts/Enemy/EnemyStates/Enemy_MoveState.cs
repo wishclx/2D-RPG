@@ -19,7 +19,7 @@ public class Enemy_MoveState : Enemy_GroundedState
     {
         base.Enter();
 
-        if(enemy.groundDetected == false || enemy.wallDetected)
+        if (enemy.groundDetected == false || enemy.wallDetected)
             enemy.Flip();
     }
 
@@ -30,7 +30,7 @@ public class Enemy_MoveState : Enemy_GroundedState
     {
         base.Update();
 
-        enemy.SetVelocity(enemy.moveSpeed * enemy.facingDir, rb.linearVelocity.y);
+        enemy.SetVelocity(enemy.GetMoveSpeed() * enemy.facingDir, rb.linearVelocity.y);
 
         if (enemy.groundDetected == false || enemy.wallDetected)
             stateMachine.ChangeState(enemy.idleState);

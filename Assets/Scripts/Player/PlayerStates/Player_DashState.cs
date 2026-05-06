@@ -30,6 +30,8 @@ public class Player_DashState : PlayerState
 
         originalGravityScale = rb.gravityScale;// 记录原始重力缩放，以便在退出 Dash 状态时恢复
         rb.gravityScale = 0;
+
+        player.health.SetCanTakeDamage(false);
     }
 
     /// <summary>
@@ -59,6 +61,7 @@ public class Player_DashState : PlayerState
 
         skillsManager.dash.OnEndEffect();
 
+        player.health.SetCanTakeDamage(true);
         player.SetVelocity(0, 0);
         rb.gravityScale = originalGravityScale;
     }

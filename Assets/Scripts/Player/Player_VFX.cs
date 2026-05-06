@@ -1,9 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-/// <summary>
-/// Player_VFX 的职责说明。
-/// </summary>
 public class Player_VFX : Entity_VFX
 {
     [Header("Image Echo VFX")]// 锥体拖影特效设置
@@ -12,9 +9,11 @@ public class Player_VFX : Entity_VFX
     [SerializeField] private GameObject imageEchoPrefab;// 拖影预制体引用
     private Coroutine imageEchoCo;
 
-    /// <summary>
-    /// 执行 DoImageEchoEffect 逻辑。
-    /// </summary>
+    public void CreateEffectOf(GameObject effect, Transform target)
+    {
+        Instantiate(effect, target.position, Quaternion.identity);//在目标位置创建特效实例，旋转为默认值
+    }
+
     public void DoImageEchoEffect(float duration)
     {
         if (imageEchoCo != null)
@@ -23,9 +22,6 @@ public class Player_VFX : Entity_VFX
         imageEchoCo = StartCoroutine(ImageEchoEffectCo(duration));
     }
 
-    /// <summary>
-    /// 执行 ImageEchoEffectCo 逻辑。
-    /// </summary>
     private IEnumerator ImageEchoEffectCo(float duration)
     {
         float timeTracker = 0;
@@ -39,9 +35,6 @@ public class Player_VFX : Entity_VFX
         }
     }
 
-    /// <summary>
-    /// 执行 CreateImageEcho 逻辑。
-    /// </summary>
     private void CreateImageEcho()
     {
         GameObject imageEcho = Instantiate(imageEchoPrefab, transform.position, transform.rotation);

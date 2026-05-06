@@ -11,7 +11,7 @@ public class Entity : MonoBehaviour
 
     public Animator anim { get; private set; }
     public Rigidbody2D rb { get; private set; }
-    public Entity_Stats stats { get; private set; }
+
     protected StateMachine stateMachine;
 
 
@@ -19,7 +19,7 @@ public class Entity : MonoBehaviour
     public int facingDir { get; private set; } = 1;
 
     [Header("Collision detection")]
-    [SerializeField] protected LayerMask whatIsGround;
+    public LayerMask whatIsGround;
     [SerializeField] private float groundCheckDistance;
     [SerializeField] private float wallCheckDistance;
     [SerializeField] private Transform groundCheck;
@@ -33,51 +33,40 @@ public class Entity : MonoBehaviour
     private Coroutine knockbackCo;
     private Coroutine slowDownCo;
 
-    /// <summary>
-    /// 执行 Awake 逻辑。
-    /// </summary>
     protected virtual void Awake()
     {
         anim = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
-        stats = GetComponent<Entity_Stats>();
 
         stateMachine = new StateMachine();
 
     }
 
-    /// <summary>
-    /// 执行 Start 逻辑。
-    /// </summary>
     protected virtual void Start()
     {
 
     }
 
-    /// <summary>
-    /// 执行 Update 逻辑。
-    /// </summary>
     protected virtual void Update()
     {
         HandleCollisionDetection();
         stateMachine.UpdateActiveState();
     }
 
-    /// <summary>
-    /// 执行 EntityDeath 逻辑。
-    /// </summary>
     public virtual void EntityDeath()
     {
 
     }
 
-    /// <summary>
-    /// 执行 SlowDownEntity 逻辑。
-    /// </summary>
-    public virtual void SlowDownEntity(float duration, float slowMultiplier)
+    public virtual void SlowDownEntity(float duration, float slowMultiplier, bool canOverrideSlowEffect = false)
     {
         if (slowDownCo != null)
-            StopCoroutine(slowDownCo);
+        {
+            if (canOverrideSlowEffect)
+                StopCoroutine(slowDownCo);
+            else
+                return;
+        }
 
         slowDownCo = StartCoroutine(SlowDownEntityCo(duration, slowMultiplier));
     }
@@ -87,9 +76,11 @@ public class Entity : MonoBehaviour
         yield return null;
     }
 
-    /// <summary>
-    /// 执行 ReciveKnockback 逻辑。
-    /// </summary>
+    public virtual void StopSlowDown()
+    {
+        slowDownCo = null;
+    }
+
     public void ReciveKnockback(Vector2 knockback, float duration)
     {
         if (knockbackCo != null)
@@ -98,9 +89,6 @@ public class Entity : MonoBehaviour
         knockbackCo = StartCoroutine(KnockbackCo(knockback, duration));
     }
 
-    /// <summary>
-    /// 执行 KnockbackCo 逻辑。
-    /// </summary>
     private IEnumerator KnockbackCo(Vector2 knockback, float duration)
     {
         isKnocked = true;
@@ -112,17 +100,11 @@ public class Entity : MonoBehaviour
         isKnocked = false;
     }
 
-    /// <summary>
-    /// 执行 CurrentStateAnimationTrigger 逻辑。
-    /// </summary>
     public void CurrentStateAnimationTrigger()
     {
         stateMachine.currentState.AnimationTrigger();
     }
 
-    /// <summary>
-    /// 执行 SetVelocity 逻辑。
-    /// </summary>
     public void SetVelocity(float xvelocity, float yvelocity)
     {
         if (isKnocked)
@@ -132,18 +114,12 @@ public class Entity : MonoBehaviour
         HandleFlip(xvelocity);
     }
 
-    /// <summary>
-    /// 执行 HandleFlip 逻辑。
-    /// </summary>
     public void HandleFlip(float xVelocity)
     {
         if ((xVelocity > 0 && !facingRight) || (xVelocity < 0 && facingRight))
             Flip();
     }
 
-    /// <summary>
-    /// 执行 Flip 逻辑。
-    /// </summary>
     public void Flip()
     {
         transform.Rotate(0f, 180f, 0f);
@@ -153,9 +129,6 @@ public class Entity : MonoBehaviour
         OnFlipped?.Invoke();
     }
 
-    /// <summary>
-    /// 执行 HandleCollisionDetection 逻辑。
-    /// </summary>
     private void HandleCollisionDetection()
     {
         groundDetected = Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, whatIsGround);
@@ -171,9 +144,6 @@ public class Entity : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// 执行 OnDrawGizmos 逻辑。
-    /// </summary>
     protected virtual void OnDrawGizmos()
     {
         Gizmos.color = Color.red;

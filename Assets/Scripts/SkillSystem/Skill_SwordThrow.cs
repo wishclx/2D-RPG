@@ -4,21 +4,33 @@ public class Skill_SwordThrow : Skill_Base
 {
 
     private SkillObject_Sword currentSword;// 当前投掷的剑对象
+    private float currentThrowPower;// 当前投掷力量，部分方法会修改这个值
 
     [Header("Regular Sword Upgrade")]
     [SerializeField] private GameObject swordPrefab;// 剑的预制体
     [Range(0, 10)]
-    [SerializeField] private float throwPower = 5f;// 投掷力量
+    [SerializeField] private float ragularThrowPower = 5f;// 投掷力量
 
     [Header("Pierce Sword Upgrade")]
     [SerializeField] private GameObject pierceSwordPrefab;// 穿刺剑的预制体
     public int amountToPierce = 2;//穿刺数量
+    [Range(0, 10)]
+    [SerializeField] private float pierceThrowPower = 5f;// 穿刺剑的投掷力量
 
     [Header("Spin Sword Upgrade")]
     [SerializeField] private GameObject spinSwordPrefab;// 旋转剑的预制体
     public int maxDistance = 5;// 最大旋转距离
     public float attacksPerSecond = 6;// 每秒攻击次数
     public float maxSpinDuration = 3;// 最大旋转持续时间
+    [Range(0, 10)]
+    [SerializeField] private float spinThrowPower = 5f;// 旋转剑的投掷力量
+
+    [Header("Bounce Sword Upgrade")]
+    [SerializeField] private GameObject bounceSwordPrefab;// 反弹剑的预制体
+    public int bounceCount = 5;
+    public float bounceSpeed = 12;
+    [Range(0, 10)]
+    [SerializeField] private float bounceThrowPower = 5f;// 反弹剑的投掷力量
 
     [Header("Trajectory prediction")]
     [SerializeField] private GameObject predictionDot;// 预制体，用于显示预测轨迹点
@@ -38,6 +50,8 @@ public class Skill_SwordThrow : Skill_Base
 
     public override bool CanUseSkill()
     {
+        UpdateThrowPower();// 根据当前升级类型更新投掷力量
+
         if (currentSword != null)// 如果当前已经有一个投掷的剑对象存在，则不能再次使用技能，直到当前剑对象被销毁或回收。
         {
             currentSword.GetSwordBackToPlayer();// 让当前剑对象返回玩家，准备下一次投掷。
@@ -54,6 +68,8 @@ public class Skill_SwordThrow : Skill_Base
 
         currentSword = newSword.GetComponent<SkillObject_Sword>();// 获取新剑对象的 SkillObject_Sword 组件
         currentSword.SetupSword(this, GetThrowPower());// 设置新剑对象的投掷参数
+
+        SetSkillOnCooldown();// 将技能设置为冷却状态，开始冷却计时。
     }
 
     private GameObject GetSwordPrefab()
@@ -67,11 +83,33 @@ public class Skill_SwordThrow : Skill_Base
         if (Unlocked(SkillUpgradeType.SwordThrow_Spin))
             return spinSwordPrefab;
 
+        if (Unlocked(SkillUpgradeType.SwordThrow_Bounce))
+            return bounceSwordPrefab;
+
         Debug.Log("没有有效的技能!");
         return null;
     }
 
-    private Vector2 GetThrowPower() => confirmedDirection * throwPower * 10;// 计算投掷力量向量
+    private void UpdateThrowPower()
+    {
+        switch (upgradeType)
+        {
+            case SkillUpgradeType.SwordThrow:
+                currentThrowPower = ragularThrowPower;
+                break;
+            case SkillUpgradeType.SwordThrow_Pierce:
+                currentThrowPower = pierceThrowPower;
+                break;
+            case SkillUpgradeType.SwordThrow_Spin:
+                currentThrowPower = spinThrowPower;
+                break;
+            case SkillUpgradeType.SwordThrow_Bounce:
+                currentThrowPower = bounceThrowPower;
+                break;
+        }
+    }
+
+    private Vector2 GetThrowPower() => confirmedDirection * currentThrowPower * 10;// 计算投掷力量向量
 
     public void PredictTrajectory(Vector2 direction)
     {
@@ -85,7 +123,7 @@ public class Skill_SwordThrow : Skill_Base
     private Vector2 GetTrajectory(Vector2 direction, float t)
     {
         // 计算投掷物体在给定时间点的位置，考虑重力影响
-        float scaledThrowPower = throwPower * 10;// 调整投掷力量的缩放因子
+        float scaledThrowPower = currentThrowPower * 10;// 调整投掷力量的缩放因子
 
         Vector2 initialVelocity = direction * scaledThrowPower;// 计算初始速度
 
