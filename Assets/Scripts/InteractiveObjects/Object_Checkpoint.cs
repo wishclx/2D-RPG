@@ -7,10 +7,12 @@ public class Object_Checkpoint : MonoBehaviour, ISaveable
 
     public bool isActive { get; private set; }
     private Animator anim;
+    private AudioSource fireAudioSource;
 
     private void Awake()
     {
         anim = GetComponentInChildren<Animator>();
+        fireAudioSource = GetComponent<AudioSource>();
     }
 
     public string GetCheckpointId() => checkpointId;
@@ -21,6 +23,12 @@ public class Object_Checkpoint : MonoBehaviour, ISaveable
     {
         isActive = activate;
         anim.SetBool("isActivate", activate);
+
+        if (isActive && fireAudioSource.isPlaying == false)
+            fireAudioSource.Play();//如果检查点被激活且火焰音效没有在播放，则播放火焰音效 
+
+        if (isActive == false)
+            fireAudioSource.Stop();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -521,6 +521,71 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 418352976}
   m_CullTransparentMesh: 1
+--- !u!1001 &502229726
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2067365635856304176, guid: 034dd14003488e745af4c392de1dfe16, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.3624778
+      objectReference: {fileID: 0}
+    - target: {fileID: 2067365635856304176, guid: 034dd14003488e745af4c392de1dfe16, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.4086938
+      objectReference: {fileID: 0}
+    - target: {fileID: 2067365635856304176, guid: 034dd14003488e745af4c392de1dfe16, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.04245063
+      objectReference: {fileID: 0}
+    - target: {fileID: 2067365635856304176, guid: 034dd14003488e745af4c392de1dfe16, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2067365635856304176, guid: 034dd14003488e745af4c392de1dfe16, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2067365635856304176, guid: 034dd14003488e745af4c392de1dfe16, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2067365635856304176, guid: 034dd14003488e745af4c392de1dfe16, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2067365635856304176, guid: 034dd14003488e745af4c392de1dfe16, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2067365635856304176, guid: 034dd14003488e745af4c392de1dfe16, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2067365635856304176, guid: 034dd14003488e745af4c392de1dfe16, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4397010782999437577, guid: 034dd14003488e745af4c392de1dfe16, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 6298569413719468071, guid: 61c75fb364c17c84a9e99fee8eef1b88, type: 2}
+    - target: {fileID: 5233983401861044810, guid: 034dd14003488e745af4c392de1dfe16, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: -2816620894115013807, guid: 61c75fb364c17c84a9e99fee8eef1b88, type: 2}
+    - target: {fileID: 8249883566910465415, guid: 034dd14003488e745af4c392de1dfe16, type: 3}
+      propertyPath: m_Name
+      value: Audio Manager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 034dd14003488e745af4c392de1dfe16, type: 3}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -786,7 +851,7 @@ GameObject:
   - component: {fileID: 703920797}
   - component: {fileID: 703920798}
   m_Layer: 0
-  m_Name: '*******SAVE MANAGER'
+  m_Name: Save Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2202,7 +2267,7 @@ GameObject:
   - component: {fileID: 2089691103}
   - component: {fileID: 2089691104}
   m_Layer: 0
-  m_Name: '*******GAME MANAGER'
+  m_Name: Game Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3477,6 +3542,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBarToggle: {fileID: 4863074739889043834}
+  audioMixer: {fileID: 24100000, guid: 61c75fb364c17c84a9e99fee8eef1b88, type: 2}
+  mixerMultiplier: 25
+  bgmSlider: {fileID: 6583170289335355772}
+  bgmParameter: bgmMixer
+  sfxSlider: {fileID: 6203867987702197717}
+  sfxParameter: sfxMixer
 --- !u!1 &5336592165759754281
 GameObject:
   m_ObjectHideFlags: 0
@@ -3750,13 +3821,25 @@ MonoBehaviour:
   m_FillRect: {fileID: 2414505266786348217}
   m_HandleRect: {fileID: 4922854911592525924}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.0001
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.626
+  m_Value: 0.6
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5325895985219577581}
+        m_TargetAssemblyTypeName: UI_Options, Assembly-CSharp
+        m_MethodName: SFXSliderValue
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6307989051979358150
 GameObject:
   m_ObjectHideFlags: 0
@@ -3865,13 +3948,25 @@ MonoBehaviour:
   m_FillRect: {fileID: 7513836010289020592}
   m_HandleRect: {fileID: 6763315202504665347}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.0001
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.626
+  m_Value: 0.6
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5325895985219577581}
+        m_TargetAssemblyTypeName: UI_Options, Assembly-CSharp
+        m_MethodName: BGMSliderValue
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!224 &6700151279299597574
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4685,3 +4780,4 @@ SceneRoots:
   - {fileID: 896862925}
   - {fileID: 703920797}
   - {fileID: 2089691103}
+  - {fileID: 502229726}

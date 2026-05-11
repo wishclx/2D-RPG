@@ -5,6 +5,7 @@ public class Entity_Combat : MonoBehaviour
 {
     public event Action<float> OnDoingPhysicalDamage;// 物理伤害事件，参数为伤害值
 
+    private Entity_SFX sfx;
     private Entity_VFX vfx;
     private Entity_Stats stats;
 
@@ -18,11 +19,14 @@ public class Entity_Combat : MonoBehaviour
     private void Awake()
     {
         vfx = GetComponent<Entity_VFX>();
+        sfx = GetComponent<Entity_SFX>();
         stats = GetComponent<Entity_Stats>();
     }
 
     public void PerformAttack()
     {
+        bool targetGotHit = false;
+
         GetDetectedColliders();
 
         foreach (var target in GetDetectedColliders())
@@ -38,7 +42,7 @@ public class Entity_Combat : MonoBehaviour
             float elementalDamage = attackData.elementalDamage;
             ElementType element = attackData.element;
 
-            bool targetGotHit = damageable.TakeDamge(physicalDamage, elementalDamage, element, transform);
+            targetGotHit = damageable.TakeDamge(physicalDamage, elementalDamage, element, transform);
 
             if (element != ElementType.None)
                 statusHandler?.ApplyStatusEffect(element, attackData.effectData);// 将状态效果应用到目标上
@@ -47,8 +51,12 @@ public class Entity_Combat : MonoBehaviour
             {
                 OnDoingPhysicalDamage?.Invoke(physicalDamage);// 触发物理伤害事件，传递伤害值
                 vfx.CreateOnHitVFX(target.transform, attackData.isCrit, element);
+                sfx?.PlayAttackHit();
             }
         }
+
+        if (targetGotHit == false)
+            sfx?.PlayAttackMiss();
     }
 
 
