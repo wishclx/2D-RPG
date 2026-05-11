@@ -148,7 +148,7 @@ public class GameManager : MonoBehaviour, ISaveable
         lastPlayerPosition = data.lastPlayerPosition;
 
         if (string.IsNullOrEmpty(lastScenePlayed))
-            lastScenePlayed = "关卡1";// 如果没有保存的场景名称，默认设置为Level_0
+            lastScenePlayed = "Level_0";// 如果没有保存的场景名称，默认设置为Level_0
 
         dataLoaded = true;
     }
