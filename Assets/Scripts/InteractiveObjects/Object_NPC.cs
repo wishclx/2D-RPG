@@ -1,10 +1,15 @@
 using UnityEngine;
 
-public class Object_NPC : MonoBehaviour
+public class Object_NPC : MonoBehaviour, IInteractable
 {
     protected Transform player;//玩家位置
     protected UI ui;//UI界面
+    protected Player_QuestManager questManager;
 
+    [Header("任务信息")]
+    [SerializeField] private string npcTargetQuestId;//NPC相关的任务ID，可以用来在保存和加载时识别NPC相关的任务，比如与NPC对话，完成NPC的任务等
+    [SerializeField] private RewardType rewardNpc;
+    [Space]
     [SerializeField] Transform npc;
     [SerializeField] private GameObject interactToolTip;//交互提示UI
     private bool facingRight = true;//NPC默认朝右
@@ -19,6 +24,11 @@ public class Object_NPC : MonoBehaviour
         ui = FindFirstObjectByType<UI>();//获取UI界面
         statrPosistion = interactToolTip.transform.position;//记录交互提示UI的初始位置
         interactToolTip.SetActive(false);//初始时交互提示UI处于关闭状态
+    }
+
+    protected virtual void Start()
+    {
+        questManager = Player.instance.questManager;//获取玩家的任务管理器 
     }
 
     protected virtual void Update()
@@ -62,5 +72,11 @@ public class Object_NPC : MonoBehaviour
     protected virtual void OnTriggerExit2D(Collider2D collision)
     {
         interactToolTip.SetActive(false);//关闭交互提示UI
+    }
+
+    public virtual void Interact()
+    {
+        questManager.AddProgress(npcTargetQuestId);//增加与NPC相关的任务进度
+        questManager.TryGiveRewardFrom(rewardNpc);//尝试从NPC那里领取任务奖励
     }
 }

@@ -1,10 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-/// <summary>
-/// 实体状态效果处理器。
-/// 负责处理感电、燃烧、冰冻等元素状态的应用与结束。
-/// </summary>
 public class Entity_StatusHandler : MonoBehaviour
 {
     private Entity entity;
@@ -19,9 +15,6 @@ public class Entity_StatusHandler : MonoBehaviour
     [SerializeField] private float maximumCharge = 1;// 电荷达到该值时触发雷击。
     private Coroutine shockCo;// 感电状态协程引用，用于重置计时。
 
-    /// <summary>
-    /// 执行 Awake 逻辑。
-    /// </summary>
     private void Awake()
     {
         entityStats = GetComponent<Entity_Stats>();
@@ -49,9 +42,6 @@ public class Entity_StatusHandler : MonoBehaviour
             ApplyShockEffect(effectData.shockDuration, effectData.shockDamage, effectData.shockCharge);
     }
 
-    /// <summary>
-    /// 执行 ApplyElectrifyEffect 逻辑。
-    /// </summary>
     private void ApplyShockEffect(float duration, float damage, float charge)
     {
         float lightningResistance = entityStats.GetElementalResistance(ElementType.Lightning);
@@ -71,9 +61,6 @@ public class Entity_StatusHandler : MonoBehaviour
         shockCo = StartCoroutine(ShockEffectCo(duration));// 启动新的感电持续计时。
     }
 
-    /// <summary>
-    /// 执行 StopElectrifyEffect 逻辑。
-    /// </summary>
     private void StopShockEffect()
     {
         currentEffect = ElementType.None;
@@ -81,18 +68,12 @@ public class Entity_StatusHandler : MonoBehaviour
         entityVfx.StopAllVfx();
     }
 
-    /// <summary>
-    /// 执行 DoLightningStrike 逻辑。
-    /// </summary>
     private void DoLightningStrike(float damage)
     {
         Instantiate(lightningStrikeVfx, transform.position, Quaternion.identity);// 生成雷击特效。
         entityHealth.ReduceHealth(damage);// 造成一次雷击伤害。
     }
 
-    /// <summary>
-    /// 执行 ShockEffectCo 逻辑。
-    /// </summary>
     private IEnumerator ShockEffectCo(float duration)
     {
         currentEffect = ElementType.Lightning;
@@ -102,9 +83,6 @@ public class Entity_StatusHandler : MonoBehaviour
         StopShockEffect();
     }
 
-    /// <summary>
-    /// 执行 ApplyBurnEffect 逻辑。
-    /// </summary>
     private void ApplyBurnEffect(float duration, float fireDamage)
     {
         float fireResistance = entityStats.GetElementalResistance(ElementType.Fire);
@@ -113,9 +91,6 @@ public class Entity_StatusHandler : MonoBehaviour
         StartCoroutine(BurnEffectCo(duration, finalDamage));// 启动燃烧持续伤害。
     }
 
-    /// <summary>
-    /// 执行 BurnEffectCo 逻辑。
-    /// </summary>
     private IEnumerator BurnEffectCo(float duration, float totalDamage)
     {
         currentEffect = ElementType.Fire;
@@ -129,6 +104,9 @@ public class Entity_StatusHandler : MonoBehaviour
 
         for (int i = 0; i < tickCount; i++)
         {
+            if (entityHealth.isDead) //死亡后停止燃烧伤害
+                break;
+
             entityHealth.ReduceHealth(damagePerTick);
             yield return new WaitForSeconds(tickInterval);
         }
@@ -136,9 +114,6 @@ public class Entity_StatusHandler : MonoBehaviour
         currentEffect = ElementType.None;
     }
 
-    /// <summary>
-    /// 执行 ApplyChillEffect 逻辑。
-    /// </summary>
     private void ApplyChillEffect(float duration, float slowMultiplier)
     {
         float iceResistance = entityStats.GetElementalResistance(ElementType.Ice);// 获取冰抗。
@@ -147,9 +122,6 @@ public class Entity_StatusHandler : MonoBehaviour
         StartCoroutine(ChilledEffectCo(finalDuration, slowMultiplier));// 启动冰冻减速效果。
     }
 
-    /// <summary>
-    /// 执行 ChilledEffectCo 逻辑。
-    /// </summary>
     private IEnumerator ChilledEffectCo(float duration, float slowMultiplier)
     {
         entity.SlowDownEntity(duration, slowMultiplier);// 对实体施加减速。
@@ -161,9 +133,6 @@ public class Entity_StatusHandler : MonoBehaviour
         currentEffect = ElementType.None;
     }
 
-    /// <summary>
-    /// 执行 CanBeApplied 逻辑。
-    /// </summary>
     public bool CanBeApplied(ElementType element)
     {
         if (element == ElementType.Lightning && currentEffect == ElementType.Lightning)

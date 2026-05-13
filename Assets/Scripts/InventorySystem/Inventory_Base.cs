@@ -84,6 +84,43 @@ public class Inventory_Base : MonoBehaviour, ISaveable
         }
     }
 
+    public void RemoveItemAmount(ItemDataSO itemToRemove, int amount)
+    {
+        for (int i = 0; i < itemList.Count; i++)
+        {
+            Inventory_Item item = itemList[i];
+
+            if (item.itemData != itemToRemove)
+                continue;
+
+            int removeCount = Mathf.Min(amount, item.stackSize);//计算要移除的数量，不能超过当前堆叠数量
+
+            for (int j = 0; j < removeCount; j++)
+            {
+                RemoveOneItem(item);//移除一个物品
+                amount--;//减少剩余要移除的数量
+
+                if (amount <= 0)
+                    break;//如果已经移除足够数量，退出循环
+            }
+        }
+    }
+
+    public bool HasItemAmount(ItemDataSO itemToCheck, int amount)
+    {
+        int total = 0;
+        foreach (var item in itemList)
+        {
+            if (item.itemData == itemToCheck)
+                total += item.stackSize;
+
+            if (total >= amount)//如果总数量达到或超过所需数量，返回true
+                return true;
+        }
+
+        return false;
+    }
+
     public Inventory_Item FindItem(Inventory_Item itemToFind)
     {
         return itemList.Find(item => item == itemToFind);//根据物品数据查找背包中的物品

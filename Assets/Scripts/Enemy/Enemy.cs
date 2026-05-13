@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class Enemy : Entity
 {
+    [Header("任务信息")]
+    public string questTargetId;//任务目标ID，可以用来在保存和加载时识别任务目标，比如击败某个敌人，收集某个物品等
+
     public Entity_Stats stats { get; private set; }
     public Enemy_Health health { get; private set; }
     public Enemy_IdleState idleState;

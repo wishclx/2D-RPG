@@ -1,15 +1,18 @@
 ﻿using UnityEngine;
 
-/// <summary>
-/// Enemy_Health 的职责说明。
-/// </summary>
 public class Enemy_Health : Entity_Health
 {
-    private Enemy enemy => GetComponent<Enemy>();
+    private Enemy enemy;
+    private Player_QuestManager questManager;
 
-    /// <summary>
-    /// 执行 TakeDamge 逻辑。
-    /// </summary>
+    protected override void Start()
+    {
+        base.Start();
+
+        enemy = GetComponent<Enemy>();
+        questManager = Player.instance.questManager;
+    }
+
     public override bool TakeDamge(float damage, float elementalDamage, ElementType element, Transform damageDealer)
     {
         if (canTakeDamage == false)//如果不能受到伤害，直接返回 false。
@@ -24,6 +27,13 @@ public class Enemy_Health : Entity_Health
             enemy.TryEnterBattleState(damageDealer);
 
         return true;
+    }
+
+    protected override void Die()
+    {
+        base.Die();
+
+        questManager.AddProgress(enemy.questTargetId);
     }
 }
 

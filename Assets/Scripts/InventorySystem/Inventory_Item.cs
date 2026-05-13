@@ -79,7 +79,7 @@ public class Inventory_Item
         if (itemData.itemType == ItemType.Consumable)
         {
             sb.AppendLine("");
-            sb.AppendLine(itemEffect.effectDescription);
+            sb.AppendLine(itemEffect != null ? itemEffect.effectDescription : "");//避免空引用
             sb.AppendLine("");
             sb.AppendLine("");
             return sb.ToString();

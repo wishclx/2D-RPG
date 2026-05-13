@@ -24,6 +24,7 @@ public class UI : MonoBehaviour
     public UI_Options optionsUI { get; private set; }
     public UI_DeathScreen deathScreenUI { get; private set; }
     public UI_FadeScreen fadeScreenUI { get; private set; }
+    public UI_Quest questUI { get; private set; }
     #endregion
 
     private bool skillTreeEnabled;
@@ -46,6 +47,7 @@ public class UI : MonoBehaviour
         optionsUI = GetComponentInChildren<UI_Options>(true);
         deathScreenUI = GetComponentInChildren<UI_DeathScreen>(true);
         fadeScreenUI = GetComponentInChildren<UI_FadeScreen>(true);
+        questUI = GetComponentInChildren<UI_Quest>(true);
 
         skillTreeEnabled = skillTreeUI.gameObject.activeSelf;//跟随UI_SkillTree的初始状态
         inventoryEnabled = inventoryUI.gameObject.activeSelf;
@@ -171,6 +173,15 @@ public class UI : MonoBehaviour
 
         StopPlayerControlsIfNeeded();
         SyncPause();
+    }
+
+    public void OpenQuestUI(QuestDataSO[] questToShow)
+    {
+        StopPlayerControls(true);
+        HideAllToolTips();
+
+        questUI.gameObject.SetActive(true);
+        questUI.SetupQuestUI(questToShow);// 打开任务UI并传递要显示的任务数据。
     }
 
     public void OpenStorageUI(bool openStorageUI)

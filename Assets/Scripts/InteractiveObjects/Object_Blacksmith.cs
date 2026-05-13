@@ -15,8 +15,9 @@ public class Object_Blacksmith : Object_NPC, IInteractable
         anim.SetBool("isBlacksmith", true);//设置铁匠铺的动画状态
     }
 
-    public void Interact()
+    public override void Interact()
     {
+        base.Interact();
         Debug.Log("打开铁匠铺");
         ui.storageUI.SetupStorageUI(storage);//设置仓库UI显示玩家库存和铁匠铺仓库
         ui.craftUI.SetupCraftUI(storage);//设置制作UI显示铁匠铺的UI

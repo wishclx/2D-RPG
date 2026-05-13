@@ -28,6 +28,17 @@ public class AudioManager : MonoBehaviour
 
         instance = this;
         DontDestroyOnLoad(gameObject);
+
+        CacheAudioSources();//缓存音频源
+    }
+
+    private void CacheAudioSources()
+    {
+        if (bgmSource == null) //背景音乐音频源未绑定时尝试获取
+            bgmSource = GetComponentInChildren<AudioSource>();
+
+        if (sfxSource == null) //音效音频源未绑定时尝试获取
+            sfxSource = GetComponentInChildren<AudioSource>();
     }
 
     private void Update()
@@ -143,6 +154,16 @@ public class AudioManager : MonoBehaviour
 
     public void PlayGlobalSFX(string soundName)
     {
+        if (sfxSource == null) //音效源已被销毁或未绑定
+        {
+            CacheAudioSources();
+            if (sfxSource == null)
+            {
+                Debug.LogWarning("AudioManager: sfxSource为空或已被销毁，无法播放全局音效");
+                return;
+            }
+        }
+
         var data = audioDatabase.Get(soundName);
         if (data == null) return;
 

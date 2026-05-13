@@ -31,6 +31,9 @@ public class SaveManager : MonoBehaviour
 
     private void LoadGame()
     {
+        if (allSaveables == null) //确保可保存对象已初始化
+            allSaveables = FindISaveables();
+
         gameData = dataHandle.LoadData();//调用FileDataHandle对象的LoadData方法，从数据文件中加载游戏数据到gameData对象中
 
         if (gameData == null)//如果gameData对象为null，说明没有找到数据文件或数据文件为空，则创建一个新的GameData对象

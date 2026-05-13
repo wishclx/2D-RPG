@@ -82,6 +82,15 @@ public class UI_SkillTree : MonoBehaviour, ISaveable
 
     public void LoadData(GameData data)
     {
+        if (allTreeNodes == null || allTreeNodes.Length == 0) //确保技能树节点已初始化
+            allTreeNodes = GetComponentsInChildren<UI_TreeNode>(true);
+
+        if (skillManager == null) //确保技能管理器已初始化
+            skillManager = FindAnyObjectByType<Player_SkillManager>();
+
+        if (skillManager == null || skillManager.allSkills == null) //技能系统未就绪时跳过
+            return;
+
         skillPoints = data.skillPoints;
 
         foreach (var node in allTreeNodes)
