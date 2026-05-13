@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d093089c541f4524a98ad23f5c010c35, type: 3}
+  m_Name: "\u4EFB\u52A1 - \u51FB\u6740\u9AB7\u9AC5"
+  m_EditorClassIdentifier: 
+  questSaveId: 8feacd02b9c375740a90b74a6e01b978
+  questName: "\u51FB\u6740\u9AB7\u9AC5"
+  description: "\u65C5\u4EBA\uFF0C\u5893\u5730\u91CC\u7684\u9AB7\u9AC5\u53C8\u5F00\u59CB\u4F5C\u795F\u3002\u66FF\u6211\u6E05\u6389\u9AB7\u9AC5\uFF0C\u6211\u4F1A\u7ED9\u4F60\u4E30\u539A\u62A5\u916C\u3002\u522B\u8BA9\u6211\u4E45\u7B49\u3002"
+  questGoal: "-\u51FB\u6740\u9AB7\u9AC5:"
+  questTargetId: enemy_skeleton
+  requiredAmount: 2
+  rewardType: 0
+  rewardItems:
+  - itemData: {fileID: 11400000, guid: 8ee07124bf5f06843935fd37a393a6d4, type: 2}
+    stackSize: 1
+    itemEffect: {fileID: 0}
+  - itemData: {fileID: 11400000, guid: 3f0ad687ff5aca14cb4413a76f5de5cc, type: 2}
+    stackSize: 2
+    itemEffect: {fileID: 0}
+  - itemData: {fileID: 11400000, guid: 49119915b7d4c3248a9ce874d0e358a3, type: 2}
+    stackSize: 2
+    itemEffect: {fileID: 0}

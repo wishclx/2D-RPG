@@ -42,6 +42,11 @@ public class Entity_Health : MonoBehaviour, IDamageable
         SetupHealth();
     }
 
+    protected virtual void Start()
+    {
+
+    }
+
     private void SetupHealth()
     {
 
@@ -118,6 +123,9 @@ public class Entity_Health : MonoBehaviour, IDamageable
 
     public void ReduceHealth(float damage)
     {
+        if (isDead) //已死亡则不再处理伤害，防止重复触发死亡逻辑
+            return;
+
         currentHealth -= damage;
 
         entityVfx?.PlayOnDamageVfx();

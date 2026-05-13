@@ -250,6 +250,7 @@ GameObject:
   - component: {fileID: 3046410524551447761}
   - component: {fileID: 6386902057386684811}
   - component: {fileID: 7181844555676205490}
+  - component: {fileID: 5373532826960273006}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -627,6 +628,21 @@ MonoBehaviour:
   attackMiss: "\u73A9\u5BB6\u653B\u51FBmiss"
   soundDistance: 1
   showGizmo: 0
+--- !u!114 &5373532826960273006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2046479753178077561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8f05f8e927d2f24192fb81e8137b632, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeQuests: []
+  completedQuests: []
+  questDatabase: {fileID: 11400000, guid: 1bc3fbf762708fb4c9d17b9a79db49c6, type: 2}
 --- !u!1 &2276370532545926141
 GameObject:
   m_ObjectHideFlags: 0

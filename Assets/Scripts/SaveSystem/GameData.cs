@@ -21,6 +21,9 @@ public class GameData
     public SerializableDictionary<string, bool> unlockedCheckpoints;//解锁的检查点的字典，键是检查点的唯一ID，值是该检查点是否已解锁
     public SerializableDictionary<string, Vector3> inScenePortals;//场景内传送门位置的字典，键是传送门的唯一ID，值是该传送门的位置
 
+    public SerializableDictionary<string, bool> completedQuests;//已完成的任务字典，键是任务的唯一ID，值是该任务是否已完成
+    public SerializableDictionary<string, int> activeQuests;//进行中的任务字典，键是任务的唯一ID，值是该任务的当前进度
+
     public string portalDestinationSceneName;//传送门目的地场景的名字
     public bool returningFromTown;//是否城镇
 
@@ -40,5 +43,8 @@ public class GameData
 
         unlockedCheckpoints = new SerializableDictionary<string, bool>();
         inScenePortals = new SerializableDictionary<string, Vector3>();
+
+        completedQuests = new SerializableDictionary<string, bool>();
+        activeQuests = new SerializableDictionary<string, int>();
     }
 }

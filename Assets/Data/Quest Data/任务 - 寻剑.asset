@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d093089c541f4524a98ad23f5c010c35, type: 3}
+  m_Name: "\u4EFB\u52A1 - \u5BFB\u5251"
+  m_EditorClassIdentifier: 
+  questSaveId: 0dd6af0ca9010e34db6f33d407b83498
+  questType: 1
+  questName: "\u5BFB\u5251"
+  description: "\u94C1\u5320\u90A3\u6709\u4E00\u628A\u5168\u6751\u6700\u597D\u7684\u5251,\u53BB\u770B\u770B?"
+  questGoal: "- \u4E0E\u94C1\u5320\u5BF9\u8BDD"
+  questTargetId: blacksmith
+  requiredAmount: 1
+  itemToDeliver: {fileID: 0}
+  rewardType: 1
+  rewardItems:
+  - itemData: {fileID: 11400000, guid: b160ea07747874445821827573c760dc, type: 2}
+    stackSize: 1
+    itemEffect: {fileID: 0}

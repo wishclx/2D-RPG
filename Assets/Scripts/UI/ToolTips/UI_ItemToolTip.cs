@@ -14,14 +14,24 @@ public class UI_ItemToolTip : UI_ToolTip
     [SerializeField] private Transform storageItemInfo;//仓库界面物品信息
     [SerializeField] private Transform inventoryInfo;//背包信息UI组件的父对象
 
-    public void ShowToolTip(bool show, RectTransform targetRect, Inventory_Item itemToShow, bool buy = false, bool showMerchantInfo = false, bool showStorageInfo = false)//重载
+    public void ShowToolTip(bool show, RectTransform targetRect, Inventory_Item itemToShow, bool buy = false, bool showMerchantInfo = false, bool showStorageInfo = false, bool showControls = true)//重载
     {
         base.ShowToolTip(show, targetRect);
 
-        merchantInfo1.gameObject.SetActive(showMerchantInfo && !buy);//显示商品信息
-        merchantInfo2.gameObject.SetActive(showMerchantInfo && buy);
-        inventoryInfo.gameObject.SetActive(!showMerchantInfo && !showStorageInfo);
-        storageItemInfo.gameObject.SetActive(showStorageInfo);//显示仓库物品信息
+        if (showControls)
+        {
+            merchantInfo1.gameObject.SetActive(showMerchantInfo && !buy);//显示商品信息
+            merchantInfo2.gameObject.SetActive(showMerchantInfo && buy);
+            inventoryInfo.gameObject.SetActive(!showMerchantInfo && !showStorageInfo);
+            storageItemInfo.gameObject.SetActive(showStorageInfo);//显示仓库物品信息
+        }
+        else
+        {
+            merchantInfo1.gameObject.SetActive(false);
+            merchantInfo2.gameObject.SetActive(false);
+            inventoryInfo.gameObject.SetActive(false);
+            storageItemInfo.gameObject.SetActive(false);
+        }
 
         int price = buy ? itemToShow.buyPrice : itemToShow.sellPrice;//根据参数选择显示购买价格还是出售价格
         int totalPrice = price * itemToShow.stackSize;//计算总价格

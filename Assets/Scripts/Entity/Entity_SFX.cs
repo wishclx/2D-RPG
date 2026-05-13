@@ -18,12 +18,12 @@ public class Entity_SFX : MonoBehaviour
 
     public void PlayAttackHit()
     {
-        AudioManager.instance.PlaySFX(attackHit, audioSource, soundDistance);
+        //AudioManager.instance.PlaySFX(attackHit, audioSource, soundDistance);
     }
 
     public void PlayAttackMiss()
     {
-        AudioManager.instance.PlaySFX(attackMiss, audioSource, soundDistance);
+        //AudioManager.instance.PlaySFX(attackMiss, audioSource, soundDistance);
     }
 
     private void OnDrawGizmosSelected()

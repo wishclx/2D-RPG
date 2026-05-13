@@ -14,6 +14,7 @@ public class UI_ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
     [SerializeField] protected GameObject defaultIcon;
     [SerializeField] protected Image itemIcon;
     [SerializeField] protected TextMeshProUGUI itemStackSize;
+    [SerializeField] private bool showControlsInTooltip = true;//是否在提示中显示操作说明
 
     protected virtual void Awake()
     {
@@ -80,7 +81,7 @@ public class UI_ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
         if (itemInSlot == null)
             return;
 
-        ui.itemToolTip.ShowToolTip(true, rect, itemInSlot);//显示物品信息提示
+        ui.itemToolTip.ShowToolTip(true, rect, itemInSlot, false, false, false, showControlsInTooltip);//根据开关决定是否显示操作说明
     }
 
     public void OnPointerExit(PointerEventData eventData)
