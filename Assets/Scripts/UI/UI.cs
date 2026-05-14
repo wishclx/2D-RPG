@@ -25,6 +25,7 @@ public class UI : MonoBehaviour
     public UI_DeathScreen deathScreenUI { get; private set; }
     public UI_FadeScreen fadeScreenUI { get; private set; }
     public UI_Quest questUI { get; private set; }
+    public UI_Dialogue dialogueUI { get; private set; }
     #endregion
 
     private bool skillTreeEnabled;
@@ -48,6 +49,7 @@ public class UI : MonoBehaviour
         deathScreenUI = GetComponentInChildren<UI_DeathScreen>(true);
         fadeScreenUI = GetComponentInChildren<UI_FadeScreen>(true);
         questUI = GetComponentInChildren<UI_Quest>(true);
+        dialogueUI = GetComponentInChildren<UI_Dialogue>(true);
 
         skillTreeEnabled = skillTreeUI.gameObject.activeSelf;//跟随UI_SkillTree的初始状态
         inventoryEnabled = inventoryUI.gameObject.activeSelf;
@@ -80,6 +82,20 @@ public class UI : MonoBehaviour
             }
 
             OpenOptionsUI();
+        };
+
+        input.UI.DialogueInteraction.performed += ctx =>
+        {
+            if (dialogueUI.gameObject.activeInHierarchy)// 如果对话UI处于激活状态，调用对话交互方法。
+                dialogueUI.DialogueInteraction();// 绑定对话交互方法到输入事件，允许玩家在对话界面进行交互。
+        };
+
+        input.UI.DialogueNavigation.performed += ctx =>
+        {
+            int direction = Mathf.RoundToInt(ctx.ReadValue<float>());// 读取输入值并转换为整数，表示对话选项的导航方向。
+
+            if (dialogueUI.gameObject.activeInHierarchy)// 如果对话UI处于激活状态，调用对话选项导航方法。
+                dialogueUI.NavigateChoices(direction);// 绑定对话选项导航方法到输入事件，允许玩家在对话界面导航选择。
         };
     }
 
@@ -175,6 +191,16 @@ public class UI : MonoBehaviour
         SyncPause();
     }
 
+    public void OpenDialogueUI(DialogueLineSO firstLine, DialogueNpcData npcData)
+    {
+        StopPlayerControls(true);// 禁用玩家输入，防止在对话界面打开时进行游戏操作。
+        HideAllToolTips();// 隐藏所有工具提示
+
+        dialogueUI.gameObject.SetActive(true);// 激活对话UI，通常在与NPC交互时调用。
+        dialogueUI.SetupNpcData(npcData);// 设置对话NPC的数据，允许对话UI显示正确的NPC信息和对话选项。
+        dialogueUI.PlayDialogueLine(firstLine);
+    }
+
     public void OpenQuestUI(QuestDataSO[] questToShow)
     {
         StopPlayerControls(true);
@@ -192,6 +218,19 @@ public class UI : MonoBehaviour
         if (!openStorageUI)
         {
             craftUI.gameObject.SetActive(false);//关闭制作UI
+            HideAllToolTips();
+        }
+        SyncPause();
+    }
+
+    public void OpenCraftUI(bool openStorageUI)
+    {
+        craftUI.gameObject.SetActive(openStorageUI);
+        StopPlayerControls(openStorageUI);
+
+        if (!openStorageUI)
+        {
+            storageUI.gameObject.SetActive(false);
             HideAllToolTips();
         }
         SyncPause();

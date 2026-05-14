@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0eacfe8552a890f46a56314c0f286fdc, type: 3}
+  m_Name: "Line - \u94C1\u5320\u9009\u9879"
+  m_EditorClassIdentifier: 
+  dialogueGroupName: "\u94C1\u5320\u9009\u9879"
+  speaker: {fileID: 11400000, guid: ca998e17e3aabfc4a8bdc8c862ec69b5, type: 2}
+  textLine:
+  - "\u8FDB\u6765\u5427\uFF0C\u706B\u8FD8\u65FA\u7740\u3002\u8981\u6253\u4EC0\u4E48\uFF0C\u76F4\u8BF4\u3002"
+  - "\u5251\u949D\u4E86\uFF1F\u76D4\u7532\u88C2\u4E86\uFF1F\u4EA4\u7ED9\u6211\uFF0C\u4E09\u9524\u89C1\u771F\u7AE0\u3002"
+  - "\u6211\u53EA\u505A\u80FD\u6D3B\u547D\u7684\u5BB6\u4F19\u3002\u62A5\u540D\u5B57\uFF0C\u62A5\u8981\u6C42\u3002"
+  - "\u522B\u6015\u70EB\uFF0C\u8D34\u8FD1\u70B9\u770B\u2014\u2014\u8FD9\u624B\u827A\u503C\u8FD9\u4E2A\u4EF7\u3002"
+  playerChoiceAnswer: 
+  choiceLines:
+  - {fileID: 11400000, guid: bb1bf2c2f54677b499bf25b7effa6dc2, type: 2}
+  - {fileID: 11400000, guid: a56784ff509a45f4695b16fce910bfd4, type: 2}
+  - {fileID: 11400000, guid: 35fe2a1eef09e0546b2a59d66c4ad62b, type: 2}
+  actionLine: 
+  actionType: 5

@@ -16,15 +16,15 @@ MonoBehaviour:
   questType: 2
   questName: "\u63D0\u4EA4\u836F\u6C34"
   description: "\u9700\u89813\u4E2A\u56DE\u590D\u836F\u6C34"
-  questGoal: "-\u5411\u5546\u4EBA\u63D0\u4EA4\u7684\u56DE\u590D\u836F\u6C34:"
+  questGoal: "-\u5411\u5546\u4EBA\u63D0\u4EA4\u56DE\u590D\u836F\u6C34:"
   questTargetId: 
   requiredAmount: 3
   itemToDeliver: {fileID: 11400000, guid: 034a1969eb91d7b46ac5cdc527e0e8d2, type: 2}
   rewardType: 0
   rewardItems:
-  - itemData: {fileID: 11400000, guid: 8ee07124bf5f06843935fd37a393a6d4, type: 2}
+  - itemData: {fileID: 11400000, guid: 234142e00cbd4e04b87973cb0abb3d84, type: 2}
     stackSize: 1
     itemEffect: {fileID: 0}
-  - itemData: {fileID: 11400000, guid: fde580ff6c17898498a17a833e044846, type: 2}
+  - itemData: {fileID: 11400000, guid: 3768ce4832b726743927aa51b78a91fa, type: 2}
     stackSize: 1
     itemEffect: {fileID: 0}

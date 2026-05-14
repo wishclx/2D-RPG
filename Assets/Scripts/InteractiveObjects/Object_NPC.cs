@@ -8,7 +8,7 @@ public class Object_NPC : MonoBehaviour, IInteractable
 
     [Header("任务信息")]
     [SerializeField] private string npcTargetQuestId;//NPC相关的任务ID，可以用来在保存和加载时识别NPC相关的任务，比如与NPC对话，完成NPC的任务等
-    [SerializeField] private RewardType rewardNpc;
+    [SerializeField] protected RewardType rewardNpc;
     [Space]
     [SerializeField] Transform npc;
     [SerializeField] private GameObject interactToolTip;//交互提示UI
@@ -77,6 +77,5 @@ public class Object_NPC : MonoBehaviour, IInteractable
     public virtual void Interact()
     {
         questManager.AddProgress(npcTargetQuestId);//增加与NPC相关的任务进度
-        questManager.TryGiveRewardFrom(rewardNpc);//尝试从NPC那里领取任务奖励
     }
 }

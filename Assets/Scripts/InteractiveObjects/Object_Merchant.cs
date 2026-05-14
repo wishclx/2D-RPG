@@ -3,6 +3,7 @@ using UnityEngine;
 public class Object_Merchant : Object_NPC, IInteractable
 {
     [Header("任务与对白")]
+    [SerializeField] private DialogueLineSO firstDialogueLine;
     [SerializeField] private QuestDataSO[] quests;//商人提供的任务数据数组
 
     private Inventory_Player inventory;
@@ -26,9 +27,10 @@ public class Object_Merchant : Object_NPC, IInteractable
     {
         base.Interact();
 
-        ui.OpenQuestUI(quests);//显示商人提供的任务UI，传入商人提供的任务数据数组
+        ui.merchantUI.SetupMerchantUI(merchant, inventory);//设置商店UI，传入商店和玩家的物品栏
+        ui.OpenDialogueUI(firstDialogueLine, new DialogueNpcData(rewardNpc, quests));//显示对话UI，传入商人提供的第一行对话和商人相关的任务数据
 
-        //ui.merchantUI.SetupMerchantUI(merchant, inventory);//设置商店UI，传入商店和玩家的物品栏
+        //ui.OpenQuestUI(quests);//显示商人提供的任务UI，传入商人提供的任务数据数组
         //ui.OpenMerchantUI(true);//显示商店UI
     }
 

@@ -4,7 +4,7 @@ using UnityEngine;
 public enum RewardType { Merchant, Blacksmith, None }
 public enum QuestType { Kill, Talk, Delivery }
 
-[CreateAssetMenu(menuName = "RPG Setup/ Quest Data/New Quest", fileName = "任务 -")]
+[CreateAssetMenu(menuName = "RPG Setup/Quest Data/New Quest", fileName = "任务 -")]
 public class QuestDataSO : ScriptableObject
 {
     public string questSaveId;//保存ID，唯一标识一个任务数据，可以用来在保存和加载时识别任务
