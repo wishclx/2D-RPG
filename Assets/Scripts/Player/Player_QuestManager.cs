@@ -18,7 +18,7 @@ public class Player_QuestManager : MonoBehaviour, ISaveable
         inventory = GetComponent<Inventory_Player>();
     }
 
-    public void TryGiveRewardFrom(RewardType npcType)
+    public void TryGetRewardFrom(RewardType npcType)
     {
         List<QuestData> getRewardQuests = new List<QuestData>();
 
@@ -59,6 +59,26 @@ public class Player_QuestManager : MonoBehaviour, ISaveable
                 dropManager.CreateItemDrop(item.itemData);//在玩家位置生成奖励物品
             }
         }
+    }
+
+    public bool HasCompletedQuest()
+    {
+        for (int i = 0; i < activeQuests.Count; i++)
+        {
+            QuestData quest = activeQuests[i];
+            if (quest.questDataSO.questType == QuestType.Delivery)//如果任务类型是交付任务，获取所需的物品和数量
+            {
+                var requiredItem = quest.questDataSO.itemToDeliver;
+                var requiredAmount = quest.questDataSO.requiredAmount;
+
+                if (inventory.HasItemAmount(requiredItem, requiredAmount))
+                    return true;
+            }
+
+            if (quest.CanGetReward())
+                return true;
+        }
+        return false;
     }
 
     public void AddProgress(string questTargetId, int amout = 1)
@@ -138,16 +158,59 @@ public class Player_QuestManager : MonoBehaviour, ISaveable
 
     public void SaveData(ref GameData data)
     {
-        data.activeQuests.Clear();//清空现有的活动任务列表
+        data.activeQuests.Clear();//保存前清空进行中任务，避免重复键
+        data.completedQuests.Clear();//保存前清空已完成任务，避免重复键
 
         foreach (var quest in activeQuests)
         {
-            data.activeQuests.Add(quest.questDataSO.questSaveId, quest.currentAmount);//将每个活动任务的保存ID添加到游戏数据中，标记为true表示该任务处于活动状态
+            string questSaveId = quest.questDataSO.questSaveId;
+            if (data.activeQuests.ContainsKey(questSaveId))
+            {
+                data.activeQuests[questSaveId] = quest.currentAmount;//已存在则覆盖进度
+                continue;
+            }
+
+            data.activeQuests.Add(questSaveId, quest.currentAmount);//添加进行中任务
         }
 
         foreach (var quest in completedQuests)
         {
-            data.completedQuests.Add(quest.questDataSO.questSaveId, true);//将每个完成任务的保存ID添加到游戏数据中，标记为true表示该任务已完成
+            string questSaveId = quest.questDataSO.questSaveId;
+            if (data.completedQuests.ContainsKey(questSaveId))
+            {
+                data.completedQuests[questSaveId] = true;//已存在则覆盖完成状态
+                continue;
+            }
+
+            data.completedQuests.Add(questSaveId, true);//添加已完成任务
         }
+    }
+
+    public bool HasRewardAvailableFor(RewardType npcType)
+    {
+        foreach (var quest in activeQuests)
+        {
+            if (quest.questDataSO.rewardType != npcType)
+                continue;//只检查当前NPC的任务
+
+            if (quest.questDataSO.questType == QuestType.Delivery)
+            {
+                var requiredItem = quest.questDataSO.itemToDeliver;
+                var requiredAmount = quest.questDataSO.requiredAmount;
+
+                if (requiredItem == null || requiredAmount <= 0)
+                    continue;//交付任务数据异常，跳过
+
+                if (inventory.HasItemAmount(requiredItem, requiredAmount))
+                    return true;//材料足够，可领奖
+            }
+            else
+            {
+                if (quest.CanGetReward())
+                    return true;//非交付任务满足条件，可领奖
+            }
+        }
+
+        return false;
     }
 }

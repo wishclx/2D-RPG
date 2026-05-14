@@ -47,17 +47,17 @@ public class UI_Quest : MonoBehaviour, ISaveable
     private bool CanTakeQuest(QuestDataSO questToCheck)
     {
         bool questActive = questManager.QuestIsActive(questToCheck);
+        bool questCompletedInSession = questManager.completedQuests.Exists(q => q.questDataSO == questToCheck);
 
         if (currentGameData != null)
         {
-            //检查当前游戏数据中是否已经完成了该任务
-            bool questCompleted =
+            bool questCompletedInSave =
                 currentGameData.completedQuests.TryGetValue(questToCheck.questSaveId, out bool iscompleted) && iscompleted;
 
-            return questActive == false && questCompleted == false;//如果任务未激活且未完成，则可以接取该任务
+            return questActive == false && questCompletedInSave == false && questCompletedInSession == false;//未激活且未完成才可接
         }
 
-        return questActive == false;
+        return questActive == false && questCompletedInSession == false;
     }
 
     public UI_QuestPreviw GetQuestPreviw() => questPreviw;

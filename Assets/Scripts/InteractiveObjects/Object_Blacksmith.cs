@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class Object_Blacksmith : Object_NPC, IInteractable
 {
+    [Header("任务与对白")]
+    [SerializeField] private DialogueLineSO firstDialogueLine;
+    [SerializeField] private QuestDataSO[] quests;//铁匠提供的任务数据数组
+
     private Animator anim;
     private Inventory_Player inventory;
     private Inventory_Storage storage;
@@ -18,11 +22,11 @@ public class Object_Blacksmith : Object_NPC, IInteractable
     public override void Interact()
     {
         base.Interact();
-        Debug.Log("打开铁匠铺");
+
         ui.storageUI.SetupStorageUI(storage);//设置仓库UI显示玩家库存和铁匠铺仓库
         ui.craftUI.SetupCraftUI(storage);//设置制作UI显示铁匠铺的UI
 
-        ui.OpenStorageUI(true);//显示仓库UI
+        ui.OpenDialogueUI(firstDialogueLine, new DialogueNpcData(rewardNpc, quests));//显示对话UI，传入铁匠的第一行对话和任务数据
     }
 
     protected override void OnTriggerEnter2D(Collider2D collision)

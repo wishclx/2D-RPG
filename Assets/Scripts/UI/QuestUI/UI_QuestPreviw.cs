@@ -22,7 +22,11 @@ public class UI_QuestPreviw : MonoBehaviour
 
         questName.text = questDataSO.name;
         questDescription.text = questDataSO.description;
-        questGoal.text = questDataSO.questGoal + " " + questDataSO.requiredAmount;
+
+        if (questDataSO.questType == QuestType.Talk)
+            questGoal.text = questDataSO.questGoal;//对话类任务不显示数量
+        else
+            questGoal.text = questDataSO.questGoal + " " + questDataSO.requiredAmount;//其他任务显示数量
 
 
         //根据任务数据设置奖励槽

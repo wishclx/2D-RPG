@@ -71,13 +71,14 @@ public class Object_Portal : MonoBehaviour, ISaveable
 
     public void LoadData(GameData data)
     {
+        if (string.IsNullOrEmpty(currentSceneName))
+            currentSceneName = SceneManager.GetActiveScene().name;//删除存档后可能尚未初始化场景名
+
         if (InTown() && data.inScenePortals.Count > 0)//如果当前场景是城镇场景，并且游戏数据中有传送门位置的数据，则将传送门移动到保存的位置，并激活传送门
         {
             transform.position = defaultPosition;//将传送门移动到默认位置
             isActive = true;//激活传送门，使其可以被玩家使用
         }
-
-        //如果当前场景不是城镇场景，并且游戏数据中有当前场景的传送门位置的数据，则将传送门移动到保存的位置，并激活传送门
         else if (data.inScenePortals.TryGetValue(currentSceneName, out Vector3 portalPosition))
         {
             transform.position = portalPosition;//将传送门移动到保存的位置

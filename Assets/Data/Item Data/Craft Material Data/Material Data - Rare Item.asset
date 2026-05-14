@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7fae6a0d6545f244a47c1446d157d17, type: 3}
   m_Name: Material Data - Rare Item
   m_EditorClassIdentifier: 
+  saveID: fde580ff6c17898498a17a833e044846
   itemPrice: 100
   minStackSizeAtShop: 1
   maxStackSizeAtShop: 5
-  itemRarity: 100
+  itemRarity: 841
   dropChance: 15.2
   maxDropChance: 15.2
   craftRecipe: []

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0eacfe8552a890f46a56314c0f286fdc, type: 3}
+  m_Name: "Line - \u94C1\u5320\u9009\u9879 2"
+  m_EditorClassIdentifier: 
+  dialogueGroupName: "\u94C1\u5320\u9009\u9879"
+  speaker: {fileID: 11400000, guid: ca998e17e3aabfc4a8bdc8c862ec69b5, type: 2}
+  textLine:
+  - 
+  playerChoiceAnswer: "\u5173\u4E8E\u4EFB\u52A1...."
+  choiceLines:
+  - {fileID: 11400000, guid: 0ad40b1723ef0cd41a562eba83416c70, type: 2}
+  - {fileID: 11400000, guid: 55fc3ed2963166d40818070795ad4d50, type: 2}
+  actionLine: 
+  actionType: 5
