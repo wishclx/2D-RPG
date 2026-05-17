@@ -33,6 +33,9 @@ public class Enemy_Health : Entity_Health
     {
         base.Die();
 
+        if (enemy != null && enemy.GoldDrop > 0)
+            Player.instance.inventory.AddGold(enemy.GoldDrop);//敌人死亡时直接把金币加到玩家
+
         questManager.AddProgress(enemy.questTargetId);
     }
 }

@@ -1,9 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-/// <summary>
-/// VFX_AutoController 的职责说明。
-/// </summary>
 public class VFX_AutoController : MonoBehaviour
 {
     private SpriteRenderer sr;
@@ -28,17 +25,11 @@ public class VFX_AutoController : MonoBehaviour
     [SerializeField] private float yMinOffset = -.3f;
     [SerializeField] private float yMaxOffset = .3f;
 
-    /// <summary>
-    /// 执行 Awake 逻辑。
-    /// </summary>
     private void Awake()
     {
         sr = GetComponentInChildren<SpriteRenderer>();
     }
 
-    /// <summary>
-    /// 执行 Start 逻辑。
-    /// </summary>
     private void Start()
     {
         if (canFade)
@@ -51,9 +42,6 @@ public class VFX_AutoController : MonoBehaviour
             Destroy(gameObject, destroyDelay);
     }
 
-    /// <summary>
-    /// 执行 FadeCo 逻辑。
-    /// </summary>
     private IEnumerator FadeCo()
     {
         Color targetColor = Color.white;
@@ -68,9 +56,6 @@ public class VFX_AutoController : MonoBehaviour
         sr.color = targetColor;
     }
 
-    /// <summary>
-    /// 执行 ApplyRandomOffset 逻辑。
-    /// </summary>
     private void ApplyRandomOffset()
     {
         if (!randomOffset)
@@ -81,9 +66,6 @@ public class VFX_AutoController : MonoBehaviour
         transform.position += new Vector3(xOffset, yOffset, 0f);
     }
 
-    /// <summary>
-    /// 执行 ApplyRandomRotation 逻辑。
-    /// </summary>
     private void ApplyRandomRotation()
     {
         if (!randomRotation)

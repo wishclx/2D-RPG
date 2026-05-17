@@ -1,24 +1,15 @@
 ﻿using UnityEngine;
 
-/// <summary>
-/// Enemy_BattleState 的职责说明。
-/// </summary>
 public class Enemy_BattleState : EnemyState
 {
-    private Transform player;
-    private Transform lastTarget;
-    private float lastTimeWasInBattle;
-
-    /// <summary>
-    /// 执行 Enemy_BattleState 逻辑。
-    /// </summary>
+    protected Transform player;
+    protected Transform lastTarget;
+    protected float lastTimeWasInBattle;
+    protected float lastTimeAttacked = float.NegativeInfinity;//记录上次攻击的时间，初始值为负无穷大，确保敌人一开始就可以攻击
     public Enemy_BattleState(Enemy enemy, StateMachine stateMachine, string animBoolName) : base(enemy, stateMachine, animBoolName)
     {
     }
 
-    /// <summary>
-    /// 执行 Enter 逻辑。
-    /// </summary>
     public override void Enter()
     {
         base.Enter();
@@ -31,14 +22,19 @@ public class Enemy_BattleState : EnemyState
 
         if (ShouldRetreat())
         {
-            rb.linearVelocity = new Vector2((enemy.retreatVelocity.x * enemy.activeSlowMultiplier) * -DirectionToPlayer(), enemy.retreatVelocity.y);//如果需要撤退，设置敌人的速度为撤退速度的相反方向
-            enemy.HandleFlip(DirectionToPlayer());
+            ShortRetreat();
         }
     }
 
-    /// <summary>
-    /// 执行 Update 逻辑。
-    /// </summary>
+    protected void ShortRetreat()
+    {
+        float x = (enemy.retreatVelocity.x * enemy.activeSlowMultiplier) * -DirectionToPlayer();
+        float y = enemy.retreatVelocity.y;
+
+        rb.linearVelocity = new Vector2(x, y);//如果需要后撤，设置敌人的速度为后撤速度的相反方向
+        enemy.HandleFlip(DirectionToPlayer());
+    }
+
     public override void Update()
     {
         base.Update();
@@ -52,13 +48,22 @@ public class Enemy_BattleState : EnemyState
         if (BattleTimeOver())
             stateMachine.ChangeState(enemy.idleState);
 
-        if (WithinAttackRange() && enemy.PlayerDetected())
+        if (WithinAttackRange() && enemy.PlayerDetected() && CanAttack())
+        {
+            lastTimeAttacked = Time.time;
             stateMachine.ChangeState(enemy.attackState);
+        }
         else
-            enemy.SetVelocity(enemy.GetBattleMoveSpeed() * DirectionToPlayer(), rb.linearVelocity.y);
+        {
+            float xVelocity = enemy.canChasePlayer ? enemy.GetBattleMoveSpeed() : 0.0001f;
+            enemy.SetVelocity(xVelocity * DirectionToPlayer(), rb.linearVelocity.y);
+        }
     }
 
-    private void UpdateTargetIfNeed()
+    //判断敌人是否可以攻击，如果当前时间与上次攻击时间的差值大于攻击冷却时间，则返回true，否则返回false
+    protected bool CanAttack() => Time.time - lastTimeAttacked > enemy.attackCooldown;
+
+    protected void UpdateTargetIfNeed()
     {
         if (enemy.PlayerDetected() == false)
             return;
@@ -72,18 +77,15 @@ public class Enemy_BattleState : EnemyState
         }
     }
 
-    private void UpdateBattleTimer() => lastTimeWasInBattle = Time.time;//更新最后一次进入战斗状态的时间
+    protected void UpdateBattleTimer() => lastTimeWasInBattle = Time.time;//更新最后一次进入战斗状态的时间
 
-    private bool BattleTimeOver() => Time.time - lastTimeWasInBattle > enemy.battleTimeDuration;//判断是否超过战斗时间，如果超过则返回true，否则返回false
+    protected bool BattleTimeOver() => Time.time - lastTimeWasInBattle > enemy.battleTimeDuration;//判断是否超过战斗时间，如果超过则返回true，否则返回false
 
-    private bool WithinAttackRange() => DistanceToPlayer() < enemy.attackDistance;// 判断敌人和玩家之间的距离是否小于攻击距离
+    protected bool WithinAttackRange() => DistanceToPlayer() < enemy.attackDistance;// 判断敌人和玩家之间的距离是否小于攻击距离
 
-    private bool ShouldRetreat() => DistanceToPlayer() < enemy.minRetreatDistance;//判断敌人和玩家之间的距离是否小于最小撤退距离
+    protected bool ShouldRetreat() => DistanceToPlayer() < enemy.minRetreatDistance;//判断敌人和玩家之间的距离是否小于最小撤退距离
 
-    /// <summary>
-    /// 执行 DistanceToPlayer 逻辑。
-    /// </summary>
-    private float DistanceToPlayer()
+    protected float DistanceToPlayer()
     {
         if (player == null)
             return float.MaxValue;
@@ -91,10 +93,7 @@ public class Enemy_BattleState : EnemyState
         return Mathf.Abs(player.position.x - enemy.transform.position.x);//计算敌人和玩家之间的水平距离
     }
 
-    /// <summary>
-    /// 执行 DirectionToPlayer 逻辑。
-    /// </summary>
-    private int DirectionToPlayer()
+    protected int DirectionToPlayer()
     {
         if (player == null)
             return 0;

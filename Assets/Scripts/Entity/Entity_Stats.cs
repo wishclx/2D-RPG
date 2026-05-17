@@ -1,10 +1,6 @@
 ﻿using UnityEngine;
 
 // 负责实体属性相关计算（伤害、抗性、闪避、护甲减伤等）。
-/// <summary>
-/// 实体属性系统入口。
-/// 提供物理/元素伤害、抗性、减伤、闪避、最大生命值等计算能力。
-/// </summary>
 public class Entity_Stats : MonoBehaviour
 {
     public StatSetupDataSO defaultStatSetup;// 默认属性配置，用于一键回填基础值。
@@ -19,14 +15,35 @@ public class Entity_Stats : MonoBehaviour
 
     }
 
+    // 预留接口：根据外部数据（如装备、buff等）设置属性，并应用惩罚（如负面状态）
+    public void AdjustStatSetup(Stat_ResourceGroup resourceGroup, Stat_OffenseGroup offenseGroup, Stat_DefenseGroup defenseGroup, float penalty, float increase)
+    {
+        //buff stats
+        offense.damage.SetBaseValue(offenseGroup.damage.GetValue() * increase);
+        offense.attackSpeed.SetBaseValue(offenseGroup.attackSpeed.GetValue() * increase);
+        offense.critChance.SetBaseValue(offenseGroup.critChance.GetValue() * increase);
+        offense.critPower.SetBaseValue(offenseGroup.critPower.GetValue() * increase);
+        offense.fireDamage.SetBaseValue(offenseGroup.fireDamage.GetValue() * increase);
+        offense.iceDamage.SetBaseValue(offenseGroup.iceDamage.GetValue() * increase);
+        offense.lightningDamage.SetBaseValue(offenseGroup.lightningDamage.GetValue() * increase);
+
+        defense.evasion.SetBaseValue(defenseGroup.evasion.GetValue() * increase);
+
+        //debuff stats
+        resources.maxHealth.SetBaseValue(resourceGroup.maxHealth.GetValue() * penalty);
+        resources.healthRegen.SetBaseValue(resourceGroup.healthRegen.GetValue() * penalty);
+
+        defense.armor.SetBaseValue(defenseGroup.armor.GetValue() * penalty);
+        defense.lightningRes.SetBaseValue(defenseGroup.lightningRes.GetValue() * penalty);
+        defense.fireRes.SetBaseValue(defenseGroup.fireRes.GetValue() * penalty);
+        defense.iceRes.SetBaseValue(defenseGroup.iceRes.GetValue() * penalty);
+    }
+
     public AttackData GetAttackData(DamageScaleData scaleData)
     {
         return new AttackData(this, scaleData);// 通过当前属性和外部伤害倍率数据，构造完整的攻击数据对象。
     }
 
-    /// <summary>
-    /// 执行 GetElementalDamage 逻辑。
-    /// </summary>
     public float GetElementalDamage(out ElementType element, float scaleFactor = 1)
     {
         float fireDamage = offense.fireDamage.GetValue();
@@ -66,9 +83,6 @@ public class Entity_Stats : MonoBehaviour
         return finalDamage * scaleFactor; // 应用外部倍率（如技能倍率）。
     }
 
-    /// <summary>
-    /// 执行 GetElementalResistance 逻辑。
-    /// </summary>
     public float GetElementalResistance(ElementType element)
     {
         float baseResistance = 0;
@@ -96,10 +110,6 @@ public class Entity_Stats : MonoBehaviour
         return finalResistance;
     }
 
-    /// <summary>
-    /// 执行 GetPhyiscalDamage 逻辑。
-    /// 计算物理伤害，并输出本次是否触发暴击。
-    /// </summary>
     public float GetPhyiscalDamage(out bool isCrit, float scaleFactor = 1)// 计算物理伤害并输出是否暴击。
     {
         float baseDamage = GetBaseDamage(); // 基础伤害计算。  
