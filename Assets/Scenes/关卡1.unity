@@ -52831,7 +52831,7 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
-  - first: {x: 21, y: 25, z: 0}
+  - first: {x: 20, y: 25, z: 0}
     second:
       serializedVersion: 2
       m_TileIndex: 33
@@ -52841,7 +52841,7 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
-  - first: {x: 22, y: 25, z: 0}
+  - first: {x: 21, y: 25, z: 0}
     second:
       serializedVersion: 2
       m_TileIndex: 0
@@ -77698,6 +77698,14 @@ CompositeCollider2D:
       - X: 200000000
         Y: 130000000
       - X: 200000000
+        Y: 250000000
+      - X: 220000000
+        Y: 250000000
+      - X: 220000000
+        Y: 260000000
+      - X: 200000000
+        Y: 260000000
+      - X: 200000000
         Y: 270000000
       - X: 100000000
         Y: 270000000
@@ -77997,14 +78005,6 @@ CompositeCollider2D:
         Y: 270000000
       - X: 270000000
         Y: 270000000
-    - - X: 230000000
-        Y: 260000000
-      - X: 210000000
-        Y: 260000000
-      - X: 210000000
-        Y: 250000000
-      - X: 230000000
-        Y: 250000000
     - - X: 700000000
         Y: 260000000
       - X: 680000000
@@ -78184,6 +78184,10 @@ CompositeCollider2D:
       - {x: 16, y: 12}
       - {x: 16, y: 13}
       - {x: 20, y: 13}
+      - {x: 20, y: 25}
+      - {x: 22, y: 25}
+      - {x: 22, y: 26}
+      - {x: 20, y: 26}
       - {x: 20, y: 27}
       - {x: 10, y: 27}
       - {x: 10, y: 30}
@@ -78338,10 +78342,6 @@ CompositeCollider2D:
       - {x: 68, y: 26}
       - {x: 68, y: 25}
       - {x: 70, y: 25}
-    - - {x: 23, y: 26}
-      - {x: 21, y: 26}
-      - {x: 21, y: 25}
-      - {x: 23, y: 25}
     - - {x: 27, y: 24}
       - {x: 25, y: 24}
       - {x: 25, y: 23}
@@ -78874,10 +78874,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2a723b176887564580d2b70803337dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  npcTargetQuestId: 
+  rewardNpc: 0
   npc: {fileID: 1446798410}
   interactToolTip: {fileID: 1673249486}
   floatSpeed: 8
   floatRange: 0.1
+  firstDialogueLine: {fileID: 0}
+  quests: []
 --- !u!4 &987584576
 Transform:
   m_ObjectHideFlags: 0
@@ -79211,6 +79215,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 5221789499246834476, guid: 5b362a6ef8e96bd488b342a87fe4323c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -79293,10 +79301,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccd7b4db65167514eb57fade7c41f816, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  npcTargetQuestId: 
+  rewardNpc: 0
   npc: {fileID: 1952343500}
   interactToolTip: {fileID: 560094055}
   floatSpeed: 8
   floatRange: 0.1
+  firstDialogueLine: {fileID: 0}
+  quests: []
 --- !u!114 &1348489320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120932,8 +120944,12 @@ MonoBehaviour:
   groundCheck: {fileID: 2800685076303057024}
   primaryWallCheck: {fileID: 1714261006752987858}
   secondaryWallCheck: {fileID: 0}
+  questTargetId: 
+  goldDrop: 50
   battleMoveSpeed: 3
   attackDistance: 2
+  attackCooldown: 0.5
+  canChasePlayer: 1
   battleTimeDuration: 5
   minRetreatDistance: 1
   retreatVelocity: {x: 5, y: 3}
@@ -120968,8 +120984,12 @@ MonoBehaviour:
   groundCheck: {fileID: 2800685076349387107}
   primaryWallCheck: {fileID: 1714261006698654513}
   secondaryWallCheck: {fileID: 0}
+  questTargetId: 
+  goldDrop: 50
   battleMoveSpeed: 3
   attackDistance: 2
+  attackCooldown: 0.5
+  canChasePlayer: 1
   battleTimeDuration: 5
   minRetreatDistance: 1
   retreatVelocity: {x: 5, y: 3}
@@ -121004,8 +121024,12 @@ MonoBehaviour:
   groundCheck: {fileID: 2800685076237708485}
   primaryWallCheck: {fileID: 1714261006688601751}
   secondaryWallCheck: {fileID: 0}
+  questTargetId: 
+  goldDrop: 50
   battleMoveSpeed: 3
   attackDistance: 2
+  attackCooldown: 0.5
+  canChasePlayer: 1
   battleTimeDuration: 5
   minRetreatDistance: 1
   retreatVelocity: {x: 5, y: 3}
@@ -121040,8 +121064,12 @@ MonoBehaviour:
   groundCheck: {fileID: 2800685074742058441}
   primaryWallCheck: {fileID: 1714261008310450075}
   secondaryWallCheck: {fileID: 0}
+  questTargetId: 
+  goldDrop: 50
   battleMoveSpeed: 3
   attackDistance: 2
+  attackCooldown: 0.5
+  canChasePlayer: 1
   battleTimeDuration: 5
   minRetreatDistance: 1
   retreatVelocity: {x: 5, y: 3}
@@ -121076,8 +121104,12 @@ MonoBehaviour:
   groundCheck: {fileID: 2800685074283682816}
   primaryWallCheck: {fileID: 1714261008223204946}
   secondaryWallCheck: {fileID: 0}
+  questTargetId: 
+  goldDrop: 50
   battleMoveSpeed: 3
   attackDistance: 2
+  attackCooldown: 0.5
+  canChasePlayer: 1
   battleTimeDuration: 5
   minRetreatDistance: 1
   retreatVelocity: {x: 5, y: 3}
@@ -121112,8 +121144,12 @@ MonoBehaviour:
   groundCheck: {fileID: 2800685074837750068}
   primaryWallCheck: {fileID: 1714261007668996966}
   secondaryWallCheck: {fileID: 0}
+  questTargetId: 
+  goldDrop: 50
   battleMoveSpeed: 3
   attackDistance: 2
+  attackCooldown: 0.5
+  canChasePlayer: 1
   battleTimeDuration: 5
   minRetreatDistance: 1
   retreatVelocity: {x: 5, y: 3}

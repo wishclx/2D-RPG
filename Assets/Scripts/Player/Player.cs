@@ -37,18 +37,18 @@ public class Player : Entity
 
     #endregion
 
-    [Header("Attack details")]
+    [Header("攻击参数")]
     public Vector2[] attackVelocity;
     public Vector2 jumpAttackVelocity;
     public float attackVelocityDuration = .1f;
     public float comboResetTime = 1f;
     private Coroutine queuedAttackCo;// 延迟进入攻击状态的协程引用。
 
-    [Header("Ultimate ability details")]
+    [Header("终极技能参数")]
     public float riseSpeed = 25;
     public float riseMaxDistance = 3;
 
-    [Header("Movement details")]
+    [Header("移动参数")]
     public float moveSpeed = 5f;
     public float jumpForce = 5f;
     public Vector2 wallJumpForce;

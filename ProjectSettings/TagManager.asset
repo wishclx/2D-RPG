@@ -16,8 +16,8 @@ TagManager:
   - Enemy
   - Playerlnteractable
   - SkillObjectSword
-  - 
-  - 
+  - EnemyProjectile
+  - Untargetable
   - 
   - 
   - 

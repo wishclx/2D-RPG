@@ -1,23 +1,14 @@
 ﻿using UnityEngine;
 using UnityEngine.XR;
 
-/// <summary>
-/// Player_DashState 的职责说明。
-/// </summary>
 public class Player_DashState : PlayerState
 {
     private float originalGravityScale;
     private int dashDir;
-    /// <summary>
-    /// 执行 Player_DashState 逻辑。
-    /// </summary>
     public Player_DashState(Player player, StateMachine stateMachine, string animBoolName) : base(player, stateMachine, animBoolName)
     {
     }
 
-    /// <summary>
-    /// 执行 Enter 逻辑。
-    /// </summary>
     public override void Enter()
     {
         base.Enter();
@@ -32,11 +23,9 @@ public class Player_DashState : PlayerState
         rb.gravityScale = 0;
 
         player.health.SetCanTakeDamage(false);
+        player.gameObject.layer = LayerMask.NameToLayer("Untargetable");// 设置玩家为不可被敌人攻击的层
     }
 
-    /// <summary>
-    /// 执行 Update 逻辑。
-    /// </summary>
     public override void Update()
     {
         base.Update();
@@ -52,9 +41,6 @@ public class Player_DashState : PlayerState
         }
     }
 
-    /// <summary>
-    /// 执行 Exit 逻辑。
-    /// </summary>
     public override void Exit()
     {
         base.Exit();
@@ -64,11 +50,11 @@ public class Player_DashState : PlayerState
         player.health.SetCanTakeDamage(true);
         player.SetVelocity(0, 0);
         rb.gravityScale = originalGravityScale;
+
+        player.gameObject.layer = LayerMask.NameToLayer("Player");// 恢复玩家的层为可被敌人攻击的层
     }
 
-    /// <summary>
-    /// 执行 CancelDashIfNeeded 逻辑。
-    /// </summary>
+
     public void CancelDashIfNeeded()
     {
         if (player.wallDetected)

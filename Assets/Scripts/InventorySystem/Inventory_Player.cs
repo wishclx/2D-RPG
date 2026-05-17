@@ -103,6 +103,14 @@ public class Inventory_Player : Inventory_Base
         AddItem(itemToUnequip);//将物品添加回背包
     }
 
+    public void AddGold(int amount)
+    {
+        if (amount <= 0)
+            return;
+
+        gold += amount;//增加玩家金币
+    }
+
     public override void SaveData(ref GameData data)
     {
         data.gold = gold;//将玩家的金币数量保存到GameData中

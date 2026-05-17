@@ -6,8 +6,14 @@ public class Enemy : Entity
     [Header("任务信息")]
     public string questTargetId;//任务目标ID，可以用来在保存和加载时识别任务目标，比如击败某个敌人，收集某个物品等
 
+    [Header("金币掉落")]
+    [SerializeField] private int goldDrop = 50;//敌人死亡时直接增加给玩家的金币数量
+    public int GoldDrop => goldDrop;//提供只读访问
+
     public Entity_Stats stats { get; private set; }
     public Enemy_Health health { get; private set; }
+    public Entity_Combat combat { get; private set; }
+    public Entity_VFX vfx { get; private set; }
     public Enemy_IdleState idleState;
     public Enemy_MoveState moveState;
     public Enemy_AttackState attackState;
@@ -15,25 +21,28 @@ public class Enemy : Entity
     public Enemy_DeadState deadState;
     public Enemy_StunnedState stunnedState;
 
-    [Header("Battle details")]
+    [Header("战斗参数")]
     public float battleMoveSpeed = 3f;
     public float attackDistance = 2f;
+    public float attackCooldown = .5f;//敌人每次攻击后需要等待的时间，单位为秒
+    public bool canChasePlayer = true;//敌人是否会追逐玩家，如果为false，敌人只会在攻击范围内攻击玩家，不会追逐玩家
+    [Space]
     public float battleTimeDuration = 5f;
     public float minRetreatDistance = 1f;
     public Vector2 retreatVelocity;
 
-    [Header("Stunned state deatails")]
+    [Header("反击参数")]
     public float stunnedDuration = 1f;
     public Vector2 stunnedVelocity = new Vector2(7f, 7f);
     [SerializeField] protected bool canBeStunned;
 
-    [Header("Movement details")]
+    [Header("移动参数")]
     public float idleTime = 2f;
     public float moveSpeed = 1.4f;
     [Range(0, 2)]
     public float moveAnimSpeedMultiplier = 1f;
 
-    [Header("Player detection")]
+    [Header("玩家检测")]
     [SerializeField] private LayerMask whatIsPlayer;
     [SerializeField] private Transform playerCheck;
     [SerializeField] private float playerCheckDistance = 10;
@@ -48,6 +57,13 @@ public class Enemy : Entity
         base.Awake();
         health = GetComponent<Enemy_Health>();
         stats = GetComponent<Entity_Stats>();
+        combat = GetComponent<Entity_Combat>();
+        vfx = GetComponent<Entity_VFX>();
+    }
+
+    public virtual void SpecialAttack()//敌人特有的攻击方式，可以在子类中重写实现不同的攻击行为
+    {
+
     }
 
     protected override IEnumerator SlowDownEntityCo(float duration, float slowMultiplier)
@@ -90,7 +106,21 @@ public class Enemy : Entity
             return;
 
         this.player = player;
+
+        // 被攻击时立刻转身面对攻击者
+        if (player != null)
+        {
+            int dirToPlayer = player.position.x > transform.position.x ? 1 : -1;
+            if (dirToPlayer != facingDir)
+                HandleFlip(dirToPlayer);
+        }
+
         stateMachine.ChangeState(battleState);
+    }
+
+    public void DestoryGameObjectWithDelay(float delay = 10)
+    {
+        Destroy(gameObject, delay);//在敌人死亡后delay秒销毁敌人对象，给玩家足够的时间看到敌人的死亡动画和掉落物品
     }
 
     public Transform GetPlayerReference()
@@ -134,6 +164,8 @@ public class Enemy : Entity
         Player.OnPlayerDeath -= HandlePlayerDeath;
     }
 }
+
+
 
 
 

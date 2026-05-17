@@ -1,34 +1,34 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-/// <summary>
-/// Entity_VFX 的职责说明。
-/// </summary>
 public class Entity_VFX : MonoBehaviour
 {
     protected SpriteRenderer sr;
     private Entity entity;
 
-    [Header("On Taking Damage VFX")]
+    [Header("残影特效")]// 锥体拖影特效设置
+    [Range(.01f, .2f)]
+    [SerializeField] private float imageEchoInterval = .05f;
+    [SerializeField] private GameObject imageEchoPrefab;// 拖影预制体引用
+    private Coroutine imageEchoCo;
+
+    [Header("受伤特效")]
     [SerializeField] private Material onDamageMaterial;
     [SerializeField] private float onDamageVfxDuration = .15f;
     private Material originalMaterial;
     private Coroutine onDamageVfxCoroutine;
 
-    [Header("On Doing Damage VFX")]
+    [Header("攻击特效")]
     [SerializeField] private Color hitVfxColor = Color.white;
     [SerializeField] private GameObject hitVfx;
     [SerializeField] private GameObject critHitVfx;
 
-    [Header("Element Colors")]
+    [Header("元素颜色")]
     [SerializeField] private Color chillVfx = Color.cyan;
     [SerializeField] private Color burnVfx = Color.red;
     [SerializeField] private Color shockVfx = Color.yellow;
     private Color originalHitVfxColor;
 
-    /// <summary>
-    /// 执行 Awake 逻辑。
-    /// </summary>
     private void Awake()
     {
         entity = GetComponent<Entity>();
@@ -37,9 +37,43 @@ public class Entity_VFX : MonoBehaviour
         originalHitVfxColor = hitVfxColor;
     }
 
-    /// <summary>
-    /// 执行 PlayOnStatusVfx 逻辑。
-    /// </summary>
+    public void DoImageEchoEffect(float duration)
+    {
+        StopImageEchoEffect();
+
+        imageEchoCo = StartCoroutine(ImageEchoEffectCo(duration));
+    }
+
+    public void StopImageEchoEffect()
+    {
+        if (imageEchoCo != null)
+            StopCoroutine(imageEchoCo);
+    }
+
+    private IEnumerator ImageEchoEffectCo(float duration)
+    {
+        float timeTracker = 0;
+
+        while (timeTracker < duration)
+        {
+            CreateImageEcho();
+
+            yield return new WaitForSeconds(imageEchoInterval);
+            timeTracker += imageEchoInterval;
+        }
+    }
+
+    private void CreateImageEcho()
+    {
+        Vector3 position = entity.anim.transform.position;//获取动画组件的位置作为拖影的生成位置
+        float scale = entity.anim.transform.localScale.x;//获取动画组件的缩放作为拖影的缩放
+
+        GameObject imageEcho = Instantiate(imageEchoPrefab, position, transform.rotation);
+
+        imageEcho.transform.localScale = new Vector3(scale, scale, scale);//设置拖影的缩放与动画组件相同
+        imageEcho.GetComponentInChildren<SpriteRenderer>().sprite = sr.sprite;
+    }
+
     public void PlayOnStatusVfx(float duration, ElementType element)
     {
         if (element == ElementType.Ice)
@@ -52,9 +86,6 @@ public class Entity_VFX : MonoBehaviour
             StartCoroutine(PlayStatusVfxCo(duration, shockVfx));
     }
 
-    /// <summary>
-    /// 执行 StopAllVfx 逻辑。
-    /// </summary>
     public void StopAllVfx()
     {
         StopAllCoroutines();
@@ -62,9 +93,6 @@ public class Entity_VFX : MonoBehaviour
         sr.material = originalMaterial;
     }
 
-    /// <summary>
-    /// 执行 PlayStatusVfxCo 逻辑。
-    /// </summary>
     private IEnumerator PlayStatusVfxCo(float duration, Color effectColor)
     {
         float tickInterval = .25f;
@@ -87,9 +115,6 @@ public class Entity_VFX : MonoBehaviour
         sr.color = Color.white;
     }
 
-    /// <summary>
-    /// 执行 CreateOnHitVFX 逻辑。
-    /// </summary>
     public void CreateOnHitVFX(Transform target, bool isCrit, ElementType element)
     {
         GameObject hitPrefab = isCrit ? critHitVfx : hitVfx;
@@ -100,9 +125,6 @@ public class Entity_VFX : MonoBehaviour
             vfx.transform.Rotate(0, 180, 0);
     }
 
-    /// <summary>
-    /// 执行 UpdateOnHitColor 逻辑。
-    /// </summary>
     public Color GetElementColor(ElementType element)
     {
         switch (element)
@@ -119,9 +141,6 @@ public class Entity_VFX : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// 执行 PlayOnDamageVfx 逻辑。
-    /// </summary>
     public void PlayOnDamageVfx()
     {
         if (onDamageVfxCoroutine != null)
