@@ -59,7 +59,7 @@ public class Entity_Combat : MonoBehaviour
             sfx?.PlayAttackMiss();
     }
 
-    public void PerformAttackOnTarget(Transform target)
+    public void PerformAttackOnTarget(Transform target, DamageScaleData damageScaleData = null)
     {
         bool targetGotHit = false;
 
@@ -69,7 +69,8 @@ public class Entity_Combat : MonoBehaviour
         if (damageable == null)
             return;
 
-        AttackData attackData = stats.GetAttackData(basicAttackScale);// 从 Entity_Stats 获取攻击数据
+        DamageScaleData damageScale = damageScaleData == null ? basicAttackScale : damageScaleData;//如果没有传入特定的伤害缩放数据，则使用基本攻击的伤害缩放数据
+        AttackData attackData = stats.GetAttackData(damageScale);// 从 Entity_Stats 获取攻击数据
         Entity_StatusHandler statusHandler = target.GetComponent<Entity_StatusHandler>();
 
         float physicalDamage = attackData.phyiscalDamage;

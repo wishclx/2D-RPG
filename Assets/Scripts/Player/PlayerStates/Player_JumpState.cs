@@ -1,20 +1,11 @@
 ﻿using UnityEngine;
 
-/// <summary>
-/// Player_JumpState 的职责说明。
-/// </summary>
 public class Player_JumpState : Player_AiredState
 {
-    /// <summary>
-    /// 执行 Player_JumpState 逻辑。
-    /// </summary>
     public Player_JumpState(Player player, StateMachine stateMachine, string animBoolName) : base(player, stateMachine, animBoolName)
     {
     }
 
-    /// <summary>
-    /// 执行 Enter 逻辑。
-    /// </summary>
     public override void Enter()
     {
         base.Enter();
@@ -22,9 +13,6 @@ public class Player_JumpState : Player_AiredState
         player.SetVelocity(rb.linearVelocity.x, player.jumpForce);
     }
 
-    /// <summary>
-    /// 执行 Update 逻辑。
-    /// </summary>
     public override void Update()
     {
         base.Update();
