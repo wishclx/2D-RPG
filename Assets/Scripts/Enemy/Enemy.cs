@@ -61,6 +61,14 @@ public class Enemy : Entity
         vfx = GetComponent<Entity_VFX>();
     }
 
+    public void MakeUntargetable(bool canBeTargeted)
+    {
+        if (canBeTargeted == false)
+            gameObject.layer = LayerMask.NameToLayer("Untargetable");// 将敌人设置为不可被玩家攻击的层，这样玩家的攻击就无法检测到敌人，从而使敌人暂时无法被攻击
+        else
+            gameObject.layer = LayerMask.NameToLayer("Enemy");// 将敌人设置回可被玩家攻击的层，使敌人可以再次被玩家攻击
+    }
+
     public virtual void SpecialAttack()//敌人特有的攻击方式，可以在子类中重写实现不同的攻击行为
     {
 
