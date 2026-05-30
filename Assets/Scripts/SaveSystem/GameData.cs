@@ -27,6 +27,10 @@ public class GameData
     public string portalDestinationSceneName;//传送门目的地场景的名字
     public bool returningFromTown;//是否城镇
 
+    public float playerHealth;//玩家当前血量（绝对值）
+    public float playerMaxHealth = -1f;//玩家最大生命值（绝对值），未保存时为 -1
+    public float playerHealthPercent = -1f;//玩家生命百分比，范围 0~1；未保存时设为 -1 表示“未初始化”
+
     public string lastScenePlayed;//玩家上次进入的场景名称
     public Vector3 lastPlayerPosition;//玩家上次的位置
 

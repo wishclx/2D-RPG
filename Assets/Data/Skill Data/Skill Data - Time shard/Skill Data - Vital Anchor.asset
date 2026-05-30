@@ -12,12 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d7398b014b69234988d9fc823b98238, type: 3}
   m_Name: Skill Data - Vital Anchor
   m_EditorClassIdentifier: 
+  displayName: "\u751F\u547D\u951A\u70B9"
+  description: "\u5F53\u4F60\u4E0E\u788E\u7247\u4EA4\u6362\u4F4D\u7F6E\u65F6\uFF0C\u751F\u547D\u503C\u4F1A\u56DE\u9000\u5230\u521B\u5EFA\u788E\u7247\u65F6\u7684\u6570\u503C"
+  icon: {fileID: 1902524048, guid: 8e239c2e1844452478a067e5d18190f0, type: 3}
   cost: 3
   unlockedByDefault: 0
   skillType: 2
   upgradeData:
     upgradeType: 10
     cooldown: 4
-  displayName: Vital Anchor
-  description: "\u5F53\u4F60\u4E0E\u65F6\u95F4\u788E\u7247\u4EA4\u6362\u4F4D\u7F6E\u65F6\uFF0C\u751F\u547D\u503C\u4F1A\u56DE\u9000\u5230\u521B\u5EFA\u65F6\u95F4\u788E\u7247\u65F6\u7684\u6570\u503C"
-  icon: {fileID: 1902524048, guid: 8e239c2e1844452478a067e5d18190f0, type: 3}
+    damageScaleData:
+      physical: 1
+      elemental: 1
+      chillDuration: 3
+      chillSlowMultiplier: 0.2
+      burnDuration: 3
+      burnDamageScale: 1
+      shockDuration: 3
+      shockDamageScale: 1
+      shockCharge: 0.4

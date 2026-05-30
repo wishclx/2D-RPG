@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d7398b014b69234988d9fc823b98238, type: 3}
   m_Name: Skill Data - Time echo
   m_EditorClassIdentifier: 
-  displayName: Time Echo
+  displayName: "\u65F6\u4E4B\u56DE\u58F0"
   description: "\u521B\u9020\u4E00\u4E2A\u4F60\u7684\u5206\u8EAB\u3002\u8FD9\u4E2A\u5206\u8EAB\u4F1A\u5206\u6563\u654C\u4EBA\u7684\u6CE8\u610F\u529B"
   icon: {fileID: -1214642061, guid: 8e239c2e1844452478a067e5d18190f0, type: 3}
   cost: 1

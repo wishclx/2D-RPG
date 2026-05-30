@@ -12,12 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d7398b014b69234988d9fc823b98238, type: 3}
   m_Name: Skill Data - Phantom Recall
   m_EditorClassIdentifier: 
+  displayName: "\u5E7B\u5F71\u56DE\u6EAF"
+  description: "\u518D\u6B21\u6309\u4E0B\u6280\u80FD\u952E\uFF0C\u53EF\u4E0E\u5DF2\u751F\u6210\u7684\u788E\u7247\u4EA4\u6362\u4F4D\u7F6E"
+  icon: {fileID: 1705376628, guid: 8e239c2e1844452478a067e5d18190f0, type: 3}
   cost: 2
   unlockedByDefault: 0
   skillType: 2
   upgradeData:
     upgradeType: 9
     cooldown: 3
-  displayName: Phantom Recall
-  description: "\u518D\u6B21\u6309\u4E0B\u6280\u80FD\u952E\uFF0C\u53EF\u4E0E\u5DF2\u751F\u6210\u7684\u788E\u7247\u4EA4\u6362\u4F4D\u7F6E"
-  icon: {fileID: 1705376628, guid: 8e239c2e1844452478a067e5d18190f0, type: 3}
+    damageScaleData:
+      physical: 1
+      elemental: 1
+      chillDuration: 3
+      chillSlowMultiplier: 0.2
+      burnDuration: 3
+      burnDamageScale: 1
+      shockDuration: 3
+      shockDamageScale: 1
+      shockCharge: 0.4

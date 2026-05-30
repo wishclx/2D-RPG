@@ -55764,10 +55764,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccd7b4db65167514eb57fade7c41f816, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  npcTargetQuestId: 
+  rewardNpc: 0
   npc: {fileID: 59176476}
   interactToolTip: {fileID: 1558425078}
   floatSpeed: 8
   floatRange: 0.1
+  firstDialogueLine: {fileID: 0}
+  quests: []
 --- !u!114 &834688782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72565,10 +72569,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2a723b176887564580d2b70803337dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  npcTargetQuestId: 
+  rewardNpc: 0
   npc: {fileID: 806421779}
   interactToolTip: {fileID: 1611874154}
   floatSpeed: 8
   floatRange: 0.1
+  firstDialogueLine: {fileID: 0}
+  quests: []
 --- !u!114 &2086186604
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72795,6 +72803,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1038107968227743853, guid: d22d041e24d2a2a47a06fdc9fad868e3, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1527664377456910708, guid: d22d041e24d2a2a47a06fdc9fad868e3, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1781730699600713358, guid: d22d041e24d2a2a47a06fdc9fad868e3, type: 3}

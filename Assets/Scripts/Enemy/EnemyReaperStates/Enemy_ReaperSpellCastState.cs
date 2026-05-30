@@ -16,6 +16,7 @@ public class Enemy_ReaperSpellCastState : EnemyState
         enemyReaper.SetVelocity(0, 0);
         enemyReaper.SetSpellCastPreformed(false);//重置施法标志，确保每次进入施法状态时都能正确执行施法逻辑
         enemyReaper.SetSpellCastCooldown(); //记录施法开始时间，确保施法冷却逻辑正确运作
+        enemyReaper.MakeUntargetable(true);
     }
 
     public override void Update()
@@ -38,5 +39,6 @@ public class Enemy_ReaperSpellCastState : EnemyState
     {
         base.Exit();
         anim.SetBool("spellCast_Performed", false);//重置施法完成的动画参数，确保动画状态正确过渡
+        enemyReaper.MakeUntargetable(false);
     }
 }

@@ -258,7 +258,7 @@ MonoBehaviour:
   defaultStatSetup: {fileID: 11400000, guid: 5c1dcb1f8b845ad4d96934a99b081c9a, type: 2}
   resources:
     maxHealth:
-      baseValue: 1000
+      baseValue: 3000
       modifiers: []
     healthRegen:
       baseValue: 0

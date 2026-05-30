@@ -12,12 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d7398b014b69234988d9fc823b98238, type: 3}
   m_Name: Skill Data - Quick dash
   m_EditorClassIdentifier: 
+  displayName: "\u51B2\u523A"
+  description: "\u51B2\u523A\u4EE5\u95EA\u907F\u653B\u51FB\r\n\u51B2\u523A\u671F\u95F4\u4E0D\u4F1A\u53D7\u5230\u4F24\u5BB3"
+  icon: {fileID: 107853518, guid: 8e239c2e1844452478a067e5d18190f0, type: 3}
   cost: 0
   unlockedByDefault: 1
   skillType: 0
   upgradeData:
     upgradeType: 1
     cooldown: 3
-  displayName: Quick dash
-  description: "\u51B2\u523A\u4EE5\u95EA\u907F\u653B\u51FB\r\n\u51B2\u523A\u671F\u95F4\u4E0D\u4F1A\u53D7\u5230\u4F24\u5BB3"
-  icon: {fileID: 107853518, guid: 8e239c2e1844452478a067e5d18190f0, type: 3}
+    damageScaleData:
+      physical: 1
+      elemental: 1
+      chillDuration: 3
+      chillSlowMultiplier: 0.2
+      burnDuration: 3
+      burnDamageScale: 1
+      shockDuration: 3
+      shockDamageScale: 1
+      shockCharge: 0.4

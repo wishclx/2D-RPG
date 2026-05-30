@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d7398b014b69234988d9fc823b98238, type: 3}
   m_Name: Skill Data - Shards of time
   m_EditorClassIdentifier: 
-  displayName: Shard of time
+  displayName: "\u65F6\u4E4B\u788E\u51FB"
   description: "\u5BF9\u9886\u57DF\u5185\u7684\u654C\u4EBA\u9020\u6210\u591A\u6B21\u788E\u7247\u6253\u51FB"
   icon: {fileID: 248802993, guid: 8e239c2e1844452478a067e5d18190f0, type: 3}
   cost: 4

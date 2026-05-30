@@ -18,9 +18,6 @@ public class SkillDataSO : ScriptableObject
 }
 
 [Serializable]
-/// <summary>
-/// UpgraedData 的职责说明。
-/// </summary>
 public class UpgraedData
 {
     public SkillUpgradeType upgradeType;

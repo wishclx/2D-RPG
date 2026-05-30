@@ -21,7 +21,6 @@ public class Enemy_ReaperTeleportState : EnemyState
 
         if (enemyReaper.teleportTrigger)
         {
-            Debug.Log("传送触发");
             enemyReaper.transform.position = enemyReaper.FindTeleportPoint();//调用敌人类中的方法来找到一个新的传送点，并将敌人移动到那个位置
             enemyReaper.SetTeleportTrigger(false);
         }

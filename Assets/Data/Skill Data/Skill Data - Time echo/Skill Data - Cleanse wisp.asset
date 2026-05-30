@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d7398b014b69234988d9fc823b98238, type: 3}
   m_Name: Skill Data - Cleanse wisp
   m_EditorClassIdentifier: 
-  displayName: Cleanse wisp
+  displayName: "\u51C0\u5316\u7075\u8424"
   description: "\u6CBB\u7597\u80FD\u591F\u51C0\u5316\u8D1F\u9762\u72B6\u6001"
   icon: {fileID: -610041404, guid: 8e239c2e1844452478a067e5d18190f0, type: 3}
   cost: 3

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d7398b014b69234988d9fc823b98238, type: 3}
   m_Name: Skill Data - The Chainsaw
   m_EditorClassIdentifier: 
-  displayName: The Chainsaw
+  displayName: "\u88C2\u65CB\u952F\u76D8"
   description: "\u8FD9\u628A\u5251\u4F1A\u50CF\u72C2\u66B4\u7684\u7535\u952F\u4E00\u6837\u65CB\u8F6C\uFF0C\u5728
     N \u79D2\u5185\u5BF9\u9644\u8FD1\u654C\u4EBA\u9020\u6210\u4F24\u5BB3"
   icon: {fileID: -1499369537, guid: 8e239c2e1844452478a067e5d18190f0, type: 3}

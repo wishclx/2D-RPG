@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d7398b014b69234988d9fc823b98238, type: 3}
   m_Name: Skill Data - Catch This!
   m_EditorClassIdentifier: 
-  displayName: Catch This!
+  displayName: "\u75BE\u653B\u98DE\u5203"
   description: "\u6295\u63B7\u4F60\u7684\u5251\u6765\u4F24\u5BB3\u654C\u4EBA\u3002\u5251\u4F1A\u65BD\u52A0\u72B6\u6001\u6548\u679C\u3002\u4F60\u540C\u4E00\u65F6\u95F4\u53EA\u80FD\u5B58\u5728\u4E00\u628A\u6FC0\u6D3B\u7684\u5251."
   icon: {fileID: 2089672007, guid: 8e239c2e1844452478a067e5d18190f0, type: 3}
   cost: 1

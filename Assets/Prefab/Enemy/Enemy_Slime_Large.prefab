@@ -589,6 +589,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8acc55965acc8874daa489c9ffaf9310, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  imageEchoInterval: 0.05
+  imageEchoPrefab: {fileID: 0}
   onDamageMaterial: {fileID: 2100000, guid: 4ce891a918bf3244b82c7f8f64bfe0ba, type: 2}
   onDamageVfxDuration: 0.15
   hitVfxColor: {r: 0.9716981, g: 0.06124403, b: 0.022917405, a: 1}
@@ -613,7 +615,7 @@ MonoBehaviour:
   defaultStatSetup: {fileID: 11400000, guid: 5c1dcb1f8b845ad4d96934a99b081c9a, type: 2}
   resources:
     maxHealth:
-      baseValue: 35
+      baseValue: 100
       modifiers: []
     healthRegen:
       baseValue: 0
@@ -743,6 +745,8 @@ MonoBehaviour:
   goldDrop: 50
   battleMoveSpeed: 2.5
   attackDistance: 2
+  attackCooldown: 0.5
+  canChasePlayer: 1
   battleTimeDuration: 5
   minRetreatDistance: 1
   retreatVelocity: {x: 4, y: 2}

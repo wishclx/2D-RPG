@@ -1151,7 +1151,7 @@ GameObject:
   - component: {fileID: 1310936777091957967}
   - component: {fileID: 1339178492033150381}
   m_Layer: 5
-  m_Name: UI_TreeNode - Found fragment
+  m_Name: "UI_TreeNode - \u788E\u7247\u9057\u8FF9"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1198,7 +1198,7 @@ MonoBehaviour:
   isUnlocked: 0
   isLocked: 0
   skillData: {fileID: 11400000, guid: a0b025f972355de47916d06b34db6e19, type: 2}
-  skillName: Found fragment
+  skillName: "\u788E\u7247\u9057\u8FF9"
   skillIcon: {fileID: 4502401186999052410}
   skillCost: 3
   lockedColorHex: '#9F9797'
@@ -4959,6 +4959,142 @@ MonoBehaviour:
   rotationPoint: {fileID: 5239951280739932989}
   connectionLength: {fileID: 8336804668859713220}
   childNodeConnectionPoint: {fileID: 765148671951989461}
+--- !u!1 &435670132880286128
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7052406180040553979}
+  - component: {fileID: 7906317992056471669}
+  - component: {fileID: 2123923985426343461}
+  m_Layer: 5
+  m_Name: Text (TMP)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &7052406180040553979
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 435670132880286128}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8104791035315738225}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &7906317992056471669
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 435670132880286128}
+  m_CullTransparentMesh: 1
+--- !u!114 &2123923985426343461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 435670132880286128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: 2
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 3cd30df14cf9ae647b395a29a57852a6, type: 2}
+  m_sharedMaterial: {fileID: -3940588249303179150, guid: 3cd30df14cf9ae647b395a29a57852a6, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 36
+  m_fontSizeBase: 36
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 1024
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &441446650101525566
 GameObject:
   m_ObjectHideFlags: 0
@@ -6630,7 +6766,7 @@ MonoBehaviour:
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 36
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -6755,7 +6891,7 @@ GameObject:
   - component: {fileID: 3227568046730398542}
   - component: {fileID: 4177523777425077779}
   m_Layer: 5
-  m_Name: UI_TreeNode - Echo step
+  m_Name: "UI_TreeNode - \u75BE\u5F71\u6B65"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6804,7 +6940,7 @@ MonoBehaviour:
   isUnlocked: 0
   isLocked: 0
   skillData: {fileID: 11400000, guid: 42b78ecb6ccb29341a6c5ab2ccd17e5c, type: 2}
-  skillName: Echo step
+  skillName: "\u75BE\u5F71\u6B65"
   skillIcon: {fileID: 2968390227724013863}
   skillCost: 2
   lockedColorHex: '#9F9797'
@@ -6844,7 +6980,7 @@ GameObject:
   - component: {fileID: 3619736942598635295}
   - component: {fileID: 6503079716453671}
   m_Layer: 5
-  m_Name: UI_TreeNode - Quick thinking
+  m_Name: "UI_TreeNode - \u8FC5\u6377\u601D\u7EF4"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6892,7 +7028,7 @@ MonoBehaviour:
   isUnlocked: 0
   isLocked: 0
   skillData: {fileID: 11400000, guid: ad753d74062a51a48b45b7068ceaecf1, type: 2}
-  skillName: Quick thinking
+  skillName: "\u8FC5\u6377\u601D\u7EF4"
   skillIcon: {fileID: 684105286610786457}
   skillCost: 3
   lockedColorHex: '#9F9797'
@@ -9046,7 +9182,7 @@ GameObject:
   - component: {fileID: 6897704297387961352}
   - component: {fileID: 402378773526285683}
   m_Layer: 5
-  m_Name: UI_TreeNode - The bulletsword
+  m_Name: "UI_TreeNode - \u8D2F\u7A7F\u98DE\u5251"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9095,7 +9231,7 @@ MonoBehaviour:
   isUnlocked: 0
   isLocked: 0
   skillData: {fileID: 11400000, guid: 9f0e2da5d8460904b8f62bf47bf6a736, type: 2}
-  skillName: The bulletsword
+  skillName: "\u8D2F\u7A7F\u98DE\u5251"
   skillIcon: {fileID: 6976035820433318465}
   skillCost: 2
   lockedColorHex: '#9F9797'
@@ -10652,8 +10788,8 @@ RectTransform:
   - {fileID: 5176496642006856116}
   m_Father: {fileID: 1413002383636817770}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.626, y: 0}
-  m_AnchorMax: {x: 0.626, y: 1}
+  m_AnchorMin: {x: 0.62596256, y: 0}
+  m_AnchorMax: {x: 0.62596256, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -17204,11 +17340,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 5415493043862321822}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 1, y: 0}
+  m_Pivot: {x: 0, y: 0}
 --- !u!222 &1235868534342683771
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -17779,7 +17915,7 @@ GameObject:
   - component: {fileID: 8456545197169050920}
   - component: {fileID: 7988222235460220779}
   m_Layer: 5
-  m_Name: UI_TreeNode - Phantom Recall
+  m_Name: "UI_TreeNode - \u5E7B\u5F71\u56DE\u6EAF"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17827,7 +17963,7 @@ MonoBehaviour:
   isUnlocked: 0
   isLocked: 0
   skillData: {fileID: 11400000, guid: ec11fd8fa85260948ad3145983bb8636, type: 2}
-  skillName: Phantom Recall
+  skillName: "\u5E7B\u5F71\u56DE\u6EAF"
   skillIcon: {fileID: 5461596522243468966}
   skillCost: 2
   lockedColorHex: '#9F9797'
@@ -19004,7 +19140,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8988339597592156691
 RectTransform:
   m_ObjectHideFlags: 0
@@ -23172,7 +23308,7 @@ GameObject:
   - component: {fileID: 3958694263625708202}
   - component: {fileID: 4247705065690296118}
   m_Layer: 5
-  m_Name: UI_TreeNode - Mirror shard
+  m_Name: "UI_TreeNode - \u955C\u50CF\u5145\u80FD"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23219,7 +23355,7 @@ MonoBehaviour:
   isUnlocked: 0
   isLocked: 0
   skillData: {fileID: 11400000, guid: 56da2d5214f983a4f9f7d0c872e7d2be, type: 2}
-  skillName: Mirror shard
+  skillName: "\u955C\u50CF\u5145\u80FD"
   skillIcon: {fileID: 7414217937058677922}
   skillCost: 3
   lockedColorHex: '#9F9797'
@@ -23410,7 +23546,7 @@ GameObject:
   - component: {fileID: 5284648990230545683}
   - component: {fileID: 6879748927240232033}
   m_Layer: 5
-  m_Name: UI_TreeNode - Echoes of the past
+  m_Name: "UI_TreeNode - \u5F80\u6614\u56DE\u58F0"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23459,7 +23595,7 @@ MonoBehaviour:
   isUnlocked: 0
   isLocked: 0
   skillData: {fileID: 11400000, guid: 1d12b2399daa1f748910d63f954b3da9, type: 2}
-  skillName: Echoes of the past
+  skillName: "\u5F80\u6614\u56DE\u58F0"
   skillIcon: {fileID: 560459288033313588}
   skillCost: 4
   lockedColorHex: '#9F9797'
@@ -24318,7 +24454,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1827, y: 123}
+  m_AnchoredPosition: {x: 1788, y: 113}
   m_SizeDelta: {x: 420, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1751792349842194081
@@ -24759,7 +24895,7 @@ GameObject:
   - component: {fileID: 74841890303954460}
   - component: {fileID: 5656744287848289490}
   m_Layer: 5
-  m_Name: UI_TreeNode - Timeless attack
+  m_Name: "UI_TreeNode - \u65E0\u65F6\u65A9\u51FB"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24807,7 +24943,7 @@ MonoBehaviour:
   isUnlocked: 0
   isLocked: 0
   skillData: {fileID: 11400000, guid: 36bcc91e5f0642747a065dd6309c4fef, type: 2}
-  skillName: Timeless attack
+  skillName: "\u65E0\u65F6\u65A9\u51FB"
   skillIcon: {fileID: 8251828237357451164}
   skillCost: 2
   lockedColorHex: '#9F9797'
@@ -25341,7 +25477,7 @@ GameObject:
   - component: {fileID: 534356161374636929}
   - component: {fileID: 8858666482126020371}
   m_Layer: 5
-  m_Name: UI_TreeNode - Cleanse wisp
+  m_Name: "UI_TreeNode - \u51C0\u5316\u7075\u8424"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25389,7 +25525,7 @@ MonoBehaviour:
   isUnlocked: 0
   isLocked: 0
   skillData: {fileID: 11400000, guid: abdf415d33423c04684f94559e1eb4ef, type: 2}
-  skillName: Cleanse wisp
+  skillName: "\u51C0\u5316\u7075\u8424"
   skillIcon: {fileID: 7596393404682949528}
   skillCost: 3
   lockedColorHex: '#9F9797'
@@ -28119,11 +28255,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 8104791035315738225}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -0.000030517578, y: 0}
   m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 1, y: 0}
+  m_Pivot: {x: 0, y: 0}
 --- !u!222 &4098257909352961668
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -29895,7 +30031,7 @@ GameObject:
   - component: {fileID: 1715679903862274323}
   - component: {fileID: 8176894716176592097}
   m_Layer: 5
-  m_Name: UI_TreeNode - Time warp
+  m_Name: "UI_TreeNode - \u65F6\u6EDE\u9886\u57DF"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29942,7 +30078,7 @@ MonoBehaviour:
   isUnlocked: 0
   isLocked: 0
   skillData: {fileID: 11400000, guid: 88011e03121fd7b4eb72a5fd9cc57449, type: 2}
-  skillName: Time warp
+  skillName: "\u65F6\u6EDE\u9886\u57DF"
   skillIcon: {fileID: 1975683174057433738}
   skillCost: 4
   lockedColorHex: '#9F9797'
@@ -34222,6 +34358,142 @@ MonoBehaviour:
   itemIcon: {fileID: 5624123654826370544}
   itemStackSize: {fileID: 7264360654487889463}
   showControlsInTooltip: 1
+--- !u!1 &2720779029616304915
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3629067965344170163}
+  - component: {fileID: 599246944732536265}
+  - component: {fileID: 239519079890402004}
+  m_Layer: 5
+  m_Name: Text (TMP)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &3629067965344170163
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2720779029616304915}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5415493043862321822}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &599246944732536265
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2720779029616304915}
+  m_CullTransparentMesh: 1
+--- !u!114 &239519079890402004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2720779029616304915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: 1
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 3cd30df14cf9ae647b395a29a57852a6, type: 2}
+  m_sharedMaterial: {fileID: -3940588249303179150, guid: 3cd30df14cf9ae647b395a29a57852a6, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 36
+  m_fontSizeBase: 36
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 1024
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &2722576136846776672
 GameObject:
   m_ObjectHideFlags: 0
@@ -38612,7 +38884,7 @@ GameObject:
   - component: {fileID: 984131050769613512}
   - component: {fileID: 8859190346331174852}
   m_Layer: 5
-  m_Name: UI_TreeNode - The Chainsaw
+  m_Name: "UI_TreeNode - \u88C2\u65CB\u952F\u76D8"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38661,7 +38933,7 @@ MonoBehaviour:
   isUnlocked: 0
   isLocked: 0
   skillData: {fileID: 11400000, guid: 667d0651dba08c9409fcbbe98d8e5d21, type: 2}
-  skillName: The Chainsaw
+  skillName: "\u88C2\u65CB\u952F\u76D8"
   skillIcon: {fileID: 8224223186840930704}
   skillCost: 0
   lockedColorHex: '#9F9797'
@@ -41241,7 +41513,7 @@ GameObject:
   - component: {fileID: 8138357028546583389}
   - component: {fileID: 6205850806657743079}
   m_Layer: 5
-  m_Name: UI_TreeNode - Time Echo
+  m_Name: "UI_TreeNode - \u65F6\u4E4B\u56DE\u58F0"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41288,7 +41560,7 @@ MonoBehaviour:
   isUnlocked: 0
   isLocked: 0
   skillData: {fileID: 11400000, guid: c6bf9139b3aa8a74c904557dde2d94fa, type: 2}
-  skillName: Time Echo
+  skillName: "\u65F6\u4E4B\u56DE\u58F0"
   skillIcon: {fileID: 4804314424419197128}
   skillCost: 1
   lockedColorHex: '#9F9797'
@@ -49567,7 +49839,7 @@ GameObject:
   - component: {fileID: 4285742785286062592}
   - component: {fileID: 1943213347815166299}
   m_Layer: 5
-  m_Name: UI_TreeNode - Irritated shard
+  m_Name: "UI_TreeNode - \u9707\u9000\u788E\u7247"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -49615,7 +49887,7 @@ MonoBehaviour:
   isUnlocked: 0
   isLocked: 0
   skillData: {fileID: 11400000, guid: f262a067f07b9a642a745af75285242d, type: 2}
-  skillName: Irritated shard
+  skillName: "\u9707\u9000\u788E\u7247"
   skillIcon: {fileID: 8684043394957888699}
   skillCost: 2
   lockedColorHex: '#9F9797'
@@ -55637,7 +55909,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -775.24536, y: 986.24524}
+  m_AnchoredPosition: {x: -775.24536, y: 984.9}
   m_SizeDelta: {x: -1606.4907, y: 17.7548}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &6360652003796224513
@@ -58502,8 +58774,8 @@ RectTransform:
   - {fileID: 5504102639125064881}
   m_Father: {fileID: 8750688176851741522}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.626, y: 0}
-  m_AnchorMax: {x: 0.626, y: 1}
+  m_AnchorMin: {x: 0.62596256, y: 0}
+  m_AnchorMax: {x: 0.62596256, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -58768,7 +59040,7 @@ GameObject:
   - component: {fileID: 4842022967756477600}
   - component: {fileID: 6925937790839567837}
   m_Layer: 5
-  m_Name: UI_TreeNode - Deja Vu
+  m_Name: "UI_TreeNode - \u51B2\u5F71\u5206\u8EAB"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58815,7 +59087,7 @@ MonoBehaviour:
   isUnlocked: 0
   isLocked: 0
   skillData: {fileID: 11400000, guid: 2b500dab70f18c9418539b9ac61c08db, type: 2}
-  skillName: Deja Vu
+  skillName: "\u51B2\u5F71\u5206\u8EAB"
   skillIcon: {fileID: 5392912520511971623}
   skillCost: 3
   lockedColorHex: '#9F9797'
@@ -60747,7 +61019,7 @@ GameObject:
   - component: {fileID: 7652236113984109524}
   - component: {fileID: 7879223309736798859}
   m_Layer: 5
-  m_Name: UI_TreeNode - Quick dash
+  m_Name: "UI_TreeNode - \u51B2\u523A"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -60793,7 +61065,7 @@ MonoBehaviour:
   isUnlocked: 0
   isLocked: 0
   skillData: {fileID: 11400000, guid: 1fe8a7e82edc4a74981c5f1659b80c0d, type: 2}
-  skillName: Quick dash
+  skillName: "\u51B2\u523A"
   skillIcon: {fileID: 4301684473348932718}
   skillCost: 0
   lockedColorHex: '#9F9797'
@@ -60833,7 +61105,7 @@ GameObject:
   - component: {fileID: 8008812593388521936}
   - component: {fileID: 1011443458010667901}
   m_Layer: 5
-  m_Name: UI_TreeNode - Healing wisp
+  m_Name: "UI_TreeNode - \u6CBB\u6108\u7075\u8424"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -60881,7 +61153,7 @@ MonoBehaviour:
   isUnlocked: 0
   isLocked: 0
   skillData: {fileID: 11400000, guid: a7f4be03058894240ac39c63b02a3603, type: 2}
-  skillName: Healing wisp
+  skillName: "\u6CBB\u6108\u7075\u8424"
   skillIcon: {fileID: 5618294982301189851}
   skillCost: 2
   lockedColorHex: '#9F9797'
@@ -64393,7 +64665,7 @@ GameObject:
   - component: {fileID: 3239949793200800085}
   - component: {fileID: 432354877792271691}
   m_Layer: 5
-  m_Name: UI_TreeNode - The Xenablade
+  m_Name: "UI_TreeNode - \u56DE\u65CB\u5F39\u5203"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64442,7 +64714,7 @@ MonoBehaviour:
   isUnlocked: 0
   isLocked: 0
   skillData: {fileID: 11400000, guid: 0ffdbf45352608e4e9e46e52c389438d, type: 2}
-  skillName: The Xenablade
+  skillName: "\u56DE\u65CB\u5F39\u5203"
   skillIcon: {fileID: 5306382968092873537}
   skillCost: 2
   lockedColorHex: '#9F9797'
@@ -69031,7 +69303,7 @@ GameObject:
   - component: {fileID: 3620939148916917904}
   - component: {fileID: 7498134168791748638}
   m_Layer: 5
-  m_Name: UI_TreeNode - Shard of time
+  m_Name: "UI_TreeNode - \u65F6\u4E4B\u788E\u51FB"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -69080,7 +69352,7 @@ MonoBehaviour:
   isUnlocked: 0
   isLocked: 0
   skillData: {fileID: 11400000, guid: 48f8ea11a2e2ec8438a14c264bb85b94, type: 2}
-  skillName: Shard of time
+  skillName: "\u65F6\u4E4B\u788E\u51FB"
   skillIcon: {fileID: 9395601469410536}
   skillCost: 4
   lockedColorHex: '#9F9797'
@@ -70591,7 +70863,7 @@ GameObject:
   - component: {fileID: 2836563476962626960}
   - component: {fileID: 2346429751468432301}
   m_Layer: 5
-  m_Name: UI_TreeNode - Endless possibility
+  m_Name: "UI_TreeNode - \u65E0\u5C3D\u53EF\u80FD"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -70639,7 +70911,7 @@ MonoBehaviour:
   isUnlocked: 0
   isLocked: 0
   skillData: {fileID: 11400000, guid: fa92090d24efb254aa40135d8d4163fe, type: 2}
-  skillName: Endless possibility
+  skillName: "\u65E0\u5C3D\u53EF\u80FD"
   skillIcon: {fileID: 8137699827116995741}
   skillCost: 2
   lockedColorHex: '#9F9797'
@@ -77420,7 +77692,7 @@ GameObject:
   - component: {fileID: 8607342264510332137}
   - component: {fileID: 7109856223639835399}
   m_Layer: 5
-  m_Name: UI_TreeNode - Time lost shard
+  m_Name: "UI_TreeNode - \u7206\u788E\u4F59\u70EC"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77469,7 +77741,7 @@ MonoBehaviour:
   isUnlocked: 0
   isLocked: 0
   skillData: {fileID: 11400000, guid: 296ec8dba29e7d5429c3c9ae300d217d, type: 2}
-  skillName: Time lost shard
+  skillName: "\u7206\u788E\u4F59\u70EC"
   skillIcon: {fileID: 149985234546375885}
   skillCost: 2
   lockedColorHex: '#9F9797'
@@ -83164,7 +83436,7 @@ RectTransform:
   m_Father: {fileID: 6684426461430730579}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.626, y: 1}
+  m_AnchorMax: {x: 0.62596256, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -85181,6 +85453,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 24857895050689428}
+  - {fileID: 3629067965344170163}
   m_Father: {fileID: 3624947891497545696}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -85458,6 +85731,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5342776780180452156}
+  - {fileID: 7052406180040553979}
   m_Father: {fileID: 3624947891497545696}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -86214,7 +86488,7 @@ GameObject:
   - component: {fileID: 7348127765102315533}
   - component: {fileID: 4999704848263059318}
   m_Layer: 5
-  m_Name: UI_TreeNode - Time shard
+  m_Name: "UI_TreeNode - \u65F6\u7206\u788E\u7247"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -86261,7 +86535,7 @@ MonoBehaviour:
   isUnlocked: 0
   isLocked: 0
   skillData: {fileID: 11400000, guid: 5b09ce1c96926ae42b1f13d4fc5d72a5, type: 2}
-  skillName: Time shard
+  skillName: "\u65F6\u7206\u788E\u7247"
   skillIcon: {fileID: 7290872057125961234}
   skillCost: 0
   lockedColorHex: '#9F9797'
@@ -88688,7 +88962,7 @@ GameObject:
   - component: {fileID: 7420742874763412187}
   - component: {fileID: 5928007438357755009}
   m_Layer: 5
-  m_Name: UI_TreeNode - Vital Anchor
+  m_Name: "UI_TreeNode - \u751F\u547D\u951A\u70B9"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -88735,7 +89009,7 @@ MonoBehaviour:
   isUnlocked: 0
   isLocked: 0
   skillData: {fileID: 11400000, guid: ccbc57ea0d1905b42b79b9eb7a6f884b, type: 2}
-  skillName: Vital Anchor
+  skillName: "\u751F\u547D\u951A\u70B9"
   skillIcon: {fileID: 8264441942933338084}
   skillCost: 3
   lockedColorHex: '#9F9797'
@@ -98535,7 +98809,7 @@ RectTransform:
   m_Father: {fileID: 9138365090126347854}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.626, y: 1}
+  m_AnchorMax: {x: 0.62596256, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -104096,7 +104370,7 @@ GameObject:
   - component: {fileID: 2390097368473551566}
   - component: {fileID: 8130276668441322390}
   m_Layer: 5
-  m_Name: UI_TreeNode - Echo Barrage
+  m_Name: "UI_TreeNode - \u56DE\u58F0\u8FDE\u51FB"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -104144,7 +104418,7 @@ MonoBehaviour:
   isUnlocked: 0
   isLocked: 0
   skillData: {fileID: 11400000, guid: fe0a5e2e5f428e248bf28f6116525d2e, type: 2}
-  skillName: Echo Barrage
+  skillName: "\u56DE\u58F0\u8FDE\u51FB"
   skillIcon: {fileID: 3499532313207438122}
   skillCost: 2
   lockedColorHex: '#9F9797'
@@ -110297,7 +110571,7 @@ GameObject:
   - component: {fileID: 6486715532664236696}
   - component: {fileID: 5849263462100518055}
   m_Layer: 5
-  m_Name: UI_TreeNode - Catch This!
+  m_Name: "UI_TreeNode - \u75BE\u653B\u98DE\u5203"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -110344,7 +110618,7 @@ MonoBehaviour:
   isUnlocked: 0
   isLocked: 0
   skillData: {fileID: 11400000, guid: 77d7fcd8fbf09484db4052d011697b1d, type: 2}
-  skillName: Catch This!
+  skillName: "\u75BE\u653B\u98DE\u5203"
   skillIcon: {fileID: 2564823634813404463}
   skillCost: 1
   lockedColorHex: '#9F9797'
