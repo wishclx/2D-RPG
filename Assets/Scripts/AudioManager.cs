@@ -24,6 +24,7 @@ public class AudioManager : MonoBehaviour
         if (instance != null && instance != this)
         {
             Destroy(gameObject);
+            return; // <- 必须立即返回，避免把静态 instance 指向已销毁的对象
         }
 
         instance = this;
