@@ -121,10 +121,8 @@ public class Inventory_Player : Inventory_Base
         {
             if (item != null && item.itemData != null)
             {
-                //将背包中的每个物品的信息保存到GameData中，包括物品的唯一ID和数量。saveID是ItemDataSO中的一个属性，用于唯一标识每种物品。
                 string saveID = item.itemData.saveID;
 
-                //如果GameData中的背包数据中已经有该物品的saveID，则将数量累加；如果没有，则添加一个新的条目。
                 if (data.inventory.ContainsKey(saveID) == false)
                     data.inventory[saveID] = 0;
 
@@ -135,9 +133,18 @@ public class Inventory_Player : Inventory_Base
         foreach (var slot in equipList)
         {
             if (slot.HasItem())
-                //将装备槽中的每个装备的信息保存到GameData中，包括装备的唯一ID和槽位类型。
-                //saveID是ItemDataSO中的一个属性，用于唯一标识每种物品，slotType是Inventory_EquipmentSlot中的一个属性，用于标识该槽位的类型。
                 data.equipItems[slot.equipedItem.itemData.saveID] = slot.slotType;
+        }
+
+        // 新增：保存快键槽（保存为槽位索引 -> item saveID）
+        if (data.quickSlots == null)
+            data.quickSlots = new SerializableDictionary<string, string>();
+        data.quickSlots.Clear();
+        for (int i = 0; i < quickItems.Length; i++)
+        {
+            var qi = quickItems[i];
+            if (qi != null && qi.itemData != null)
+                data.quickSlots[i.ToString()] = qi.itemData.saveID;
         }
     }
 
@@ -160,13 +167,11 @@ public class Inventory_Player : Inventory_Base
 
             for (int i = 0; i < stackSize; i++)
             {
-                //根据ItemDataSO对象创建一个新的Inventory_Item对象，并将其添加到背包中。这里假设每个物品的stackSize为1，如果有堆叠物品，可以根据实际情况调整。
                 Inventory_Item itemToLoad = new Inventory_Item(itemData);
                 AddItem(itemToLoad);
             }
         }
 
-        //加载装备槽中的装备。对于每个保存的装备条目，根据saveID找到对应的ItemDataSO对象，创建一个新的Inventory_Item对象，并将其装备到对应类型的槽位上。
         foreach (var entry in data.equipItems)
         {
             string saveId = entry.Key;
@@ -180,6 +185,37 @@ public class Inventory_Player : Inventory_Base
             slot.equipedItem = itemToLoad;
             slot.equipedItem.AddModifiers(player.stats);//添加物品属性加成
             slot.equipedItem.AddItemEffect(player);//添加物品效果
+        }
+
+        // 新增：恢复快键槽
+        if (data.quickSlots != null)
+        {
+            for (int i = 0; i < quickItems.Length; i++)
+            {
+                string key = i.ToString();
+                if (data.quickSlots.TryGetValue(key, out string saveId) && string.IsNullOrEmpty(saveId) == false)
+                {
+                    ItemDataSO quickItemData = itemDataBase.GetItemData(saveId);
+                    if (quickItemData != null)
+                    {
+                        quickItems[i] = new Inventory_Item(quickItemData);
+                    }
+                    else
+                    {
+                        quickItems[i] = null;
+                    }
+                }
+                else
+                {
+                    quickItems[i] = null;
+                }
+            }
+        }
+        else
+        {
+            // 若无保存数据，清空快键槽
+            for (int i = 0; i < quickItems.Length; i++)
+                quickItems[i] = null;
         }
 
         TriggerUpdateUI();//触发UI更新事件，通知UI更新显示

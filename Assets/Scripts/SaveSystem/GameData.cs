@@ -34,6 +34,9 @@ public class GameData
     public string lastScenePlayed;//玩家上次进入的场景名称
     public Vector3 lastPlayerPosition;//玩家上次的位置
 
+    // 新增：保存快键槽（键为槽位索引字符串，值为 item saveID）
+    public SerializableDictionary<string, string> quickSlots;
+
     public GameData()
     {
         inventory = new SerializableDictionary<string, int>();
@@ -50,5 +53,7 @@ public class GameData
 
         completedQuests = new SerializableDictionary<string, bool>();
         activeQuests = new SerializableDictionary<string, int>();
+
+        quickSlots = new SerializableDictionary<string, string>();//初始化快键槽字典
     }
 }
