@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d7398b014b69234988d9fc823b98238, type: 3}
   m_Name: Skill Data - The Xenablade
   m_EditorClassIdentifier: 
-  displayName: The Xenablade
+  displayName: "\u56DE\u65CB\u5F39\u5203"
   description: "\u8FD9\u628A\u5251\u4F1A\u5728 N \u4E2A\u76EE\u6807\u4E4B\u95F4\u5F39\u5C04\uFF0C\u5E76\u5728\u6BCF\u6B21\u5F39\u5C04\u65F6\u9020\u6210\u4F24\u5BB3"
   icon: {fileID: -1651245956, guid: 8e239c2e1844452478a067e5d18190f0, type: 3}
   cost: 2

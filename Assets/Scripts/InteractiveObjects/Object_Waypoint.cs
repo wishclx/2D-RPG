@@ -33,6 +33,9 @@ public class Object_Waypoint : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.CompareTag("Player") == false)
+            return;
+
         if (canBeTriggered == false)
             return;
 

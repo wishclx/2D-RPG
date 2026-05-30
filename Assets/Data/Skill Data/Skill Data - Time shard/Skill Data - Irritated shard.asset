@@ -12,22 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d7398b014b69234988d9fc823b98238, type: 3}
   m_Name: Skill Data - Irritated shard
   m_EditorClassIdentifier: 
+  displayName: "\u9707\u9000\u788E\u7247"
+  description: "\u788E\u7247\u4F1A\u671D\u6700\u8FD1\u7684\u654C\u4EBA\u98DE\u53BB\u5E76\u9020\u6210\u4F24\u5BB3"
+  icon: {fileID: -2137339696, guid: 8e239c2e1844452478a067e5d18190f0, type: 3}
   cost: 2
   unlockedByDefault: 0
   skillType: 2
   upgradeData:
     upgradeType: 7
     cooldown: 4
-    damageScale:
-      physical: 0
-      elemental: 2
+    damageScaleData:
+      physical: 1
+      elemental: 1
       chillDuration: 3
-      chillSlowMultiplier: 0.3
+      chillSlowMultiplier: 0.2
       burnDuration: 3
-      burnDamageScale: 1.5
+      burnDamageScale: 1
       shockDuration: 3
-      shockDamageScale: 1.5
+      shockDamageScale: 1
       shockCharge: 0.4
-  displayName: Irritated shard
-  description: "\u788E\u7247\u4F1A\u671D\u6700\u8FD1\u7684\u654C\u4EBA\u98DE\u53BB"
-  icon: {fileID: -2137339696, guid: 8e239c2e1844452478a067e5d18190f0, type: 3}

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d7398b014b69234988d9fc823b98238, type: 3}
   m_Name: Skill Data - Timeless attack
   m_EditorClassIdentifier: 
-  displayName: Timeless attack
+  displayName: "\u65E0\u65F6\u65A9\u51FB"
   description: "\u5206\u8EAB\u53EF\u4EE5\u8FDB\u884C\u4E00\u6B21\u653B\u51FB"
   icon: {fileID: -2048904220, guid: 8e239c2e1844452478a067e5d18190f0, type: 3}
   cost: 2

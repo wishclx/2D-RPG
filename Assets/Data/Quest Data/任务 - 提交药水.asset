@@ -22,9 +22,9 @@ MonoBehaviour:
   itemToDeliver: {fileID: 11400000, guid: 034a1969eb91d7b46ac5cdc527e0e8d2, type: 2}
   rewardType: 0
   rewardItems:
-  - itemData: {fileID: 11400000, guid: 234142e00cbd4e04b87973cb0abb3d84, type: 2}
+  - itemData: {fileID: 11400000, guid: fde580ff6c17898498a17a833e044846, type: 2}
     stackSize: 1
     itemEffect: {fileID: 0}
-  - itemData: {fileID: 11400000, guid: 3768ce4832b726743927aa51b78a91fa, type: 2}
+  - itemData: {fileID: 11400000, guid: fde580ff6c17898498a17a833e044846, type: 2}
     stackSize: 1
     itemEffect: {fileID: 0}

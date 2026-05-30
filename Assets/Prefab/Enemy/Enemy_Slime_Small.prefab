@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5303462544513206821
 Transform:
   m_ObjectHideFlags: 0
@@ -1128,6 +1128,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8acc55965acc8874daa489c9ffaf9310, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  imageEchoInterval: 0.05
+  imageEchoPrefab: {fileID: 0}
   onDamageMaterial: {fileID: 2100000, guid: 4ce891a918bf3244b82c7f8f64bfe0ba, type: 2}
   onDamageVfxDuration: 0.15
   hitVfxColor: {r: 0.9716981, g: 0.06124403, b: 0.022917405, a: 1}
@@ -1162,7 +1164,7 @@ MonoBehaviour:
       baseValue: 0.8
       modifiers: []
     damage:
-      baseValue: 20
+      baseValue: 5
       modifiers: []
     critPower:
       baseValue: 150
@@ -1282,6 +1284,8 @@ MonoBehaviour:
   goldDrop: 20
   battleMoveSpeed: 3
   attackDistance: 1.27
+  attackCooldown: 0.5
+  canChasePlayer: 1
   battleTimeDuration: 5
   minRetreatDistance: 1
   retreatVelocity: {x: 4, y: 2}

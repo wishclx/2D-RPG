@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d7398b014b69234988d9fc823b98238, type: 3}
   m_Name: Skill Data - Time warp
   m_EditorClassIdentifier: 
-  displayName: Time warp
+  displayName: "\u65F6\u6EDE\u9886\u57DF"
   description: "\u521B\u5EFA\u4E00\u4E2A\u529B\u573A\uFF0C\u4F7F\u5176\u4E2D\u7684\u6240\u6709\u654C\u4EBA\u5927\u5E45\u51CF\u901F"
   icon: {fileID: -1610402032, guid: 8e239c2e1844452478a067e5d18190f0, type: 3}
   cost: 4

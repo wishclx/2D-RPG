@@ -27,7 +27,10 @@ public class Object_Portal : MonoBehaviour, ISaveable
     {
         isActive = true;
         transform.position = position;//将传送门移动到指定位置，准备被玩家使用
-        SaveManager.instance.GetGameData().inScenePortals.Clear();//清除游戏数据中当前场景的传送门位置数据，避免在加载游戏时恢复一个不存在的传送门位置
+
+        // SaveManager 可能为空（编辑器/测试场景等），先做保护检查
+        if (SaveManager.instance != null && SaveManager.instance.GetGameData() != null)
+            SaveManager.instance.GetGameData().inScenePortals.Clear();
 
         if (facingDir == -1)
             transform.Rotate(0, 180, 0);//如果传送门需要面向相反的方向，则旋转180度

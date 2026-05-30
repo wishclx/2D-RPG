@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d7398b014b69234988d9fc823b98238, type: 3}
   m_Name: Skill Data - Echo Barrage
   m_EditorClassIdentifier: 
-  displayName: Echo Barrage
+  displayName: "\u56DE\u58F0\u8FDE\u51FB"
   description: "\u5206\u8EAB\u53EF\u53D1\u52A83\u6B21\u653B\u51FB"
   icon: {fileID: -2072034484, guid: 8e239c2e1844452478a067e5d18190f0, type: 3}
   cost: 2

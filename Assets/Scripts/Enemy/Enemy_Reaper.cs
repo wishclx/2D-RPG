@@ -31,6 +31,29 @@ public class Enemy_Reaper : Enemy, ICounterable
     private float defaultTeleportChance;//默认的传送概率，用于重置传送概率
     public bool teleportTrigger { get; private set; }
 
+    // 新增：用于在被打断/受控时取消即将发生的传送（避免被无敌化）
+    private bool canceledTeleportRequest = false;
+
+    public void CancelPendingTeleport()
+    {
+        canceledTeleportRequest = true;
+        teleportTrigger = false;
+        chanceToTeleport = defaultTeleportChance; // 可选：重置概率，防止连锁传送
+    }
+
+    public bool ConsumeAndCheckCanceledTeleport()
+    {
+        if (canceledTeleportRequest)
+        {
+            canceledTeleportRequest = false;
+            return true;
+        }
+        return false;
+    }
+
+    // 新增：每降低 20% 血量触发一次传送的阈值与触发记录
+    private readonly float[] teleportThresholds = new float[] { 0.8f, 0.6f, 0.4f, 0.2f };
+    private bool[] teleportThresholdTriggered = new bool[4];
 
     protected override void Awake()
     {
@@ -57,12 +80,51 @@ public class Enemy_Reaper : Enemy, ICounterable
         defaultTeleportChance = chanceToTeleport;
 
         stateMachine.Initialize(idleState);
+
+        // 订阅受击事件，用于检测血量阈值触发传送
+        if (health != null)
+            health.OnTakingDamage += OnHealthChanged_ForTeleport;
+    }
+
+    private void OnDisable()
+    {
+        if (health != null)
+            health.OnTakingDamage -= OnHealthChanged_ForTeleport;
+    }
+
+    // 当血量变化且穿过阈值时，立即进入传送态
+    private void OnHealthChanged_ForTeleport()
+    {
+        if (health == null)
+            return;
+
+        float hpPercent = health.GetHealthPercent(); // 0~1
+
+        for (int i = 0; i < teleportThresholds.Length; i++)
+        {
+            if (!teleportThresholdTriggered[i] && hpPercent <= teleportThresholds[i])
+            {
+                teleportThresholdTriggered[i] = true;
+
+                // 立即触发传送：设置触发并切状态
+                CancelPendingTeleport(); // 清理任何挂起状态
+                SetTeleportTrigger(true);
+                // 仅在当前不在传送态时切入，避免重复
+                if (stateMachine.currentState != reaperTeleportState)
+                    stateMachine.ChangeState(reaperTeleportState);
+
+                break; // 一次只触发一个阈值
+            }
+        }
     }
 
     public void HandleCounter()
     {
         if (CanBeCountered == false)
             return;
+
+        // 被反击/打断时，取消任何待传送请求，确保敌人不会进入传送并变为无敌
+        CancelPendingTeleport();
 
         stateMachine.ChangeState(stunnedState);
     }

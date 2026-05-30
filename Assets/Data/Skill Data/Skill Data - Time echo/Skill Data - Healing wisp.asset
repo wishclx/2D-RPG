@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d7398b014b69234988d9fc823b98238, type: 3}
   m_Name: Skill Data - Healing wisp
   m_EditorClassIdentifier: 
-  displayName: Healing wisp
+  displayName: "\u6CBB\u6108\u7075\u8424"
   description: "\u5206\u8EAB\u6D88\u5931\u65F6,\u91CA\u653E\u4E00\u4E2A\u7CBE\u7075\u7ED9\u672C\u4F53\u56DE\u8840"
   icon: {fileID: -421670238, guid: 8e239c2e1844452478a067e5d18190f0, type: 3}
   cost: 2

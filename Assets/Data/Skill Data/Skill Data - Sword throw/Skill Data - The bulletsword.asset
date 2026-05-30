@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d7398b014b69234988d9fc823b98238, type: 3}
   m_Name: Skill Data - The bulletsword
   m_EditorClassIdentifier: 
-  displayName: The bulletsword
+  displayName: "\u8D2F\u7A7F\u98DE\u5251"
   description: "\u53D1\u5C04\u4E00\u628A\u5411\u524D\u98DE\u884C\u7684\u5251\uFF0C\u6CBF\u9014\u6700\u591A\u53EF\u7A7F\u900F
     N \u4E2A\u654C\u4EBA"
   icon: {fileID: -854908563, guid: 8e239c2e1844452478a067e5d18190f0, type: 3}

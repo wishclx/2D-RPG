@@ -1,8 +1,5 @@
 ﻿using UnityEngine;
 
-/// <summary>
-/// Player_BasicAttackState 的职责说明。
-/// </summary>
 public class Player_BasicAttackState : PlayerState
 {
     private float attackVelocityTimer;
@@ -16,9 +13,6 @@ public class Player_BasicAttackState : PlayerState
 
 
 
-    /// <summary>
-    /// 执行 Player_BasicAttackState 逻辑。
-    /// </summary>
     public Player_BasicAttackState(Player player, StateMachine stateMachine, string animBoolName) : base(player, stateMachine, animBoolName)
     {
         if (comboLimit != player.attackVelocity.Length)
@@ -28,9 +22,6 @@ public class Player_BasicAttackState : PlayerState
         }
     }
 
-    /// <summary>
-    /// 执行 Enter 逻辑。
-    /// </summary>
     public override void Enter()
     {
         base.Enter();
@@ -50,9 +41,6 @@ public class Player_BasicAttackState : PlayerState
     }
 
 
-    /// <summary>
-    /// 执行 Update 逻辑。
-    /// </summary>
     public override void Update()
     {
         base.Update();
@@ -65,9 +53,6 @@ public class Player_BasicAttackState : PlayerState
             HandleStateExit();
     }
 
-    /// <summary>
-    /// 执行 Exit 逻辑。
-    /// </summary>
     public override void Exit()
     {
         base.Exit();
@@ -75,9 +60,6 @@ public class Player_BasicAttackState : PlayerState
         lastTimeAttacked = Time.time;
     }
 
-    /// <summary>
-    /// 执行 HandleStateExit 逻辑。
-    /// </summary>
     private void HandleStateExit()
     {
         if (comboAttackQueued)
@@ -89,18 +71,12 @@ public class Player_BasicAttackState : PlayerState
             stateMachine.ChangeState(player.idleState);
     }
 
-    /// <summary>
-    /// 执行 QueueNextAttack 逻辑。
-    /// </summary>
     private void QueueNextAttack()
     {
         if (comboIndex < comboLimit)
             comboAttackQueued = true;
     }
 
-    /// <summary>
-    /// 执行 HandleAttackVelocity 逻辑。
-    /// </summary>
     private void HandleAttackVelocity()
     {
         attackVelocityTimer -= Time.deltaTime;
@@ -109,9 +85,6 @@ public class Player_BasicAttackState : PlayerState
             player.SetVelocity(0, rb.linearVelocity.y);
     }
 
-    /// <summary>
-    /// 执行 ApplyAttackVelocity 逻辑。
-    /// </summary>
     private void ApplyAttackVelocity()
     {
         Vector2 attackVelocity = player.attackVelocity[comboIndex - 1];
@@ -120,9 +93,6 @@ public class Player_BasicAttackState : PlayerState
         player.SetVelocity(attackVelocity.x * attackDir, attackVelocity.y);
     }
 
-    /// <summary>
-    /// 执行 ResetComboIndexIfNeeded 逻辑。
-    /// </summary>
     private void ResetComboIndexIfNeeded()
     {
         if (Time.time - lastTimeAttacked > player.comboResetTime || comboIndex > comboLimit)

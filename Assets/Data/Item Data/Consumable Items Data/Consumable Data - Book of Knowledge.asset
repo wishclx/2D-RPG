@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c8d4f1906be4e942a19560d976a5f36, type: 3}
   m_Name: Consumable Data - Book of Knowledge
   m_EditorClassIdentifier: 
+  saveID: 8ee07124bf5f06843935fd37a393a6d4
   itemPrice: 100
   minStackSizeAtShop: 1
   maxStackSizeAtShop: 1
@@ -22,5 +23,5 @@ MonoBehaviour:
   itemName: "\u6280\u80FD\u4E66"
   itemIcon: {fileID: -2067045318, guid: 8e239c2e1844452478a067e5d18190f0, type: 3}
   itemType: 4
-  maxStackSize: 20
+  maxStackSize: 99
   itemEffect: {fileID: 11400000, guid: 80922e2c3c926054a9380376b7525d14, type: 2}

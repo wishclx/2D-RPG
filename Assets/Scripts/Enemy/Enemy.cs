@@ -52,6 +52,9 @@ public class Enemy : Entity
     public float GetMoveSpeed() => moveSpeed * activeSlowMultiplier;
     public float GetBattleMoveSpeed() => battleMoveSpeed * activeSlowMultiplier;
 
+    // 引用计数：追踪有多少来源将敌人标记为不可被选中/无敌，避免重复覆盖或提早恢复
+    private int untargetableRefCount = 0;
+
     protected override void Awake()
     {
         base.Awake();
@@ -61,12 +64,42 @@ public class Enemy : Entity
         vfx = GetComponent<Entity_VFX>();
     }
 
-    public void MakeUntargetable(bool canBeTargeted)
+    /// <summary>
+    /// 设置敌人是否可被选中/受伤。
+    /// 使用引用计数避免重复调用导致恢复失败：每次传入 true 时增加计数，传入 false 时减少计数，
+    /// 只有计数为0时才真正恢复为可被攻击层并允许受伤。
+    /// 同时同步到生命组件的可受伤开关，保证伤害判定一致。
+    /// </summary>
+    public void MakeUntargetable(bool makeUntargetable)
     {
-        if (canBeTargeted == false)
-            gameObject.layer = LayerMask.NameToLayer("Untargetable");// 将敌人设置为不可被玩家攻击的层，这样玩家的攻击就无法检测到敌人，从而使敌人暂时无法被攻击
+        if (makeUntargetable)
+        {
+            untargetableRefCount = Mathf.Max(0, untargetableRefCount) + 1;
+        }
         else
-            gameObject.layer = LayerMask.NameToLayer("Enemy");// 将敌人设置回可被玩家攻击的层，使敌人可以再次被玩家攻击
+        {
+            untargetableRefCount = Mathf.Max(0, untargetableRefCount - 1);
+        }
+
+        bool isUntargetableNow = untargetableRefCount > 0;
+
+        // 切换 Layer 保持原有行为（射线/过滤）
+        gameObject.layer = isUntargetableNow ? LayerMask.NameToLayer("Untargetable") : LayerMask.NameToLayer("Enemy");
+
+        // 同步到生命组件，确保伤害真正被禁止/允许（更可靠）
+        if (health != null)
+            health.SetCanTakeDamage(!isUntargetableNow);
+    }
+
+    /// <summary>
+    /// 强制清理所有不可被选中标记（用于出错恢复/调试）
+    /// </summary>
+    public void ForceClearUntargetable()
+    {
+        untargetableRefCount = 0;
+        gameObject.layer = LayerMask.NameToLayer("Enemy");
+        if (health != null)
+            health.SetCanTakeDamage(true);
     }
 
     public virtual void SpecialAttack()//敌人特有的攻击方式，可以在子类中重写实现不同的攻击行为
@@ -170,6 +203,24 @@ public class Enemy : Entity
     private void OnDisable()
     {
         Player.OnPlayerDeath -= HandlePlayerDeath;
+        // 额外保险：确保禁用时清理不可被选中状态，防止残留
+        ForceClearUntargetable();
+    }
+
+    public void TryEnterBattleState(Transform player, bool force)
+    {
+        // 如果需要可扩展的重载保留
+        TryEnterBattleState(player);
+    }
+
+    public void DestroyGameObjectWithDelay(float delay = 10)
+    {
+        DestoryGameObjectWithDelay(delay);
+    }
+
+    public Transform GetPlayerReferenceSafe()
+    {
+        return GetPlayerReference();
     }
 }
 

@@ -12,12 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d7398b014b69234988d9fc823b98238, type: 3}
   m_Name: Skill Data - Mirror shard
   m_EditorClassIdentifier: 
+  displayName: "\u955C\u50CF\u5145\u80FD"
+  description: "\u788E\u7247\u73B0\u5728\u6709 3 \u6B21\u5145\u80FD\n"
+  icon: {fileID: -990033636, guid: 8e239c2e1844452478a067e5d18190f0, type: 3}
   cost: 3
   unlockedByDefault: 0
   skillType: 2
   upgradeData:
     upgradeType: 8
     cooldown: 4
-  displayName: Mirror shard
-  description: "\u65F6\u95F4\u788E\u7247\u73B0\u5728\u6709 3 \u6B21\u5145\u80FD\n"
-  icon: {fileID: -990033636, guid: 8e239c2e1844452478a067e5d18190f0, type: 3}
+    damageScaleData:
+      physical: 1
+      elemental: 1
+      chillDuration: 3
+      chillSlowMultiplier: 0.2
+      burnDuration: 3
+      burnDamageScale: 1
+      shockDuration: 3
+      shockDamageScale: 1
+      shockCharge: 0.4

@@ -23,7 +23,7 @@ public class Enemy_MageRetreatState : EnemyState
         rb.linearVelocity = new Vector2(enemyMage.retreatSpeed * -DirectionToPlayer(), 0);//设置敌人的速度为后撤速度的相反方向
         enemy.HandleFlip(DirectionToPlayer());//根据玩家的位置调整敌人的朝向
 
-        enemy.MakeUntargetable(true);//使敌人无法被攻击)
+        //enemy.MakeUntargetable(true);//使敌人无法被攻击)
         enemy.vfx.DoImageEchoEffect(1);
     }
 
@@ -42,7 +42,7 @@ public class Enemy_MageRetreatState : EnemyState
     {
         base.Exit();
         enemy.vfx.StopImageEchoEffect();//停止后撤的视觉效果
-        enemy.MakeUntargetable(false);//使敌人可以被攻击
+        //enemy.MakeUntargetable(false);//使敌人可以被攻击
     }
 
     protected int DirectionToPlayer()

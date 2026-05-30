@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3388a2517480d944a3e9cd664a3e8a8, type: 3}
   m_Name: Equipment Data - Dracula's Fang
   m_EditorClassIdentifier: 
+  saveID: 7db0838c293b92a4c82b9b6ad059089b
   itemPrice: 100
   minStackSizeAtShop: 1
   maxStackSizeAtShop: 1
@@ -32,7 +33,7 @@ MonoBehaviour:
   itemEffect: {fileID: 11400000, guid: b836b4c347669ef448153e2a069b5840, type: 2}
   modifiers:
   - statType: 7
-    value: 35
+    value: 10
   - statType: 6
     value: 0.15
   - statType: 8

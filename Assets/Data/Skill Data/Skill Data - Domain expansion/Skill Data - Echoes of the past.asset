@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d7398b014b69234988d9fc823b98238, type: 3}
   m_Name: Skill Data - Echoes of the past
   m_EditorClassIdentifier: 
-  displayName: Echoes of the past
+  displayName: "\u5F80\u6614\u56DE\u58F0"
   description: "\u6301\u7EED\u53EC\u5524\u5206\u8EAB\u5BF9\u9886\u57DF\u5185\u654C\u4EBA\u8FDB\u884C\u653B\u51FB"
   icon: {fileID: -1855510354, guid: 8e239c2e1844452478a067e5d18190f0, type: 3}
   cost: 4
