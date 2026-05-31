@@ -38,18 +38,27 @@ public class GameManager : MonoBehaviour, ISaveable
 
     public void ChangeScene(string sceneName, RespawnType spawnType)
     {
-        SaveManager.instance.SaveGame();//保存游戏数据
-
+        // 不在这里直接 SaveGame，改为在协程内先开始淡出、让一帧渲染，
+        // 然后再调用 SaveGame，避免同步 IO 卡住淡出动画。
         Time.timeScale = 1.0f;//确保时间缩放恢复正常，防止在暂停状态下切换场景后继续保持暂停状态
-        StartCoroutine(ChangeSceneCo(sceneName, spawnType));// 开始切换场景的协程
+        StartCoroutine(ChangeSceneCo(sceneName, spawnType));
     }
 
     private IEnumerator ChangeSceneCo(string sceneName, RespawnType spawnType)
     {
         UI_FadeScreen fadeScreen = FindFadeScreenUI();// 查找淡入淡出界面
 
-        //TODO: 添加过渡动画或加载界面
-        fadeScreen.DoFadeOut();// 透明 -> 全黑
+        // 启动淡出动画（透明 -> 全黑）
+        fadeScreen.DoFadeOut();
+
+        // 等一帧，让 Canvas / Image 的初始状态能被提交到渲染，确保玩家能看到淡出开始
+        yield return null;
+
+        // 现在再执行保存（可能会做文件 IO），减小对动画影响
+        if (SaveManager.instance != null)
+            SaveManager.instance.SaveGame();
+
+        // 等待淡出协程结束
         yield return fadeScreen.fadeEffectCo;// 等待淡入动画完成
 
         SceneManager.LoadScene(sceneName);

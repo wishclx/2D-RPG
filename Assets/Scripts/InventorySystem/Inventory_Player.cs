@@ -188,6 +188,8 @@ public class Inventory_Player : Inventory_Base
         }
 
         // 新增：恢复快键槽
+        // 恢复快键槽部分：优先引用背包中已有的 Inventory_Item，
+        // 这样堆叠数量会和背包保持一致。
         if (data.quickSlots != null)
         {
             for (int i = 0; i < quickItems.Length; i++)
@@ -198,7 +200,17 @@ public class Inventory_Player : Inventory_Base
                     ItemDataSO quickItemData = itemDataBase.GetItemData(saveId);
                     if (quickItemData != null)
                     {
-                        quickItems[i] = new Inventory_Item(quickItemData);
+                        // 先尝试在背包中找到已存在的物品实例，保持引用以同步数量
+                        Inventory_Item existing = FindSameItem(new Inventory_Item(quickItemData));
+                        if (existing != null)
+                        {
+                            quickItems[i] = existing;
+                        }
+                        else
+                        {
+                            // 背包中没有该物品，则新建一个（显示上也行）
+                            quickItems[i] = new Inventory_Item(quickItemData);
+                        }
                     }
                     else
                     {

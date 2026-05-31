@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
 public class UI : MonoBehaviour
@@ -72,15 +73,22 @@ public class UI : MonoBehaviour
 
         input.UI.OptionUI.performed += ctx =>
         {
-            foreach (var element in uiElements)
+            // 如果设置界面已经打开，则关闭回到游戏界面
+            if (optionsUI.gameObject.activeSelf)
             {
-                if (element.activeSelf)
-                {
-                    SwitchToInGameUI();
-                    return;
-                }
+                SwitchToInGameUI();
+                return;
             }
 
+            // 如果有其他 UI（非游戏内 HUD）处于打开状态，先切回游戏界面
+            bool otherUIActive = uiElements.Any(e => e.activeSelf && e != inGameUI.gameObject);
+            if (otherUIActive)
+            {
+                SwitchToInGameUI();
+                return;
+            }
+
+            // 否则打开设置界面
             OpenOptionsUI();
         };
 
