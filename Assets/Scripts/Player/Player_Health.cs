@@ -37,6 +37,10 @@ public class Player_Health : Entity_Health, ISaveable
     {
         if (data == null) return;
 
+        // 如果玩家处于死亡状态，不保存当前生命值（避免把 0 覆盖到存档中）
+        if (isDead)
+            return;
+
         data.playerHealth = GetCurrentHealth();
         data.playerMaxHealth = GetComponent<Entity_Stats>() != null ? GetComponent<Entity_Stats>().GetMaxHealth() : -1f;
         data.playerHealthPercent = GetHealthPercent();

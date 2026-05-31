@@ -1253,7 +1253,7 @@ Transform:
   m_GameObject: {fileID: 425763717}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 29.13, y: 2.09, z: 0}
+  m_LocalPosition: {x: 29.13, y: 5.46, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -25494,7 +25494,7 @@ Transform:
   m_GameObject: {fileID: 1197738687}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -17.75, y: -0.04, z: 0}
+  m_LocalPosition: {x: -17.75, y: 3.33, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -27042,15 +27042,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1624660006105107462, guid: 53089a801144b1f4c9f7db9819bb5bf9, type: 3}
       propertyPath: transferToScene
-      value: "\u8BAD\u7EC3\u573A1"
+      value: "\u8BAD\u7EC3\u573A2"
       objectReference: {fileID: 0}
     - target: {fileID: 1764406991526886784, guid: 53089a801144b1f4c9f7db9819bb5bf9, type: 3}
       propertyPath: m_Name
-      value: "\u5206\u754C\u70B9 - Enter - \u8BAD\u7EC3\u573A1"
+      value: "\u5206\u754C\u70B9 - Enter - \u8BAD\u7EC3\u573A2"
       objectReference: {fileID: 0}
     - target: {fileID: 5249616438245197952, guid: 53089a801144b1f4c9f7db9819bb5bf9, type: 3}
       propertyPath: m_text
-      value: "\u6559\u7A0B\u51735"
+      value: "\u8BAD\u7EC3\u573A2"
       objectReference: {fileID: 0}
     - target: {fileID: 7894155967116014300, guid: 53089a801144b1f4c9f7db9819bb5bf9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -29594,6 +29594,10 @@ PrefabInstance:
     - target: {fileID: 1038107968227743853, guid: d22d041e24d2a2a47a06fdc9fad868e3, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1527664377456910708, guid: d22d041e24d2a2a47a06fdc9fad868e3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1781730699600713358, guid: d22d041e24d2a2a47a06fdc9fad868e3, type: 3}
       propertyPath: m_AnchoredPosition.x

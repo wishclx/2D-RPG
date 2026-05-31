@@ -10,6 +10,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource sfxSource;
     [Space]
 
+    // 全局 SFX 音量因子（由 UI 控制，范围 0..1）
+    private float globalSFXMultiplier = 1f;
 
     private Transform player;
 
@@ -35,22 +37,31 @@ public class AudioManager : MonoBehaviour
 
     private void CacheAudioSources()
     {
-        if (bgmSource == null) //背景音乐音频源未绑定时尝试获取
-            bgmSource = GetComponentInChildren<AudioSource>();
+        // 尝试按顺序获取子 AudioSource，确保 bgmSource 与 sfxSource 不同
+        var sources = GetComponentsInChildren<AudioSource>(true);
+        if (bgmSource == null && sources.Length > 0)
+            bgmSource = sources[0];
+        if (sfxSource == null)
+        {
+            if (sources.Length > 1)
+                sfxSource = sources[1];
+            else if (sources.Length == 1)
+                sfxSource = sources[0];
+        }
 
-        if (sfxSource == null) //音效音频源未绑定时尝试获取
-            sfxSource = GetComponentInChildren<AudioSource>();
+        if (bgmSource == null)
+            bgmSource = GetComponent<AudioSource>();
     }
 
     private void Update()
     {
-        if (bgmSource.isPlaying == false && bgmShouldPlay)
+        if (bgmSource != null && bgmSource.isPlaying == false && bgmShouldPlay)
         {
             if (string.IsNullOrEmpty(currentBgmGroupName) == false)
                 NextBGM(currentBgmGroupName);//如果当前音乐停止且bgmShouldPlay为true，则尝试切换到下一个音乐组
         }
 
-        if (bgmSource.isPlaying && bgmShouldPlay == false)
+        if (bgmSource != null && bgmSource.isPlaying && bgmShouldPlay == false)
             StopBGM();//如果当前音乐正在播放但bgmShouldPlay为false，则停止音乐
     }
 
@@ -79,7 +90,8 @@ public class AudioManager : MonoBehaviour
     {
         bgmShouldPlay = false;
 
-        StartCoroutine(FadeVolumeCo(bgmSource, 0, 1f));//淡出当前音乐
+        if (bgmSource != null)
+            StartCoroutine(FadeVolumeCo(bgmSource, 0, 1f));//淡出当前音乐
 
         if (currentBgmCo != null)
             StopCoroutine(currentBgmCo);
@@ -88,13 +100,13 @@ public class AudioManager : MonoBehaviour
     private IEnumerator SwitchMusicCo(string musicGroup)
     {
         AudioClipData data = audioDatabase.Get(musicGroup);
-        AudioClip nextMusic = data.GetRandomClip();
-
-        if (data == null || data.clips.Count == 0)
+        if (data == null)
         {
-            Debug.Log($"Music group {musicGroup} not found or empty in database!");
+            Debug.Log($"Music group {musicGroup} not found in database!");
             yield break;
         }
+
+        AudioClip nextMusic = data.GetRandomClip();
 
         if (data.clips.Count > 1)
         {
@@ -102,15 +114,18 @@ public class AudioManager : MonoBehaviour
                 nextMusic = data.GetRandomClip();
         }
 
-        if (bgmSource.isPlaying)
+        if (bgmSource != null && bgmSource.isPlaying)
             yield return StartCoroutine(FadeVolumeCo(bgmSource, 0, 1f));//淡出当前音乐
 
         lastMusicPlayed = nextMusic;
-        bgmSource.clip = nextMusic;
-        bgmSource.volume = 0;
-        bgmSource.Play();
+        if (bgmSource != null)
+        {
+            bgmSource.clip = nextMusic;
+            bgmSource.volume = 0;
+            bgmSource.Play();
 
-        StartCoroutine(FadeVolumeCo(bgmSource, data.MaxVolume, 1f));//淡入新音乐
+            StartCoroutine(FadeVolumeCo(bgmSource, data.MaxVolume, 1f));//淡入新音乐
+        }
     }
 
     private IEnumerator FadeVolumeCo(AudioSource source, float targetVolume, float duration)
@@ -122,17 +137,23 @@ public class AudioManager : MonoBehaviour
         {
             time += Time.deltaTime;
 
-            source.volume = Mathf.Lerp(source.volume, targetVolume, time / duration);//线性插值调整音量
+            source.volume = Mathf.Lerp(startVolume, targetVolume, time / duration);//修正为从 startVolume lerp 到 targetVolume
             yield return null;
         }
 
         source.volume = targetVolume;//确保最终音量设置正确
     }
 
+    // 设置全局 SFX 因子（0..1），UI 调整时调用
+    public void SetGlobalSFXMultiplier(float value)
+    {
+        globalSFXMultiplier = Mathf.Clamp01(value);
+    }
+
     public void PlaySFX(string soundName, AudioSource sfxSource, float minDistanceToHearSound = 5)
     {
         if (player == null)
-            player = Player.instance.transform;
+            player = Player.instance != null ? Player.instance.transform : null;
 
         var data = audioDatabase.Get(soundName);//从数据库中获取音频数据
         if (data == null)
@@ -145,11 +166,14 @@ public class AudioManager : MonoBehaviour
         if (clip == null) return;
 
         float maxVolume = data.MaxVolume;
-        float distance = Vector2.Distance(sfxSource.transform.position, player.position);
+        float distance = (player != null && sfxSource != null) ? Vector2.Distance(sfxSource.transform.position, player.position) : 0f;
         float t = Mathf.Clamp01(1 - distance / minDistanceToHearSound);
 
         sfxSource.pitch = Random.Range(0.95f, 1.05f);//随机调整音调
-        sfxSource.volume = Mathf.Lerp(0, maxVolume, t * t);//根据距离调整音量，距离越远音量越小
+
+        // 使用计算音量并乘以全局 SFX 因子，保证 UI 的调节生效
+        float computedVolume = Mathf.Lerp(0, maxVolume, t * t) * globalSFXMultiplier;
+        sfxSource.volume = computedVolume;
         sfxSource.PlayOneShot(clip);
     }
 
@@ -173,7 +197,8 @@ public class AudioManager : MonoBehaviour
 
         Debug.Log($"Playing global SFX: {soundName}");
         sfxSource.pitch = Random.Range(0.95f, 1.05f);
-        sfxSource.volume = data.MaxVolume;
+        // 使用资源最大音量并乘以全局因子
+        sfxSource.volume = data.MaxVolume * globalSFXMultiplier;
         sfxSource.PlayOneShot(clip);//全局音效不受距离影响，直接使用最大音量播放
     }
 }
